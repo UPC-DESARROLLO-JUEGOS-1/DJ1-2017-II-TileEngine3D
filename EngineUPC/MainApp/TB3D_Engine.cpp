@@ -26,6 +26,9 @@ void TB3D_Engine::Initialize() {
 	mWorld->Initialize();
 
 	mCamera->FollowActor(mPlayer);
+	// Set camera hard coded values for looking at player
+	mCamera->GetRenderCamera()->SetRotationX(-0.8f);
+	mCamera->SetOffset(0, -15.0f, 20.0f);
 }
 
 void TB3D_Engine::OnKeyDown(SDL_Keycode key) {

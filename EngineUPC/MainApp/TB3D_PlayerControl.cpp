@@ -26,19 +26,19 @@ void TB3D_PlayerControl::OnKeyDown(SDL_Keycode key) {
 	switch (key) {
 	case SDLK_LEFT:
 		mCanGoBackward = true;
-		mDirectionX = -1;
+		mDirectionX = 1;
 		break;
 	case SDLK_RIGHT:
 		mCanGoForward = true;
-		mDirectionX = 1;
+		mDirectionX = -1;
 		break;
 	case SDLK_UP:
 		mCanGoLeft = true;
-		mDirectionY = -1;
+		mDirectionY = 1;
 		break;
 	case SDLK_DOWN:
 		mCanGoRight = true;
-		mDirectionY = 1;
+		mDirectionY = -1;
 		break;
 	}
 }
