@@ -69,6 +69,8 @@ void TB3D_PlayerControl::Update(float dt) {
 	
 	mPlayer->SetX(position.x);
 	mPlayer->SetZ(position.y);
+
+	
 	
 	if (!mCanGoForward && !mCanGoBackward) { mDirectionX = 0; }
 	if (!mCanGoLeft && !mCanGoRight) { mDirectionY = 0; }

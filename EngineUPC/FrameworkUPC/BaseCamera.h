@@ -70,6 +70,21 @@ public:
 		needMatrixUpdate = true;
 	}
 
+	void SetPosition(float x, float y, float z, bool transformed) {
+		this->x = x;
+		this->y = y;
+		this->z = z;
+
+		if (transformed) {
+			float* worldMatrixPtr = glm::value_ptr(worldMatrix);
+			*(worldMatrixPtr + 12) = x;
+			*(worldMatrixPtr + 13) = y;
+			*(worldMatrixPtr + 14) = z;
+
+			needMatrixUpdate = true;
+		}
+	}
+
 	void SetScaleX(float value)
 	{
 		if (scaleX != value)
@@ -103,6 +118,24 @@ public:
 		}
 	}
 
+	void SetRotationX(float value)
+	{
+		rotationX = value;
+		needMatrixUpdate = true;
+	}
+
+	void SetRotationY(float value)
+	{
+		rotationY = value;
+		needMatrixUpdate = true;
+	}
+
+	void SetRotationZ(float value)
+	{
+		rotationZ = value;
+		needMatrixUpdate = true;
+	}
+
 	float GetX() { return x; }
 	float GetY() { return y; }
 	float GetZ() { return z; }
@@ -131,6 +164,22 @@ public:
 		if (needMatrixUpdate)
 		{
 			//resultMatrix = (worldMatrix*viewMatrix)*projectionMatrix;
+
+			glm::mat4 result(1.0f);
+			glm::vec3 translate(x, y, z);
+			glm::vec3 scale(scaleX, scaleY, scaleZ);
+
+			
+			
+			result = glm::rotate(result, rotationX, glm::vec3(1.0f, 0.0f, 0.0f));
+			result = glm::rotate(result, rotationY, glm::vec3(0.0f, 1.0f, 0.0f));
+			result = glm::rotate(result, rotationZ, glm::vec3(0.0f, 0.0f, 1.0f));
+			result = glm::scale(result, scale);
+			result = glm::translate(result, translate);
+
+
+			worldMatrix = result;
+
 			resultMatrix = projectionMatrix * viewMatrix * worldMatrix;
 			needMatrixUpdate = false;
 		}

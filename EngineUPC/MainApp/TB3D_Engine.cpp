@@ -24,6 +24,8 @@ void TB3D_Engine::Initialize() {
 	mCamera->Initialize();
 	mPlayer->Initialize();
 	mWorld->Initialize();
+
+	mCamera->FollowActor(mPlayer);
 }
 
 void TB3D_Engine::OnKeyDown(SDL_Keycode key) {

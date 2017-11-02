@@ -1,6 +1,7 @@
 #pragma once
 
-#include <FrameworkUPC\FPSCamera.h>;
+#include <FrameworkUPC\Camera3D.h>;
+#include "TB3D_Actor.h"
 
 class TB3D_Engine;
 
@@ -10,13 +11,15 @@ public:
 	TB3D_Camera(TB3D_Engine* engine);
 	~TB3D_Camera();
 
-	FPSCamera* GetRenderCamera() { return mRenderCamera; }
+	Camera3D* GetRenderCamera() { return mRenderCamera; }
 
 	void Initialize();
+	void FollowActor(TB3D_Actor* actor) { mActor = actor; }
 	void Update(float dt);
 
 private:
+	TB3D_Actor* mActor;
 	TB3D_Engine* mEngine;
-	FPSCamera* mRenderCamera;
+	Camera3D* mRenderCamera;
 };
 
