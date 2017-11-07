@@ -43,6 +43,22 @@ int GameWindow::Create(const std::string windowName, int screenWidth, int screen
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	/////
 
+	//Get default audio device
+	ALCdevice *device = alcOpenDevice(NULL);
+	if (!device)
+		AlutError();
+
+	//OpenAL Context
+	ALCcontext *context = alcCreateContext(device, NULL);
+	if (!alcMakeContextCurrent(context))
+		AlutError();
+
+	//Init Alut
+	int argcp = 0;
+	char* argv = "/0";
+	alutInit(&argcp, &argv);
+	AlutError();
+
 	return 0;
 }
 

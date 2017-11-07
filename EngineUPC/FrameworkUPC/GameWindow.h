@@ -2,6 +2,7 @@
 
 #include <SDL\SDL.h>
 #include <GL\glew.h>
+#include <AL\alut.h>
 #include <string>
 #include <functional>
 

@@ -121,6 +121,12 @@
     <Filter Include="Source Files\libs\pugixml">
       <UniqueIdentifier>{6c719622-53ea-4edf-9b6e-61741fbfc1b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\core\audio">
+      <UniqueIdentifier>{1c02ce5e-f8b2-460f-92a8-8cfc70e0f129}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\audio">
+      <UniqueIdentifier>{5d8a5ae4-2336-434a-ac57-73c85b5b9c21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameWindow.h">
@@ -300,6 +306,12 @@
     <ClInclude Include="PrimitiveShaderColor3D.h">
       <Filter>Header Files\core\render\shader\D3D</Filter>
     </ClInclude>
+    <ClInclude Include="SoundContent.h">
+      <Filter>Header Files\core\content</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Header Files\core\audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameWindow.cpp">
@@ -394,6 +406,12 @@
     </ClCompile>
     <ClCompile Include="pugixml.cpp">
       <Filter>Source Files\libs\pugixml</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundContent.cpp">
+      <Filter>Source Files\core\content</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Source Files\core\audio</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

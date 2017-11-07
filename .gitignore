@@ -31,3 +31,5 @@
 *.app
 EngineUPC/FrameworkUPC/Debug/
 EngineUPC/MainApp/Debug/
+/EngineUPC/FrameworkUPC/x64/Debug
+/EngineUPC/.vs/EngineUPC/v15
