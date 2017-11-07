@@ -31,5 +31,7 @@
 *.app
 EngineUPC/FrameworkUPC/Debug/
 EngineUPC/MainApp/Debug/
+*.opendb
+*.db
 /EngineUPC/FrameworkUPC/x64/Debug
 /EngineUPC/.vs/EngineUPC/v15

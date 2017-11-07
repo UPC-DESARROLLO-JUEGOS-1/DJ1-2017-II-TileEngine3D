@@ -15,6 +15,14 @@ struct V3
 	float z;
 };
 
+struct V4
+{
+	float x;
+	float y;
+	float z;
+	float w;
+};
+
 struct Color
 {
 	GLubyte r;

@@ -306,6 +306,9 @@
     <ClInclude Include="PrimitiveShaderColor3D.h">
       <Filter>Header Files\core\render\shader\D3D</Filter>
     </ClInclude>
+    <ClInclude Include="BasicLightingShader.h">
+      <Filter>Header Files\core\render\shader\D3D</Filter>
+    </ClInclude>
     <ClInclude Include="SoundContent.h">
       <Filter>Header Files\core\content</Filter>
     </ClInclude>

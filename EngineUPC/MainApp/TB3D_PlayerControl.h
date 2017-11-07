@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL\SDL_keycode.h>
+#include "TB3D_Camera.h"
 
 class TB3D_Player;
 

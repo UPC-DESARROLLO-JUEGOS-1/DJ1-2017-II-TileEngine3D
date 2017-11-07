@@ -24,11 +24,18 @@ void TB3D_Camera::Initialize() {
 	int cHeight = framework->GetScreenHeight();
 
 	// Creamos la camara
-	mRenderCamera = cManagement->CreateFPSCamera(cWidth, cHeight, PiOver4, 0.01f, 1000.0f);
-	
+	mRenderCamera = cManagement->CreateCamera3D(cWidth, cHeight, PiOver4, 0.01f, 1000.0f);
 	cManagement->SetCurrentCamera(mRenderCamera);
 }
 
 void TB3D_Camera::Update(float dt) {
+	if (mActor != nullptr) {
+		mRenderCamera->SetPosition(
+			mOffsetX - mActor->GetX(), 
+			mOffsetY,
+			mOffsetZ - mActor->GetZ()
+		);
+	}
+	
 	mRenderCamera->Update(dt);
 }
