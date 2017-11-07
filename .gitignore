@@ -32,3 +32,4 @@
 EngineUPC/FrameworkUPC/Debug/
 EngineUPC/MainApp/Debug/
 *.opendb
+*.db
