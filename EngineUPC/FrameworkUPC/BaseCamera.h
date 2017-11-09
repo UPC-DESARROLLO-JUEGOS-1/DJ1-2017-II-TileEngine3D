@@ -185,6 +185,16 @@ public:
 		}
 	}
 
+	glm::vec3 rightInWorldSpace()
+	{
+		return glm::vec3(viewMatrix[0][0], viewMatrix[1][0], viewMatrix[2][0]);
+	}
+	
+	glm::vec3 upInWorldSpace()
+	{
+		return glm::vec3(viewMatrix[0][1], viewMatrix[1][1], viewMatrix[2][1]);
+	}
+
 protected:
 	int screenWidth, screenHeight;
 	bool needMatrixUpdate;
