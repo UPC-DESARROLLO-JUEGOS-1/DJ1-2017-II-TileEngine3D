@@ -17,7 +17,7 @@ TB3D_Player::~TB3D_Player()
 void TB3D_Player::CreateCollision(float size) {
 	mCollisionCube = new NPrimitiveCube3D();
 	mCollisionCube->Initialize(0, 0, 0, size, size, size);
-	mCollisionCube->SetColor(NColor::White);
+	mCollisionCube->SetColor(NColor::Blue);
 	mCollisionCube->SetRenderCamera((BaseCamera*)mEngine->GetCamera()->GetRenderCamera());
 }
 

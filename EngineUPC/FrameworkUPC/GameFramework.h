@@ -6,6 +6,7 @@
 #include "ContentManager.h"
 #include "NCameraManagment.h"
 #include "SceneGraph.h"
+#include "NLightManager.h"
 
 enum FrameworkState
 {
@@ -24,6 +25,7 @@ public:
 	ShaderManager* GetShaderManager() { return &shaderManager; }
 	NCameraManagment* GetCameraManagement() { return &mCameraManagement; }
 	SceneGraph* GetSceneGraph() { return sceneGraph; }
+	NLightManager* GetLightManager() { return &mLightManager; }
 
 	int GetScreenWidth() { return screenWidth; }
 	int GetScreenHeight() { return screenHeight; }
@@ -50,6 +52,7 @@ private:
 	ContentManager contentManager;
 	NCameraManagment mCameraManagement;
 	SceneGraph* sceneGraph;
+	NLightManager mLightManager;
 
 	std::function<void(SDL_Event)> onInput = nullptr;
 	std::function<void(float)> onUpdate = nullptr;

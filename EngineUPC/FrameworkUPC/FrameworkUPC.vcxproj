@@ -165,6 +165,8 @@
     <ClInclude Include="dtPositionTextureColor.h" />
     <ClInclude Include="ModelPrimitiveShader3D.h" />
     <ClInclude Include="ModelShader3D.h" />
+    <ClInclude Include="NBaseLight.h" />
+    <ClInclude Include="NBasicLight.h" />
     <ClInclude Include="NBitmapFontParser.h" />
     <ClInclude Include="ImageContent.h" />
     <ClInclude Include="MathUtils.h" />
@@ -176,6 +178,7 @@
     <ClInclude Include="NCameraManagment.h" />
     <ClInclude Include="NColor.h" />
     <ClInclude Include="NCommon.h" />
+    <ClInclude Include="NLightManager.h" />
     <ClInclude Include="NPrimitiveCube3D.h" />
     <ClInclude Include="NMeshRenderer3D.h" />
     <ClInclude Include="NStaticModel3D.h" />
@@ -214,9 +217,12 @@
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="ImageContent.cpp" />
     <ClCompile Include="MultiTexturedSprite2D.cpp" />
+    <ClCompile Include="NBaseLight.cpp" />
+    <ClCompile Include="NBasicLight.cpp" />
     <ClCompile Include="NBitmapFontParser.cpp" />
     <ClCompile Include="NCameraManagment.cpp" />
     <ClCompile Include="NColor.cpp" />
+    <ClCompile Include="NLightManager.cpp" />
     <ClCompile Include="NPrimitiveCube3D.cpp" />
     <ClCompile Include="NMeshRenderer3D.cpp" />
     <ClCompile Include="NStaticModel3D.cpp" />

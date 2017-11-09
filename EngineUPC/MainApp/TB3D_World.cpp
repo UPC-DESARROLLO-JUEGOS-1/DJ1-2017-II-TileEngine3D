@@ -2,6 +2,8 @@
 
 #include "TB3D_Engine.h"
 #include "TB3D_Player.h"
+#include <FrameworkUPC\GameFramework.h>
+#include <FrameworkUPC\BasicLightingShader.h>
 
 const int TB3D_World::TILE_EMPTY = 0;
 const int TB3D_World::TILE_BLOCK = 1;
@@ -13,6 +15,18 @@ TB3D_World::TB3D_World(TB3D_Engine* engine)
 	mTileSize = mEngine->GetTileSize();
 
 	mWorldPhysics = new TB3D_WorldPhysics(this);
+
+	// Set lights in Shader
+	GameFramework* framework = GameFramework::GET_FRAMEWORK();
+	ShaderManager* shaderManagment = framework->GetShaderManager();
+
+	const std::string baseShaderPath = "Shaders/BasicLightingShader";
+	BasicLightingShader* shader = shaderManagment->LoadAndGetShader<BasicLightingShader>(baseShaderPath);
+	shader->SetLight0("light0");
+	shader->SetLight1("light1");
+
+	shader->GetLight1()->SetLightColor(NColor::Red);
+	shader->GetLight1()->SetIntensity(0.3f);
 }
 
 TB3D_World::~TB3D_World()
