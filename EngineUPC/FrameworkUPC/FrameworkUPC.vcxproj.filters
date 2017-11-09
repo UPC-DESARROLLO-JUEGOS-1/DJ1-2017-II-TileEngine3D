@@ -124,8 +124,9 @@
     <Filter Include="Source Files\core\render\light">
       <UniqueIdentifier>{6a0c8813-2cc0-46af-b3fe-a3fd14879446}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\core\render\light">
+    <Filter Include="Source Files\core\render\light">
       <UniqueIdentifier>{2d3f4fbb-1aa3-454f-af1f-946c0f3a83eb}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\core\audio">
       <UniqueIdentifier>{1c02ce5e-f8b2-460f-92a8-8cfc70e0f129}</UniqueIdentifier>
     </Filter>
@@ -314,19 +315,20 @@
     <ClInclude Include="BasicLightingShader.h">
       <Filter>Header Files\core\render\shader\D3D</Filter>
     </ClInclude>
-    <ClInclude Include="NLightManager.h">
-      <Filter>Header Files\core\render\light</Filter>
-    </ClInclude>
-    <ClInclude Include="NBaseLight.h">
-      <Filter>Header Files\core\render\light</Filter>
-    </ClInclude>
-    <ClInclude Include="NBasicLight.h">
-      <Filter>Header Files\core\render\light</Filter>
     <ClInclude Include="SoundContent.h">
       <Filter>Header Files\core\content</Filter>
     </ClInclude>
     <ClInclude Include="Sound.h">
       <Filter>Header Files\core\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="NBaseLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NBasicLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NLightManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -431,6 +433,7 @@
     </ClCompile>
     <ClCompile Include="NBasicLight.cpp">
       <Filter>Source Files\core\render\light</Filter>
+    </ClCompile>
     <ClCompile Include="SoundContent.cpp">
       <Filter>Source Files\core\content</Filter>
     </ClCompile>
