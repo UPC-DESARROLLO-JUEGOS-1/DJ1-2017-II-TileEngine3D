@@ -315,6 +315,9 @@
     <ClInclude Include="Sound.h">
       <Filter>Header Files\core\audio</Filter>
     </ClInclude>
+    <ClInclude Include="NBillboardSprite.h">
+      <Filter>Header Files\core\render\graphic\D3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameWindow.cpp">
@@ -415,6 +418,9 @@
     </ClCompile>
     <ClCompile Include="Sound.cpp">
       <Filter>Source Files\core\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="NBillboardSprite.cpp">
+      <Filter>Source Files\core\render\graphic\D3D</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
