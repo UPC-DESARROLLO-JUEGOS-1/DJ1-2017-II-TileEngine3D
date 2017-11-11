@@ -37,6 +37,7 @@ TB3D_World::~TB3D_World()
 void TB3D_World::Initialize() {
 	std::vector<std::vector<int>> worldCollisions = mEngine->GetWorldConfig()->WorldCollisions();
 
+	float tileSize = mEngine->GetWorldConfig()->TileSize();
 	int rows = worldCollisions.size();
 	int cols = worldCollisions[0].size();
 
@@ -52,9 +53,11 @@ void TB3D_World::Initialize() {
 
 	BaseCamera* camera = mEngine->GetCamera()->GetRenderCamera();
 
+	float psx = cols * tileSize;
+	float psy = rows * tileSize;
 	// plane
 	mPlane = new NPrimitivePlane3D();
-	mPlane->Initialize(40, 0, 30, 80, 60);
+	mPlane->Initialize(psx / 2.0f, 0, psy / 2.0f, psx, psy);
 	mPlane->SetColor(NColor::White);
 	mPlane->SetRenderCamera(camera);
 	mPlane->SetRotationX(1.57f);
