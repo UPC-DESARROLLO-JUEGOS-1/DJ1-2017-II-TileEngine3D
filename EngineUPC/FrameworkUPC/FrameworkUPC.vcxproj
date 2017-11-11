@@ -150,7 +150,7 @@
     <ClInclude Include="Drawable2D.h" />
     <ClInclude Include="Drawable3D.h" />
     <ClInclude Include="dtModelObjMesh.h" />
-    <ClInclude Include="dtPrimitiveCubeVertex.h" />
+    <ClInclude Include="dtPositionNormalColorVertex.h" />
     <ClInclude Include="Ellipse.h" />
     <ClInclude Include="EnumNBitmapFontRawType.h" />
     <ClInclude Include="EnumNCharacterUnicode.h" />
@@ -181,6 +181,7 @@
     <ClInclude Include="NLightManager.h" />
     <ClInclude Include="NPrimitiveCube3D.h" />
     <ClInclude Include="NMeshRenderer3D.h" />
+    <ClInclude Include="NPrimitivePlane3D.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundContent.h" />
     <ClInclude Include="NStaticModel3D.h" />
@@ -227,6 +228,7 @@
     <ClCompile Include="NLightManager.cpp" />
     <ClCompile Include="NPrimitiveCube3D.cpp" />
     <ClCompile Include="NMeshRenderer3D.cpp" />
+    <ClCompile Include="NPrimitivePlane3D.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundContent.cpp" />
     <ClCompile Include="NStaticModel3D.cpp" />

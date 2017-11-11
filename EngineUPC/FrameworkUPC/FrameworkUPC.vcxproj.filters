@@ -234,9 +234,6 @@
     <ClInclude Include="Drawable3D.h">
       <Filter>Header Files\core\render\graphic\D3D</Filter>
     </ClInclude>
-    <ClInclude Include="dtPrimitiveCubeVertex.h">
-      <Filter>Header Files\core\render\graphic\D3D\data</Filter>
-    </ClInclude>
     <ClInclude Include="NPrimitiveCube3D.h">
       <Filter>Header Files\core\render\graphic\D3D</Filter>
     </ClInclude>
@@ -329,6 +326,12 @@
     </ClInclude>
     <ClInclude Include="NLightManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NPrimitivePlane3D.h">
+      <Filter>Header Files\core\render\shader\D3D</Filter>
+    </ClInclude>
+    <ClInclude Include="dtPositionNormalColorVertex.h">
+      <Filter>Header Files\core\render\graphic\D3D\data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -439,6 +442,9 @@
     </ClCompile>
     <ClCompile Include="Sound.cpp">
       <Filter>Source Files\core\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="NPrimitivePlane3D.cpp">
+      <Filter>Source Files\core\render\graphic\D3D</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

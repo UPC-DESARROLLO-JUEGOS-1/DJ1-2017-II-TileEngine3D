@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <FrameworkUPC\NPrimitiveCube3D.h>
+#include <FrameworkUPC\NPrimitivePlane3D.h>
 
 #include "TB3D_WorldPhysics.h"
 
@@ -31,7 +32,9 @@ private:
 	TB3D_Engine* mEngine;
 	TB3D_WorldPhysics* mWorldPhysics;
 
-	std::vector<NPrimitiveCube3D*> mCubes;
+	NPrimitivePlane3D* mPlane;
+
+	std::vector<Drawable3D*> mDrawables;
 
 	void CreateObject(int tileID, int c, int r);
 };

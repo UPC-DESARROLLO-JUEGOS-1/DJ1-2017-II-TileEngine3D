@@ -85,7 +85,7 @@ void TB3D_PlayerControl::Update(float dt) {
 	NBasicLight* light = lightManagment->GetLigth<NBasicLight>("light0");
 
 	if (light != nullptr) {
-		light->SetPosition(position.x, 0, position.y);
+		light->SetPosition(position.x, 0, position.y + 2);
 	}
 	
 	if (!mCanGoForward && !mCanGoBackward) { mDirectionX = 0; }

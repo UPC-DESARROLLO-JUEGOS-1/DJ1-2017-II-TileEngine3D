@@ -49,6 +49,18 @@ void TB3D_World::Initialize() {
 	}
 
 	mWorldPhysics->Initialize(worldCollisions);
+
+	BaseCamera* camera = mEngine->GetCamera()->GetRenderCamera();
+
+	// plane
+	mPlane = new NPrimitivePlane3D();
+	mPlane->Initialize(40, 0, 30, 80, 60);
+	mPlane->SetColor(NColor::White);
+	mPlane->SetRenderCamera(camera);
+	mPlane->SetRotationX(1.57f);
+	mPlane->SetY(-2.0f);
+
+	mDrawables.push_back(mPlane);
 }
 
 void TB3D_World::CreateObject(int tileID, int c, int r) {
@@ -66,7 +78,7 @@ void TB3D_World::CreateObject(int tileID, int c, int r) {
 			//cube->SetRotationX(3.14);
 			//cube->SetRotationZ(3.14);
 
-			mCubes.push_back(cube);
+			mDrawables.push_back(cube);
 	
 			break;
 		}
@@ -86,15 +98,15 @@ void TB3D_World::CreateObject(int tileID, int c, int r) {
 }
 
 void TB3D_World::Update(float dt) {
-	for (int i = 0, size = mCubes.size(); i < size; i++)
+	for (int i = 0, size = mDrawables.size(); i < size; i++)
 	{
-		mCubes[i]->Update(dt);
+		mDrawables[i]->Update(dt);
 	}
 }
 
 void TB3D_World::Draw(float dt) {
-	for (int i = 0, size = mCubes.size(); i < size; i++)
+	for (int i = 0, size = mDrawables.size(); i < size; i++)
 	{
-		mCubes[i]->Draw(dt);
+		mDrawables[i]->Draw(dt);
 	}
 }
