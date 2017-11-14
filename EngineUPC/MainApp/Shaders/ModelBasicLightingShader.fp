@@ -2,7 +2,6 @@
 
 in vec3 fragmentVertex;
 in vec3 fragmentNormal;
-in vec2 fragmentUV;
 
 out vec4 finalColor;
 
@@ -13,7 +12,6 @@ uniform vec3 materialSpecularColor;
 
 // ambient
 uniform float ambientCoefficient;
-uniform sampler2D sampler;
 uniform vec4 ambientColor;
 
 uniform struct Light {
@@ -61,9 +59,8 @@ vec4 ComputeLight(in vec3 surfacePos, in vec3 surfaceToCamera, vec4 ambient, in 
 void main() {		
     vec3 surfacePos = vec3(model * vec4(fragmentVertex, 1));
     vec3 surfaceToCamera = normalize(cameraPosition - surfacePos);
-	vec4 texel = texture(sampler, fragmentUV);
-	vec4 surfaceColor = texel * (ambientColor * ambientCoefficient);
-	surfaceColor.a = texel.a;
+	vec4 surfaceColor = (ambientColor * ambientCoefficient);
+	surfaceColor.a = ambientColor.a;
 	
 	vec4 light0Result = ComputeLight(surfacePos, surfaceToCamera, surfaceColor, light0);
 	vec4 light1Result = ComputeLight(surfacePos, surfaceToCamera, surfaceColor, light1);

@@ -333,6 +333,12 @@
     <ClInclude Include="dtPositionNormalColorVertex.h">
       <Filter>Header Files\core\render\graphic\D3D\data</Filter>
     </ClInclude>
+    <ClInclude Include="NBaseDrawable.h">
+      <Filter>Header Files\core\render\graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelBasicLightingShader.h">
+      <Filter>Header Files\core\render\shader\D3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameWindow.cpp">
@@ -445,6 +451,9 @@
     </ClCompile>
     <ClCompile Include="NPrimitivePlane3D.cpp">
       <Filter>Source Files\core\render\graphic\D3D</Filter>
+    </ClCompile>
+    <ClCompile Include="NBaseDrawable.cpp">
+      <Filter>Source Files\core\render\graphic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

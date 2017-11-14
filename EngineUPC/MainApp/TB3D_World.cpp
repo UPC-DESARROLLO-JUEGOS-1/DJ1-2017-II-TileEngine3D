@@ -4,9 +4,13 @@
 #include "TB3D_Player.h"
 #include <FrameworkUPC\GameFramework.h>
 #include <FrameworkUPC\BasicLightingShader.h>
+#include <FrameworkUPC\ModelShader3D.h>
+#include <FrameworkUPC\ModelBasicLightingShader.h>
+#include <FrameworkUPC\NStaticModel3D.h>
 
 const int TB3D_World::TILE_EMPTY = 0;
 const int TB3D_World::TILE_BLOCK = 1;
+const int TB3D_World::TILE_HOUSE_3D = 2;
 const int TB3D_World::TILE_PLAYER = 9;
 
 TB3D_World::TB3D_World(TB3D_Engine* engine)
@@ -20,13 +24,25 @@ TB3D_World::TB3D_World(TB3D_Engine* engine)
 	GameFramework* framework = GameFramework::GET_FRAMEWORK();
 	ShaderManager* shaderManagment = framework->GetShaderManager();
 
-	const std::string baseShaderPath = "Shaders/BasicLightingShader";
-	BasicLightingShader* shader = shaderManagment->LoadAndGetShader<BasicLightingShader>(baseShaderPath);
+	BasicLightingShader* shader = shaderManagment->LoadAndGetShader<BasicLightingShader>("Shaders/BasicLightingShader");
+	ModelShader3D* shader_model = shaderManagment->LoadAndGetShader<ModelShader3D>("Shaders/ModelShader3D");
+	ModelBasicLightingShader* shader_primitiveModel = shaderManagment->LoadAndGetShader<ModelBasicLightingShader>("Shaders/ModelBasicLightingShader");
+	
 	shader->SetLight0("light0");
 	shader->SetLight1("light1");
+	shader_model->SetLight0("light0");
+	shader_model->SetLight1("light1");
+	shader_primitiveModel->SetLight0("light0");
+	shader_primitiveModel->SetLight1("light1");
 
-	shader->GetLight1()->SetLightColor(NColor::Red);
-	shader->GetLight1()->SetIntensity(0.3f);
+	NBasicLight* light0 = shader->GetLight0();
+	NBasicLight* light1 = shader->GetLight1();
+
+	light1->SetLightColor(NColor::Red);
+	light1->SetIntensity(0.3f);
+
+	light0->SetPosition(30, 4, 0);
+	light1->SetPosition(30, 8, 60);
 }
 
 TB3D_World::~TB3D_World()
@@ -74,6 +90,7 @@ void TB3D_World::CreateObject(int tileID, int c, int r) {
 
 	switch (tileID) {
 	case TB3D_World::TILE_BLOCK:
+		// Si tiene mas de una linea de codigo en un switch tiene que estar en parentesis
 		{
 			NPrimitiveCube3D* cube = new NPrimitiveCube3D();
 			cube->Initialize(posX, posY, posZ, mTileSize, mTileSize, mTileSize);
@@ -82,21 +99,25 @@ void TB3D_World::CreateObject(int tileID, int c, int r) {
 			//cube->SetRotationZ(3.14);
 
 			mDrawables.push_back(cube);
-	
+			break;
+		}
+	case TB3D_World::TILE_HOUSE_3D:
+		{
+			// Inicializamos el Modelo 3D
+			NStaticModel3D* staticModel = new NStaticModel3D();
+			staticModel->Initialize("Models/", "farmhouse_obj.obj", posX, posY, posZ);
+			staticModel->SetRenderCamera(camera);
+			staticModel->SetScale(0.6f, 0.6f, 0.6f);
+
+			mDrawables.push_back(staticModel);
 			break;
 		}
 	case TB3D_World::TILE_EMPTY:
-		//NPrimitiveCube3D cube_empty = new NPrimitiveCube3D(posX, posY, posZ, mTileSize);
-		//cube_empty.AmbientColor = Color.Green;
-		//cube_empty.ScaleY = 0.01f;
-
-		//mCubes.Add(cube_empty);
 		break;
 	case TB3D_World::TILE_PLAYER:
-		{
-			mEngine->GetPlayer()->SetPosition(posX + mTileSize / 2, posY, posZ + mTileSize / 2);
-			break;
-		}
+		mEngine->GetPlayer()->SetPosition(posX + mTileSize / 2, posY, posZ + mTileSize / 2);
+		break;
+		
 	}
 }
 

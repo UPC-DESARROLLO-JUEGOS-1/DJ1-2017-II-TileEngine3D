@@ -14,6 +14,7 @@ public:
 	static const int TILE_EMPTY;
 	static const int TILE_BLOCK;
 	static const int TILE_PLAYER;
+	static const int TB3D_World::TILE_HOUSE_3D;
 
 	float GetTileSize() { return mTileSize; }
 	TB3D_Engine* GetEngine() { return mEngine; }
@@ -34,7 +35,7 @@ private:
 
 	NPrimitivePlane3D* mPlane;
 
-	std::vector<Drawable3D*> mDrawables;
+	std::vector<NBaseDrawable*> mDrawables;
 
 	void CreateObject(int tileID, int c, int r);
 };

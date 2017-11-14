@@ -32,7 +32,7 @@ void Sprite::Initialize(float x, float y, const std::string path)
 	ContentManager* contentManager = framework->GetContentManager();
 	ShaderManager* shaderManager = framework->GetShaderManager();
 
-	currentShader = shaderManager->LoadAndGetShader<SpriteShader>("Shaders/SpriteShader");
+	mCurrentShader = shaderManager->LoadAndGetShader<SpriteShader>("Shaders/SpriteShader");
 	content = contentManager->LoadAndGetContent<ImageContent>(path);
 	width = content->GetWidth();
 	height = content->GetHeight();
@@ -67,9 +67,9 @@ void Sprite::Draw(float dt)
 {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC0_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	currentShader->Use();
-	GLuint wvpLocation = currentShader->GetUniformLocation("wvp");
-	glm::mat4 cameraMatrix = renderCamera->GetResultMatrix();
+	mCurrentShader->Use();
+	GLuint wvpLocation = mCurrentShader->GetUniformLocation("wvp");
+	glm::mat4 cameraMatrix = mRenderCamera->GetResultMatrix();
 	glm::mat4 resultMatrix = cameraMatrix*worldMatrix;
 
 	glUniformMatrix4fv(wvpLocation, 1, GL_FALSE, &(resultMatrix[0][0]));
@@ -87,7 +87,7 @@ void Sprite::Draw(float dt)
 	glDisableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindTexture(GL_TEXTURE_2D, 0);
-	currentShader->Stop();
+	mCurrentShader->Stop();
 }
 
 void Sprite::BindData()

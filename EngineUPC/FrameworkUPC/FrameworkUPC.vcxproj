@@ -163,8 +163,10 @@
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="EnumNCharacterASCII.h" />
     <ClInclude Include="dtPositionTextureColor.h" />
+    <ClInclude Include="ModelBasicLightingShader.h" />
     <ClInclude Include="ModelPrimitiveShader3D.h" />
     <ClInclude Include="ModelShader3D.h" />
+    <ClInclude Include="NBaseDrawable.h" />
     <ClInclude Include="NBaseLight.h" />
     <ClInclude Include="NBasicLight.h" />
     <ClInclude Include="NBitmapFontParser.h" />
@@ -220,6 +222,7 @@
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="ImageContent.cpp" />
     <ClCompile Include="MultiTexturedSprite2D.cpp" />
+    <ClCompile Include="NBaseDrawable.cpp" />
     <ClCompile Include="NBaseLight.cpp" />
     <ClCompile Include="NBasicLight.cpp" />
     <ClCompile Include="NBitmapFontParser.cpp" />

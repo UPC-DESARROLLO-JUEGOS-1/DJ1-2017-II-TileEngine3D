@@ -8,11 +8,11 @@
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
 
-class ModelShader3D : public BaseShader
+class ModelBasicLightingShader : public BaseShader
 {
 public:
-	ModelShader3D() { BaseShader::BaseShader(); }
-	~ModelShader3D() { BaseShader::~BaseShader(); }
+	ModelBasicLightingShader() { BaseShader::BaseShader(); }
+	~ModelBasicLightingShader() { BaseShader::~BaseShader(); }
 
 	NBasicLight* GetLight0() { return mBasicLight0; }
 	NBasicLight* GetLight1() { return mBasicLight1; }

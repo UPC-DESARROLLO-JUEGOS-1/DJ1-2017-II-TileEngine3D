@@ -7,8 +7,9 @@
 #include "BaseCamera.h"
 #include "Vector3.h"
 #include "NColor.h"
+#include "NBaseDrawable.h"
 
-class Drawable3D
+class Drawable3D : public NBaseDrawable
 {
 public:
 	Drawable3D();
@@ -96,7 +97,7 @@ public:
 
 	void Initialize(float x, float y, float z);
 
-	virtual void Update(float dt)
+	void Update(float dt)
 	{
 		if (needMatrixUpdate)
 		{
@@ -115,21 +116,16 @@ public:
 		}
 	}
 
-	virtual void Draw(float dt)
+	void Draw(float dt)
 	{
 
 	}
 
 protected:
 	Vector3 position, scale, rotation;
-	glm::mat4 worldMatrix;
-	bool needMatrixUpdate;
-
 	int mIndicesCount;
 
 	GLuint mVBO_ID;
 	GLuint mIBO_ID;
-	BaseShader* mCurrentShader;
-	BaseCamera* mRenderCamera;
 	NColor mColor;
 };

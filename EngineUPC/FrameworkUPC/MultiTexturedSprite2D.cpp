@@ -8,7 +8,7 @@ void MultiTexturedSprite2D::Initialize(float x, float y, const std::string path1
 	ContentManager* contentManager = GameFramework::GET_FRAMEWORK()->GetContentManager();
 	ShaderManager* shaderManager = GameFramework::GET_FRAMEWORK()->GetShaderManager();
 
-	currentShader = shaderManager->LoadAndGetShader<SpriteShader>("Shaders/MultiTexturedSpriteShader");
+	mCurrentShader = shaderManager->LoadAndGetShader<SpriteShader>("Shaders/MultiTexturedSpriteShader");
 	content1 = contentManager->LoadAndGetContent<ImageContent>(path1);
 	content2 = contentManager->LoadAndGetContent<ImageContent>(path2);
 	width = content1->GetWidth();
@@ -21,17 +21,17 @@ void MultiTexturedSprite2D::Draw(float dt)
 {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC0_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	currentShader->Use();
-	GLuint wvpLocation = currentShader->GetUniformLocation("wvp");
-	glm::mat4 cameraMatrix = renderCamera->GetResultMatrix();
+	mCurrentShader->Use();
+	GLuint wvpLocation = mCurrentShader->GetUniformLocation("wvp");
+	glm::mat4 cameraMatrix = mRenderCamera->GetResultMatrix();
 	glm::mat4 resultMatrix = cameraMatrix*worldMatrix;
 
 	glUniformMatrix4fv(wvpLocation, 1, GL_FALSE, &(resultMatrix[0][0]));
 
 	GLint texLoc;
-	texLoc = currentShader->GetUniformLocation("tex0");
+	texLoc = mCurrentShader->GetUniformLocation("tex0");
 	glUniform1i(texLoc, 0);
-	texLoc = currentShader->GetUniformLocation("tex1");
+	texLoc = mCurrentShader->GetUniformLocation("tex1");
 	glUniform1i(texLoc, 1);
 
 	//Tex 0
@@ -52,7 +52,7 @@ void MultiTexturedSprite2D::Draw(float dt)
 	glDisableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, GL_NONE);
 	glBindTexture(GL_TEXTURE_2D, GL_NONE);
-	currentShader->Stop();
+	mCurrentShader->Stop();
 }
 
 void MultiTexturedSprite2D::SetColor(float r, float g, float b, float a)
