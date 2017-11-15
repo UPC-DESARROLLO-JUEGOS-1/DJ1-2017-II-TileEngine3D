@@ -195,6 +195,9 @@ void NPrimitiveCube3D::Draw(float dt) {
 	GLuint cameraLocation = mCurrentShader->GetUniformLocation("camera");
 	GLuint modelLocation = mCurrentShader->GetUniformLocation("model");
 	GLuint cameraPositionLocation = mCurrentShader->GetUniformLocation("cameraPosition");
+	GLuint ambientColorLocation = mCurrentShader->GetUniformLocation("ambientColor");
+
+	glUniform4f(ambientColorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
 
 	// matrix
 	glUniform3f(cameraPositionLocation, mRenderCamera->GetX(), mRenderCamera->GetY(), mRenderCamera->GetZ());

@@ -141,7 +141,6 @@
     <ClInclude Include="BaseContent.h" />
     <ClInclude Include="BaseScene.h" />
     <ClInclude Include="BaseShader.h" />
-    <ClInclude Include="BasicLightingShader.h" />
     <ClInclude Include="Camera2D.h" />
     <ClInclude Include="Camera3D.h" />
     <ClInclude Include="Circle.h" />
@@ -152,6 +151,7 @@
     <ClInclude Include="dtModelObjMesh.h" />
     <ClInclude Include="dtPositionNormalColorVertex.h" />
     <ClInclude Include="Ellipse.h" />
+    <ClInclude Include="EnumLightType.h" />
     <ClInclude Include="EnumNBitmapFontRawType.h" />
     <ClInclude Include="EnumNCharacterUnicode.h" />
     <ClInclude Include="EnumTextAlign.h" />
@@ -163,9 +163,7 @@
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="EnumNCharacterASCII.h" />
     <ClInclude Include="dtPositionTextureColor.h" />
-    <ClInclude Include="ModelBasicLightingShader.h" />
-    <ClInclude Include="ModelPrimitiveShader3D.h" />
-    <ClInclude Include="ModelShader3D.h" />
+    <ClInclude Include="BasicLightingShader.h" />
     <ClInclude Include="NBaseDrawable.h" />
     <ClInclude Include="NBaseLight.h" />
     <ClInclude Include="NBasicLight.h" />

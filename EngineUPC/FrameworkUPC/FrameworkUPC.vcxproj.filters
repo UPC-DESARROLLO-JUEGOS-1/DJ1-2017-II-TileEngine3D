@@ -133,6 +133,9 @@
     <Filter Include="Source Files\core\audio">
       <UniqueIdentifier>{5d8a5ae4-2336-434a-ac57-73c85b5b9c21}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\core\render\light">
+      <UniqueIdentifier>{72ada0c5-ed9f-487c-b9c6-2324b0226501}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameWindow.h">
@@ -276,14 +279,8 @@
     <ClInclude Include="NCommon.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
-    <ClInclude Include="ModelShader3D.h">
-      <Filter>Header Files\core\render\shader\D3D</Filter>
-    </ClInclude>
     <ClInclude Include="FPSCamera.h">
       <Filter>Header Files\core\render\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelPrimitiveShader3D.h">
-      <Filter>Header Files\core\render\shader\D3D</Filter>
     </ClInclude>
     <ClInclude Include="FontContent.h">
       <Filter>Header Files\core\content</Filter>
@@ -309,23 +306,11 @@
     <ClInclude Include="PrimitiveShaderColor3D.h">
       <Filter>Header Files\core\render\shader\D3D</Filter>
     </ClInclude>
-    <ClInclude Include="BasicLightingShader.h">
-      <Filter>Header Files\core\render\shader\D3D</Filter>
-    </ClInclude>
     <ClInclude Include="SoundContent.h">
       <Filter>Header Files\core\content</Filter>
     </ClInclude>
     <ClInclude Include="Sound.h">
       <Filter>Header Files\core\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="NBaseLight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NBasicLight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NLightManager.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NPrimitivePlane3D.h">
       <Filter>Header Files\core\render\shader\D3D</Filter>
@@ -336,7 +321,19 @@
     <ClInclude Include="NBaseDrawable.h">
       <Filter>Header Files\core\render\graphic</Filter>
     </ClInclude>
-    <ClInclude Include="ModelBasicLightingShader.h">
+    <ClInclude Include="NLightManager.h">
+      <Filter>Header Files\core\render\light</Filter>
+    </ClInclude>
+    <ClInclude Include="NBaseLight.h">
+      <Filter>Header Files\core\render\light</Filter>
+    </ClInclude>
+    <ClInclude Include="NBasicLight.h">
+      <Filter>Header Files\core\render\light</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumLightType.h">
+      <Filter>Header Files\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicLightingShader.h">
       <Filter>Header Files\core\render\shader\D3D</Filter>
     </ClInclude>
   </ItemGroup>

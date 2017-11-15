@@ -4,9 +4,10 @@
 #include "TB3D_Player.h"
 #include <FrameworkUPC\GameFramework.h>
 #include <FrameworkUPC\BasicLightingShader.h>
-#include <FrameworkUPC\ModelShader3D.h>
-#include <FrameworkUPC\ModelBasicLightingShader.h>
 #include <FrameworkUPC\NStaticModel3D.h>
+#include <FrameworkUPC\EnumLightType.h>
+
+#include <glm\glm.hpp>
 
 const int TB3D_World::TILE_EMPTY = 0;
 const int TB3D_World::TILE_BLOCK = 1;
@@ -25,24 +26,21 @@ TB3D_World::TB3D_World(TB3D_Engine* engine)
 	ShaderManager* shaderManagment = framework->GetShaderManager();
 
 	BasicLightingShader* shader = shaderManagment->LoadAndGetShader<BasicLightingShader>("Shaders/BasicLightingShader");
-	ModelShader3D* shader_model = shaderManagment->LoadAndGetShader<ModelShader3D>("Shaders/ModelShader3D");
-	ModelBasicLightingShader* shader_primitiveModel = shaderManagment->LoadAndGetShader<ModelBasicLightingShader>("Shaders/ModelBasicLightingShader");
+	BasicLightingShader* shader_textured = shaderManagment->LoadAndGetShader<BasicLightingShader>("Shaders/TexturedBasicLightingShader");
 	
-	shader->SetLight0("light0");
-	shader->SetLight1("light1");
-	shader_model->SetLight0("light0");
-	shader_model->SetLight1("light1");
-	shader_primitiveModel->SetLight0("light0");
-	shader_primitiveModel->SetLight1("light1");
+	shader->SetLight0("light0", EnumLightType::DIRECTIONAL_LIGHT);
+	shader->SetLight1("light1", EnumLightType::CONE_LIGHT);
+	shader_textured->SetLight0("light0", EnumLightType::DIRECTIONAL_LIGHT);
+	shader_textured->SetLight1("light1", EnumLightType::CONE_LIGHT);
 
 	NBasicLight* light0 = shader->GetLight0();
 	NBasicLight* light1 = shader->GetLight1();
 
-	light1->SetLightColor(NColor::Red);
-	light1->SetIntensity(0.3f);
+	light0->SetPosition(-30, -20, -10);
 
-	light0->SetPosition(30, 4, 0);
-	light1->SetPosition(30, 8, 60);
+	light1->SetLightColor(NColor::Red);
+	light1->SetAmbientCoefficient(0.03f);
+	light1->SetPosition(30, 1, 60);
 }
 
 TB3D_World::~TB3D_World()

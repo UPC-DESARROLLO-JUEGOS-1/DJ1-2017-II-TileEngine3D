@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+
 #include <FrameworkUPC\NPrimitiveCube3D.h>
 #include <FrameworkUPC\NPrimitivePlane3D.h>
 

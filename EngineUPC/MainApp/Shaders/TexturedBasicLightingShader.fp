@@ -2,6 +2,7 @@
 
 in vec3 fragmentVertex;
 in vec3 fragmentNormal;
+in vec2 fragmentUV;
 
 out vec4 finalColor;
 
@@ -12,6 +13,7 @@ uniform vec3 materialSpecularColor;
 
 // ambient
 uniform vec4 ambientColor;
+uniform sampler2D sampler;
 
 uniform struct Light {
    vec4 position;
@@ -63,13 +65,13 @@ vec3 ApplyLight(Light light, vec3 surfaceColor, vec3 normal, vec3 surfacePos, ve
 void main() {		
     vec3 surfacePos = vec3(model * vec4(fragmentVertex, 1));
     vec3 surfaceToCamera = normalize(cameraPosition - surfacePos);
-	vec4 surfaceColor = ambientColor;
+	vec4 surfaceColor = texture(sampler, fragmentUV) * ambientColor;
 	
 	vec3 linearColor = vec3(0.0, 0.0, 0.0);
     linearColor += ApplyLight(light0, surfaceColor.rgb, fragmentNormal, surfacePos, surfaceToCamera);
 	linearColor += ApplyLight(light1, surfaceColor.rgb, fragmentNormal, surfacePos, surfaceToCamera);
 	
-	finalColor = vec4(linearColor, 1.0);
+	finalColor += vec4(linearColor, 1.0);
 }
 
 
