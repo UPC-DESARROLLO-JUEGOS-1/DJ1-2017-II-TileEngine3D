@@ -24,7 +24,7 @@ NBasicLight* NLightManager::CreateDirectionalLight(std::string name, float x, fl
 	return result;
 }
 
-NBasicLight* NLightManager::CreateConeLight(std::string name, glm::vec3 position,
+NBasicLight* NLightManager::CreateSpotLight(std::string name, glm::vec3 position,
 	glm::vec3 coneDirection, float coneAngle) {
 
 	NBasicLight* result = nullptr;
@@ -34,7 +34,7 @@ NBasicLight* NLightManager::CreateConeLight(std::string name, glm::vec3 position
 		result->Initialize(name, position.x, position.y, position.z);
 		result->SetConeDirection(coneDirection);
 		result->SetConeAngle(coneAngle);
-		result->SetLightType(EnumLightType::CONE_LIGHT);
+		result->SetLightType(EnumLightType::SPOT_LIGHT);
 
 		mLights.insert(std::make_pair(name, result));
 	}

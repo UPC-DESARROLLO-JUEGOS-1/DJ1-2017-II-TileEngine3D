@@ -26,7 +26,7 @@ public:
 		case EnumLightType::DIRECTIONAL_LIGHT:
 			mBasicLight0 = lightManagment->CreateDirectionalLight(name, 0, 0, 0);
 			break;
-		case EnumLightType::CONE_LIGHT:
+		case EnumLightType::SPOT_LIGHT:
 			glm::vec3 position;
 			position.x = 0;
 			position.y = 0;
@@ -39,7 +39,7 @@ public:
 
 			float coneAngle = 0;
 
-			mBasicLight0 = lightManagment->CreateConeLight(name, position, 
+			mBasicLight0 = lightManagment->CreateSpotLight(name, position, 
 				coneDirection, coneAngle);
 			break;
 		}
@@ -53,7 +53,7 @@ public:
 		case EnumLightType::DIRECTIONAL_LIGHT:
 			mBasicLight1 = lightManagment->CreateDirectionalLight(name, 0, 0, 0);
 			break;
-		case EnumLightType::CONE_LIGHT:
+		case EnumLightType::SPOT_LIGHT:
 			glm::vec3 position;
 			position.x = 0;
 			position.y = 0;
@@ -66,7 +66,7 @@ public:
 
 			float coneAngle = 0;
 
-			mBasicLight1 = lightManagment->CreateConeLight(name, position,
+			mBasicLight1 = lightManagment->CreateSpotLight(name, position,
 				coneDirection, coneAngle);
 			break;
 		}

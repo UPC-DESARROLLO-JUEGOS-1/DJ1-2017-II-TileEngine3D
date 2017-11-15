@@ -29,9 +29,9 @@ TB3D_World::TB3D_World(TB3D_Engine* engine)
 	BasicLightingShader* shader_textured = shaderManagment->LoadAndGetShader<BasicLightingShader>("Shaders/TexturedBasicLightingShader");
 	
 	shader->SetLight0("light0", EnumLightType::DIRECTIONAL_LIGHT);
-	shader->SetLight1("light1", EnumLightType::CONE_LIGHT);
+	shader->SetLight1("light1", EnumLightType::SPOT_LIGHT);
 	shader_textured->SetLight0("light0", EnumLightType::DIRECTIONAL_LIGHT);
-	shader_textured->SetLight1("light1", EnumLightType::CONE_LIGHT);
+	shader_textured->SetLight1("light1", EnumLightType::SPOT_LIGHT);
 
 	NBasicLight* light0 = shader->GetLight0();
 	NBasicLight* light1 = shader->GetLight1();

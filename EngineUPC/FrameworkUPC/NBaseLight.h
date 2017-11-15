@@ -29,7 +29,7 @@ public:
 		case EnumLightType::DIRECTIONAL_LIGHT:
 			mPosition.w = 0.0f;
 			break;
-		case EnumLightType::CONE_LIGHT:
+		case EnumLightType::SPOT_LIGHT:
 			mPosition.w = 1.0f;
 			break;
 		}
