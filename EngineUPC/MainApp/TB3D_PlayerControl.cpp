@@ -80,6 +80,13 @@ void TB3D_PlayerControl::Update(float dt) {
 	mPlayer->SetX(position.x);
 	mPlayer->SetZ(position.y);
 
+	GameFramework* framework = GameFramework::GET_FRAMEWORK();
+	NBasicLight* light = framework->GetLightManager()->GetLigth("light1");
+
+	if (light != nullptr) {
+		light->SetPosition(position.x, light->GetPosition().y, position.y);
+	}
+
 	if (!mCanGoForward && !mCanGoBackward) { mDirectionX = 0; }
 	if (!mCanGoLeft && !mCanGoRight) { mDirectionY = 0; }
 }

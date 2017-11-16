@@ -37,10 +37,15 @@ TB3D_World::TB3D_World(TB3D_Engine* engine)
 	NBasicLight* light1 = shader->GetLight1();
 
 	light0->SetPosition(-30, -20, -10);
+	light0->SetAmbientCoefficient(0.0f);
+	light0->SetAttenuation(0.2f);
 
 	light1->SetLightColor(NColor::Red);
 	light1->SetAmbientCoefficient(0.03f);
-	light1->SetPosition(30, 1, 60);
+	light1->SetPosition(30, 4, 60);
+	light1->SetConeAngle(70.82f);
+	light1->SetConeDirection(0, -1.3f, 0);
+
 }
 
 TB3D_World::~TB3D_World()
