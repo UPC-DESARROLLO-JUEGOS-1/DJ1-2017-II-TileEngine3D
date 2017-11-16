@@ -24,17 +24,18 @@ TB3D_World::TB3D_World(TB3D_Engine* engine)
 	// Set lights in Shader
 	GameFramework* framework = GameFramework::GET_FRAMEWORK();
 	ShaderManager* shaderManagment = framework->GetShaderManager();
+	NLightManager* lightManager = framework->GetLightManager();
 
 	BasicLightingShader* shader = shaderManagment->LoadAndGetShader<BasicLightingShader>("Shaders/BasicLightingShader");
 	BasicLightingShader* shader_textured = shaderManagment->LoadAndGetShader<BasicLightingShader>("Shaders/TexturedBasicLightingShader");
 	
-	shader->SetLight0("light0", EnumLightType::DIRECTIONAL_LIGHT);
-	shader->SetLight1("light1", EnumLightType::SPOT_LIGHT);
-	shader_textured->SetLight0("light0", EnumLightType::DIRECTIONAL_LIGHT);
-	shader_textured->SetLight1("light1", EnumLightType::SPOT_LIGHT);
+	shader->AddLight("light0", EnumLightType::DIRECTIONAL_LIGHT);
+	shader->AddLight("light1", EnumLightType::SPOT_LIGHT);
+	shader_textured->AddLight("light0", EnumLightType::DIRECTIONAL_LIGHT);
+	shader_textured->AddLight("light1", EnumLightType::SPOT_LIGHT);
 
-	NBasicLight* light0 = shader->GetLight0();
-	NBasicLight* light1 = shader->GetLight1();
+	NBasicLight* light0 = lightManager->GetLigth("light0");
+	NBasicLight* light1 = lightManager->GetLigth("light1");
 
 	light0->SetPosition(-30, -20, -10);
 	light0->SetAmbientCoefficient(0.0f);
