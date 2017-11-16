@@ -91,6 +91,8 @@ void BaseShader::LinkShaders()
 	glDetachShader(programShader_ID, fragmentShader_ID);
 	glDeleteShader(vertexShader_ID);
 	glDeleteShader(fragmentShader_ID);
+
+	OnReady();
 }
 
 GLint BaseShader::GetUniformLocation(const std::string & uniformName)

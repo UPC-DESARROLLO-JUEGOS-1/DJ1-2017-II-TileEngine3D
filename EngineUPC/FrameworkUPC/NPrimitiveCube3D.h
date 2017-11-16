@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Drawable3D.h"
+#include "NBasicLight.h"
 
 class NPrimitiveCube3D : public Drawable3D
 {

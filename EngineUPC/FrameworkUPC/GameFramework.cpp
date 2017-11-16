@@ -5,7 +5,7 @@
 #include <time.h>
 
 GameFramework* GameFramework::FRAMEWORK;
-GameFramework * GameFramework::GET_FRAMEWORK() { return FRAMEWORK; }
+GameFramework* GameFramework::GET_FRAMEWORK() { return FRAMEWORK; }
 
 GameFramework::GameFramework():
 	screenWidth(0),
@@ -13,7 +13,8 @@ GameFramework::GameFramework():
 	frameworkState(FrameworkState::Running),
 	shaderManager(this),
 	contentManager(this),
-	mCameraManagement(this)
+	mCameraManagement(this),
+	mLightManager(this)
 {
 	GameFramework::FRAMEWORK = this;
 	srand(time(NULL));
@@ -33,6 +34,7 @@ void GameFramework::Initialize(std::string windowName, int screenWidth, int scre
 	shaderManager.Initialize();
 	contentManager.Initialize();
 	mCameraManagement.Initialize();
+	mLightManager.Initialize();
 
 	sceneGraph = new SceneGraph();
 	sceneGraph->Initialize();

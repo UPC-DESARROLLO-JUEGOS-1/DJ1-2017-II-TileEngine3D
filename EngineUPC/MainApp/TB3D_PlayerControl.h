@@ -28,5 +28,7 @@ private:
 
 	int mDirectionX;
 	int mDirectionY;
+
+	Vector3 mDebugRotation;
 };
 

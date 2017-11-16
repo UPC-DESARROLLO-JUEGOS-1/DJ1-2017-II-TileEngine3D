@@ -30,6 +30,7 @@ public:
 			result->Initialize();
 			result->Load(path);
 			contents.insert(std::make_pair(path, result));
+
 			std::cout << "Loaded content: " << path << std::endl;
 		}
 

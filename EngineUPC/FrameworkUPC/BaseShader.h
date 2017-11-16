@@ -14,6 +14,7 @@ public:
 	virtual void Initialize();
 	void LoadAndCompile(const std::string& vertexShaderFilePath, const std::string& fragmentShaderFilePath);
 	void LinkShaders();
+	virtual void OnReady() {}
 
 	virtual void Use();
 	virtual void Stop();

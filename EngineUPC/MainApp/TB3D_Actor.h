@@ -33,8 +33,8 @@ public:
 		mZ = z;
 	}
 
-	TB3D_Engine* GetEngine() { return mEngine; }
-	NPrimitiveCube3D* GetCollisionCube() { return mCollisionCube; }
+	inline TB3D_Engine* GetEngine() { return mEngine; }
+	inline NPrimitiveCube3D* GetCollisionCube() { return mCollisionCube; }
 
 	TB3D_Actor() {}
 	TB3D_Actor(TB3D_Engine* engine);
