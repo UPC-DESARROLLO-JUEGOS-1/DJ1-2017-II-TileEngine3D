@@ -78,6 +78,9 @@
     <ClCompile Include="GameTile3DEngineScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="TB3D_GameHud.cpp">
+      <Filter>Source Files\TileEngine3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScene.h">
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="TB3D_Configuration.h">
       <Filter>Header Files\TileEngine3D\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="TB3D_GameHud.h">
+      <Filter>Header Files\TileEngine3D</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
