@@ -336,6 +336,9 @@
     <ClInclude Include="BasicLightingShader.h">
       <Filter>Header Files\core\render\shader\D3D</Filter>
     </ClInclude>
+    <ClInclude Include="NGraphicDevice.h">
+      <Filter>Header Files\core\system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameWindow.cpp">
@@ -451,6 +454,9 @@
     </ClCompile>
     <ClCompile Include="NBaseDrawable.cpp">
       <Filter>Source Files\core\render\graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="NGraphicDevice.cpp">
+      <Filter>Source Files\core\system</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

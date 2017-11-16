@@ -178,6 +178,7 @@
     <ClInclude Include="NCameraManagment.h" />
     <ClInclude Include="NColor.h" />
     <ClInclude Include="NCommon.h" />
+    <ClInclude Include="NGraphicDevice.h" />
     <ClInclude Include="NLightManager.h" />
     <ClInclude Include="NPrimitiveCube3D.h" />
     <ClInclude Include="NMeshRenderer3D.h" />
@@ -226,6 +227,7 @@
     <ClCompile Include="NBitmapFontParser.cpp" />
     <ClCompile Include="NCameraManagment.cpp" />
     <ClCompile Include="NColor.cpp" />
+    <ClCompile Include="NGraphicDevice.cpp" />
     <ClCompile Include="NLightManager.cpp" />
     <ClCompile Include="NPrimitiveCube3D.cpp" />
     <ClCompile Include="NMeshRenderer3D.cpp" />

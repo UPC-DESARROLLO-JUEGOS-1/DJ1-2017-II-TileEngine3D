@@ -1,4 +1,5 @@
 #include "NCameraManagment.h"
+#include <iostream>
 
 NCameraManagment::~NCameraManagment()
 {
@@ -27,6 +28,22 @@ FPSCamera * NCameraManagment::CreateFPSCamera(int screenWidth, int screenHeight,
 
 void NCameraManagment::Initialize()
 {
+}
+
+void NCameraManagment::SaveCamera(std::string name, BaseCamera* camera) {
+	if (GetCamera(name) == nullptr) {
+		mCameras.insert(std::make_pair(name, camera));
+	}
+}
+
+BaseCamera* NCameraManagment::GetCamera(std::string name) {
+	std::map<std::string, BaseCamera*>::iterator it = mCameras.find(name);
+
+	if (it == mCameras.end()) {
+		return nullptr;
+	}
+
+	return it->second;
 }
 
 void NCameraManagment::Update(float dt)
