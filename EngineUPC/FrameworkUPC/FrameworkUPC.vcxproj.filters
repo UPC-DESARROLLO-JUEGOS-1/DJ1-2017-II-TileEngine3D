@@ -339,6 +339,9 @@
     <ClInclude Include="NGraphicDevice.h">
       <Filter>Header Files\core\system</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\core\render\graphic\D2D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameWindow.cpp">
@@ -457,6 +460,9 @@
     </ClCompile>
     <ClCompile Include="NGraphicDevice.cpp">
       <Filter>Source Files\core\system</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\core\render\graphic\D2D</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

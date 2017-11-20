@@ -141,6 +141,7 @@
     <ClInclude Include="BaseContent.h" />
     <ClInclude Include="BaseScene.h" />
     <ClInclude Include="BaseShader.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Camera2D.h" />
     <ClInclude Include="Camera3D.h" />
     <ClInclude Include="Circle.h" />
@@ -207,6 +208,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseShader.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera2D.cpp" />
     <ClCompile Include="Camera3D.cpp" />
     <ClCompile Include="Circle.cpp" />

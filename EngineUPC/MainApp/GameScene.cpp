@@ -9,10 +9,14 @@ void GameScene::Initialize()
 	NCameraManagment* cManagement = framework->GetCameraManagement();
 	framework->GetGraphicDevice()->ChangeTo2D();
 	
-	mQuad = new Quad();
-	mQuad->Initialize(10, 10, 80, 80);
-	mQuad->SetRenderCamera(cManagement->GetCurrentCamera());
+	mButton = new Button();
+	mButton->Initialize(10, 10, "Sprites/btnstart.png");
+	mButton->SetRenderCamera(cManagement->GetCurrentCamera());
 }
+
+
+
+
 
 void GameScene::OnKeyDown(SDL_Keycode key)
 {
@@ -26,10 +30,10 @@ void GameScene::OnKeyUp(SDL_Keycode key)
 
 void GameScene::Update(float dt)
 {
-	mQuad->Update(dt);
+	mButton->Update(dt);
 }
 
 void GameScene::Draw(float dt)
 {
-	mQuad->Draw(dt);
+	mButton->Draw(dt);
 }
