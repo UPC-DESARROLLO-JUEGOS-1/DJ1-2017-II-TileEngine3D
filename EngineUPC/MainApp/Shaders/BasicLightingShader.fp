@@ -1,4 +1,5 @@
 #version 150
+#define MAX_LIGHTS 10
 
 in vec3 fragmentVertex;
 in vec3 fragmentNormal;
@@ -12,6 +13,7 @@ uniform vec3 materialSpecularColor;
 
 // ambient
 uniform vec4 ambientColor;
+uniform int numLights;
 
 uniform struct Light {
    vec4 position;
@@ -20,7 +22,7 @@ uniform struct Light {
    float ambientCoefficient;
    float coneAngle;
    vec3 coneDirection;
-} light0, light1;
+} allLights[MAX_LIGHTS];
 
 vec3 ApplyLight(Light light, vec3 surfaceColor, vec3 normal, vec3 surfacePos, vec3 surfaceToCamera) {
     vec3 surfaceToLight;
@@ -67,8 +69,10 @@ void main() {
 	vec4 surfaceColor = ambientColor;
 	
 	vec3 linearColor = vec3(0.0, 0.0, 0.0);
-    linearColor += ApplyLight(light0, surfaceColor.rgb, fragmentNormal, surfacePos, surfaceToCamera);
-	linearColor += ApplyLight(light1, surfaceColor.rgb, fragmentNormal, surfacePos, surfaceToCamera);
+	
+	for(int i = 0; i < numLights; ++i){
+		linearColor += ApplyLight(allLights[i], surfaceColor.rgb, fragmentNormal, surfacePos, surfaceToCamera);
+	}
 	
 	finalColor = vec4(linearColor, 1.0);
 }

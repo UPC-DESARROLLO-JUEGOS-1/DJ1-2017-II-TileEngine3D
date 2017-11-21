@@ -8,6 +8,21 @@
 #include "EnumLightType.h"
 
 #include <glm\glm.hpp>
+#include <vector>
+
+struct BasicLightUniforms {
+	GLuint LightPositionLocation;
+	GLuint LightColorLocation;
+	GLuint LightAttenuationLocation;
+	GLuint LightAmbientCoefficientLocation;
+	GLuint LightConeAngleLocation;
+	GLuint LightConeDirectionLocation;
+};
+
+struct BasicLightContainer {
+	BasicLightUniforms Uniforms;
+	NBasicLight* BasicLight;
+};
 
 class BasicLightingShader : public BaseShader
 {
@@ -15,16 +30,14 @@ public:
 	BasicLightingShader() { BaseShader::BaseShader(); }
 	~BasicLightingShader() { BaseShader::~BaseShader(); }
 
-	NBasicLight* GetLight0() { return mBasicLight0; }
-	NBasicLight* GetLight1() { return mBasicLight1; }
-
-	void SetLight0(std::string name, EnumLightType lightType) {
+	NBasicLight* AddLight(std::string name, EnumLightType lightType) {
+		NBasicLight* light = nullptr;
 		GameFramework* framework = GameFramework::GET_FRAMEWORK();
 		NLightManager* lightManagment = framework->GetLightManager();
 
 		switch (lightType) {
 		case EnumLightType::DIRECTIONAL_LIGHT:
-			mBasicLight0 = lightManagment->CreateDirectionalLight(name, 0, 0, 0);
+			light = lightManagment->CreateDirectionalLight(name, 0, 0, 0);
 			break;
 		case EnumLightType::SPOT_LIGHT:
 			glm::vec3 position;
@@ -39,90 +52,66 @@ public:
 
 			float coneAngle = 0;
 
-			mBasicLight0 = lightManagment->CreateSpotLight(name, position, 
+			light = lightManagment->CreateSpotLight(name, position,
 				coneDirection, coneAngle);
 			break;
 		}
-	}
 
-	void SetLight1(std::string name, EnumLightType lightType) {
-		GameFramework* framework = GameFramework::GET_FRAMEWORK();
-		NLightManager* lightManagment = framework->GetLightManager();
+		if (light != nullptr) {
+			std::string numLights = std::to_string(mLigths.size());
 
-		switch (lightType) {
-		case EnumLightType::DIRECTIONAL_LIGHT:
-			mBasicLight1 = lightManagment->CreateDirectionalLight(name, 0, 0, 0);
-			break;
-		case EnumLightType::SPOT_LIGHT:
-			glm::vec3 position;
-			position.x = 0;
-			position.y = 0;
-			position.z = 0;
+			BasicLightContainer container;
+			container.BasicLight = light;
 
-			glm::vec3 coneDirection;
-			coneDirection.x = 0;
-			coneDirection.y = 0;
-			coneDirection.z = 0;
-
-			float coneAngle = 0;
-
-			mBasicLight1 = lightManagment->CreateSpotLight(name, position,
-				coneDirection, coneAngle);
-			break;
+			container.Uniforms.LightPositionLocation = GetUniformLocation("allLights[" + numLights + "].position");
+			container.Uniforms.LightColorLocation = GetUniformLocation("allLights[" + numLights + "].intensities");
+			container.Uniforms.LightAttenuationLocation = GetUniformLocation("allLights[" + numLights + "].attenuation");
+			container.Uniforms.LightAmbientCoefficientLocation = GetUniformLocation("allLights[" + numLights + "].ambientCoefficient");
+			container.Uniforms.LightConeAngleLocation = GetUniformLocation("allLights[" + numLights + "].coneAngle");
+			container.Uniforms.LightConeDirectionLocation = GetUniformLocation("allLights[" + numLights + "].coneDirection");
+		
+			mLigths.push_back(container);
 		}
+
+		return light;
 	}
 
 	void Use() {
 		BaseShader::Use();
 
 		// material
+		glUniform1i(mNumLightsLocation, (int)mLigths.size());
 		glUniform1f(mMaterialShininessLocation, 80.0f);
 		glUniform3f(mMaterialSpecularColoeLocation, 1.0f, 1.0f, 1.0f);
 
-		// light0
-		if (mBasicLight0 != nullptr) {
-			glUniform4fv(mLightPositionLocation0, 1, glm::value_ptr(mBasicLight0->GetPosition()));
-			glUniform3fv(mLightColorLocation0, 1, glm::value_ptr(mBasicLight0->GetLigthColor()));
-			glUniform1f(mLightAttenuationLocation0, mBasicLight0->GetAttenuation());
-			glUniform1f(mLightAmbientCoefficientLocation0, mBasicLight0->GetAmbientCoefficient());
-			glUniform1f(mLightConeAngleLocation0, mBasicLight0->GetConeAngle());
-			glUniform3fv(mLightConeDirectionLocation0, 1, glm::value_ptr(mBasicLight0->GetConeDirection()));
-		}
-
-		// light1
-		if (mBasicLight1 != nullptr) {
-			glUniform4fv(mLightPositionLocation1, 1, glm::value_ptr(mBasicLight1->GetPosition()));
-			glUniform3fv(mLightColorLocation1, 1, glm::value_ptr(mBasicLight1->GetLigthColor()));
-			glUniform1f(mLightAttenuationLocation1, mBasicLight1->GetAttenuation());
-			glUniform1f(mLightAmbientCoefficientLocation1, mBasicLight1->GetAmbientCoefficient());
-			glUniform1f(mLightConeAngleLocation1, mBasicLight1->GetConeAngle());
-			glUniform3fv(mLightConeDirectionLocation1, 1, glm::value_ptr(mBasicLight1->GetConeDirection()));
+		for (int i = 0; i < mLigths.size(); i++) {
+			BasicLightContainer container = mLigths.at(i);
+			
+			// light
+			if (container.BasicLight != nullptr) {
+				glUniform4fv(container.Uniforms.LightPositionLocation, 1, 
+					glm::value_ptr(container.BasicLight->GetPosition()));
+				glUniform3fv(container.Uniforms.LightColorLocation, 1, 
+					glm::value_ptr(container.BasicLight->GetLigthColor()));
+				glUniform1f(container.Uniforms.LightAttenuationLocation, 
+					container.BasicLight->GetAttenuation());
+				glUniform1f(container.Uniforms.LightAmbientCoefficientLocation, 
+					container.BasicLight->GetAmbientCoefficient());
+				glUniform1f(container.Uniforms.LightConeAngleLocation, 
+					container.BasicLight->GetConeAngle());
+				glUniform3fv(container.Uniforms.LightConeDirectionLocation, 1, 
+					glm::value_ptr(container.BasicLight->GetConeDirection()));
+			}
 		}
 	}
 
 protected:
-	NBasicLight* mBasicLight0;
-	NBasicLight* mBasicLight1;
-
+	int mNumLightsLocation;
 	// material
 	GLuint mMaterialShininessLocation;
 	GLuint mMaterialSpecularColoeLocation;
 
-	// light0
-	GLuint mLightPositionLocation0;
-	GLuint mLightColorLocation0;
-	GLuint mLightAttenuationLocation0;
-	GLuint mLightAmbientCoefficientLocation0;
-	GLuint mLightConeAngleLocation0;
-	GLuint mLightConeDirectionLocation0;
-
-	// light1
-	GLuint mLightPositionLocation1;
-	GLuint mLightColorLocation1;
-	GLuint mLightAttenuationLocation1;
-	GLuint mLightAmbientCoefficientLocation1;
-	GLuint mLightConeAngleLocation1;
-	GLuint mLightConeDirectionLocation1;
+	std::vector<BasicLightContainer> mLigths;
 
 	void CreateAttributes()
 	{
@@ -134,24 +123,10 @@ protected:
 	void OnReady() {
 		BaseShader::OnReady();
 
+		mNumLightsLocation = GetUniformLocation("numLights");
+
 		// material
 		mMaterialShininessLocation = GetUniformLocation("materialShininess");
 		mMaterialSpecularColoeLocation = GetUniformLocation("materialSpecularColor");
-		
-		// light0
-		mLightPositionLocation0 = GetUniformLocation("light0.position");
-		mLightColorLocation0 = GetUniformLocation("light0.intensities");
-		mLightAttenuationLocation0 = GetUniformLocation("light0.attenuation");
-		mLightAmbientCoefficientLocation0 = GetUniformLocation("light0.ambientCoefficient");
-		mLightConeAngleLocation0 = GetUniformLocation("light0.coneAngle");
-		mLightConeDirectionLocation0 = GetUniformLocation("light0.coneDirection");
-
-		// light1
-		mLightPositionLocation1 = GetUniformLocation("light1.position");
-		mLightColorLocation1 = GetUniformLocation("light1.intensities");
-		mLightAttenuationLocation1 = GetUniformLocation("light1.attenuation");
-		mLightAmbientCoefficientLocation1 = GetUniformLocation("light1.ambientCoefficient");
-		mLightConeAngleLocation1 = GetUniformLocation("light1.coneAngle");
-		mLightConeDirectionLocation1 = GetUniformLocation("light1.coneDirection");
 	}
 };
