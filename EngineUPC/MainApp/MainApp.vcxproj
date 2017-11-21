@@ -148,6 +148,7 @@
     <ClCompile Include="TB3D_Configuration.cpp" />
     <ClCompile Include="TB3D_Engine.cpp" />
     <ClCompile Include="TB3D_Game.cpp" />
+    <ClCompile Include="TB3D_GameHud.cpp" />
     <ClCompile Include="TB3D_Player.cpp" />
     <ClCompile Include="TB3D_PlayerControl.cpp" />
     <ClCompile Include="TB3D_World.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="TB3D_Configuration.h" />
     <ClInclude Include="TB3D_Engine.h" />
     <ClInclude Include="TB3D_Game.h" />
+    <ClInclude Include="TB3D_GameHud.h" />
     <ClInclude Include="TB3D_Player.h" />
     <ClInclude Include="TB3D_PlayerControl.h" />
     <ClInclude Include="TB3D_World.h" />

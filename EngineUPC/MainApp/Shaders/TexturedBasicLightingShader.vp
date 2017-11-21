@@ -6,6 +6,7 @@ in vec2 vertexUV;
 
 out vec3 fragmentVertex;
 out vec3 fragmentNormal;
+out vec2 fragmentUV;
 
 uniform mat4 camera;
 uniform mat4 model;
@@ -15,4 +16,5 @@ void main() {
 	
 	fragmentVertex = vertexPosition;
 	fragmentNormal = vertexNormal;
+	fragmentUV = vertexUV;
 }

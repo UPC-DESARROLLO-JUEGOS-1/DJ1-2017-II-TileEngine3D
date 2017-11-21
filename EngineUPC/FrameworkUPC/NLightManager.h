@@ -2,28 +2,27 @@
 
 #include <string>
 #include <map>
-
-#include "NBaseLight.h"
+#include <glm\glm.hpp>
 
 class GameFramework;
+class NBasicLight;
 
 class NLightManager
 {
 public:
 	NLightManager(GameFramework* framework) { mFramework = framework; }
-	~NLightManager();
+	~NLightManager() {}
 
 	void Initialize();
 	bool ExistsLight(std::string name);
 
-
-	template<typename T>
-	T* CreateLight(std::string name, float x, float y, float z);
-	template<typename T>
-	T* GetLigth(const std::string name);
+	NBasicLight* CreateDirectionalLight(std::string name, float x, float y, float z);
+	NBasicLight* CreateSpotLight(std::string name, glm::vec3 position,
+		glm::vec3 coneDirection, float coneAngle);
+	NBasicLight* GetLigth(const std::string name);
 
 private:
 	GameFramework* mFramework;
-	std::map<std::string, NBaseLight*> mLights;
+	std::map<std::string, NBasicLight*> mLights;
 };
 

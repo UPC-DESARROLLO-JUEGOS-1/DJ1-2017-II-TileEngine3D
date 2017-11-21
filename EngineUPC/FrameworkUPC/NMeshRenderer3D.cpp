@@ -1,8 +1,7 @@
 #include "NMeshRenderer3D.h"
 #include "GameFramework.h"
 #include "ShaderManager.h"
-#include "ModelShader3D.h"
-#include "ModelPrimitiveShader3D.h"
+#include "BasicLightingShader.h"
 
 void NMeshRenderer3D::Initialize(float x, float y, float z)
 {
@@ -11,11 +10,11 @@ void NMeshRenderer3D::Initialize(float x, float y, float z)
 	GameFramework* framework = GameFramework::GET_FRAMEWORK();
 	ShaderManager* shdMng = framework->GetShaderManager();
 
-	const std::string path_Texture = "Shaders/ModelShader3D";
-	const std::string path_Primitive = "Shaders/ModelPrimitiveShader3D";
+	const std::string path_Texture = "Shaders/TexturedBasicLightingShader";
+	const std::string path_Primitive = "Shaders/BasicLightingShader";
 
-	mTextureShader = (BaseShader*)shdMng->LoadAndGetShader<ModelShader3D>(path_Texture);
-	mPrimitiveShader = (BaseShader*)shdMng->LoadAndGetShader<ModelPrimitiveShader3D>(path_Primitive);
+	mTextureShader = (BaseShader*)shdMng->LoadAndGetShader<BasicLightingShader>(path_Texture);
+	mPrimitiveShader = (BaseShader*)shdMng->LoadAndGetShader<BasicLightingShader>(path_Primitive);
 }
 
 void NMeshRenderer3D::Begin() {
@@ -100,13 +99,18 @@ void NMeshRenderer3D::End(ImageContent* content) {
 void NMeshRenderer3D::Draw(float dt) {
 	mCurrentShader->Use();
 
-	GLuint mvpLocation = mCurrentShader->GetUniformLocation("wvp");
-	GLuint ambientColor = mCurrentShader->GetUniformLocation("ambientColor");
-	glm::mat4 cameraMatrix = mRenderCamera->GetResultMatrix();
-	glm::mat4 resultMatrix = cameraMatrix * worldMatrix;
+	// matrix
+	GLuint cameraLocation = mCurrentShader->GetUniformLocation("camera");
+	GLuint modelLocation = mCurrentShader->GetUniformLocation("model");
+	GLuint cameraPositionLocation = mCurrentShader->GetUniformLocation("cameraPosition"); 
+	GLuint ambientColorLocation = mCurrentShader->GetUniformLocation("ambientColor");
+	
+	glUniform4f(ambientColorLocation, AmbientColor.x, AmbientColor.y, AmbientColor.z, 1.0f);
 
-	glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &(resultMatrix[0][0]));
-	glUniform4f(ambientColor, AmbientColor.x, AmbientColor.y, AmbientColor.z, 1.0f);
+	// matrix
+	glUniform3f(cameraPositionLocation, mRenderCamera->GetX(), mRenderCamera->GetY(), mRenderCamera->GetZ());
+	glUniformMatrix4fv(modelLocation, 1, GL_FALSE, &(worldMatrix[0][0]));
+	glUniformMatrix4fv(cameraLocation, 1, GL_FALSE, &(mRenderCamera->GetResultMatrix()[0][0]));
 
 	glBindBuffer(GL_ARRAY_BUFFER, mVBO_ID);
 

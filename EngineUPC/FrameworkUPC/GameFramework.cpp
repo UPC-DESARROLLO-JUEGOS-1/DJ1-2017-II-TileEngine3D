@@ -14,7 +14,8 @@ GameFramework::GameFramework():
 	shaderManager(this),
 	contentManager(this),
 	mCameraManagement(this),
-	mLightManager(this)
+	mLightManager(this),
+	mGraphicDevice(this)
 {
 	GameFramework::FRAMEWORK = this;
 	srand(time(NULL));
@@ -31,6 +32,7 @@ void GameFramework::Initialize(std::string windowName, int screenWidth, int scre
 	window.AddInputListener(std::bind(&GameFramework::OnListenInputsFromWindow, 
 		this, std::placeholders::_1));
 
+	mGraphicDevice.Initialize(screenWidth, screenHeight);
 	shaderManager.Initialize();
 	contentManager.Initialize();
 	mCameraManagement.Initialize();
@@ -56,6 +58,7 @@ void GameFramework::MainLoop(std::function<void(float)> onUpdate, std::function<
 
 void GameFramework::Update(float dt)
 {
+	mGraphicDevice.Update(dt);
 	mCameraManagement.Update(dt);
 	sceneGraph->Update(dt);
 	onUpdate(dt);
@@ -63,8 +66,7 @@ void GameFramework::Update(float dt)
 
 void GameFramework::Draw(float dt)
 {
-	glClearDepth(1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	mGraphicDevice.Draw(dt);
 	sceneGraph->Draw(dt);
 	onDraw(dt);
 	window.Present();

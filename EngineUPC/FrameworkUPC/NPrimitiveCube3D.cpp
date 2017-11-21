@@ -3,7 +3,7 @@
 #include "GameFramework.h"
 #include "ShaderManager.h"
 #include "PrimitiveShaderColor3D.h"
-#include "dtPrimitiveCubeVertex.h"
+#include "dtPositionNormalColorVertex.h"
 #include "BasicLightingShader.h"
 
 void NPrimitiveCube3D::SetColor(NColor color) {
@@ -13,7 +13,7 @@ void NPrimitiveCube3D::SetColor(NColor color) {
 	float hsy = mSizeY / 2.0f;
 	float hsz = mSizeZ / 2.0f;
 
-	dtPrimitiveCubeVertex* vertexData = new dtPrimitiveCubeVertex[24];
+	dtPositionNormalColorVertex* vertexData = new dtPositionNormalColorVertex[24];
 
 	GLubyte r = mColor.r;
 	GLubyte g = mColor.g;
@@ -25,48 +25,48 @@ void NPrimitiveCube3D::SetColor(NColor color) {
 	vertexData[1].SetPositionAndColor(-hsx, hsy, -hsz, r, g, b, a);  // down-left-front
 	vertexData[2].SetPositionAndColor(hsx, -hsy, -hsz, r, g, b, a);  // up-right-front
 	vertexData[3].SetPositionAndColor(hsx, hsy, -hsz, r, g, b, a);   // down-right-front
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[0], &vertexData[1], &vertexData[2]); // normal
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[1], &vertexData[3], &vertexData[2]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[0], &vertexData[1], &vertexData[2]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[1], &vertexData[3], &vertexData[2]); // normal
 
 	//left face
 	vertexData[4].SetPositionAndColor(-hsx, -hsy, -hsz, r, g, b, a); // up-left-front
 	vertexData[5].SetPositionAndColor(-hsx, hsy, -hsz, r, g, b, a);  // down-left-front
 	vertexData[6].SetPositionAndColor(-hsx, -hsy, hsz, r, g, b, a); // up-left-back
 	vertexData[7].SetPositionAndColor(-hsx, hsy, hsz, r, g, b, a);	// down-left-back						
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[4], &vertexData[5], &vertexData[6]); // normal
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[5], &vertexData[7], &vertexData[6]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[4], &vertexData[5], &vertexData[6]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[5], &vertexData[7], &vertexData[6]); // normal
 
 	// right face
 	vertexData[8].SetPositionAndColor(hsx, -hsy, -hsz, r, g, b, a);  // up-right-front
 	vertexData[9].SetPositionAndColor(hsx, hsy, -hsz, r, g, b, a);   // down-right-front
 	vertexData[10].SetPositionAndColor(hsx, -hsy, hsz, r, g, b, a);	// up-right-back
 	vertexData[11].SetPositionAndColor(hsx, hsy, hsz, r, g, b, a);	// down-right-back
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[8], &vertexData[9], &vertexData[10]); // normal
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[9], &vertexData[11], &vertexData[10]); // normal															// normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[8], &vertexData[9], &vertexData[10]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[9], &vertexData[11], &vertexData[10]); // normal															// normal
 
 	// back face
 	vertexData[12].SetPositionAndColor(-hsx, -hsy, hsz, r, g, b, a); // up-left-back
 	vertexData[13].SetPositionAndColor(-hsx, hsy, hsz, r, g, b, a);	// down-left-back
 	vertexData[14].SetPositionAndColor(hsx, -hsy, hsz, r, g, b, a);	// up-right-back
 	vertexData[15].SetPositionAndColor(hsx, hsy, hsz, r, g, b, a);	// down-right-back
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[12], &vertexData[13], &vertexData[14]); // normal
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[13], &vertexData[15], &vertexData[14]); // normal	
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[12], &vertexData[13], &vertexData[14]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[13], &vertexData[15], &vertexData[14]); // normal	
 
 	// top face
 	vertexData[16].SetPositionAndColor(-hsx, -hsy, -hsz, r, g, b, a); // up-left-front
 	vertexData[17].SetPositionAndColor(hsx, -hsy, -hsz, r, g, b, a);  // up-right-front
 	vertexData[18].SetPositionAndColor(-hsx, -hsy, hsz, r, g, b, a); // up-left-back
 	vertexData[19].SetPositionAndColor(hsx, -hsy, hsz, r, g, b, a);	// up-right-back
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[16], &vertexData[17], &vertexData[18]); // normal
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[17], &vertexData[19], &vertexData[18]); // normal	
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[16], &vertexData[17], &vertexData[18]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[17], &vertexData[19], &vertexData[18]); // normal	
 
 	// bottom face
 	vertexData[20].SetPositionAndColor(-hsx, hsy, -hsz, r, g, b, a);  // down-left-front
 	vertexData[21].SetPositionAndColor(hsx, hsy, -hsz, r, g, b, a);   // down-right-front
 	vertexData[22].SetPositionAndColor(-hsx, hsy, hsz, r, g, b, a);	// down-left-back
 	vertexData[23].SetPositionAndColor(hsx, hsy, hsz, r, g, b, a);	// down-right-back
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[20], &vertexData[21], &vertexData[22]); // normal
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[21], &vertexData[23], &vertexData[22]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[20], &vertexData[21], &vertexData[22]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[21], &vertexData[23], &vertexData[22]); // normal
 
 	int size = ((sizeof(float) * 3) + (sizeof(float) * 3) + (sizeof(GLbyte) * 4)) * 24;
 
@@ -94,7 +94,7 @@ void NPrimitiveCube3D::Initialize(float x, float y, float z,
 	float hsy = mSizeY / 2.0f;
 	float hsz = mSizeZ / 2.0f;
 
-	dtPrimitiveCubeVertex* vertexData = new dtPrimitiveCubeVertex[24];
+	dtPositionNormalColorVertex* vertexData = new dtPositionNormalColorVertex[24];
 
 	GLubyte r = mColor.r;
 	GLubyte g = mColor.g;
@@ -106,48 +106,48 @@ void NPrimitiveCube3D::Initialize(float x, float y, float z,
 	vertexData[1].SetPositionAndColor(-hsx, hsy, -hsz, r, g, b, a);  // down-left-front
 	vertexData[2].SetPositionAndColor(hsx, -hsy, -hsz, r, g, b, a);  // up-right-front
 	vertexData[3].SetPositionAndColor(hsx, hsy, -hsz, r, g, b, a);   // down-right-front
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[0], &vertexData[1], &vertexData[2]); // normal
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[1], &vertexData[3], &vertexData[2]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[0], &vertexData[1], &vertexData[2]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[1], &vertexData[3], &vertexData[2]); // normal
 
 	//left face
 	vertexData[4].SetPositionAndColor(-hsx, -hsy, -hsz, r, g, b, a); // up-left-front
 	vertexData[5].SetPositionAndColor(-hsx, hsy, -hsz, r, g, b, a);  // down-left-front
 	vertexData[6].SetPositionAndColor(-hsx, -hsy, hsz, r, g, b, a); // up-left-back
 	vertexData[7].SetPositionAndColor(-hsx, hsy, hsz, r, g, b, a);	// down-left-back						
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[4], &vertexData[5], &vertexData[6]); // normal
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[5], &vertexData[7], &vertexData[6]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[4], &vertexData[5], &vertexData[6]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[5], &vertexData[7], &vertexData[6]); // normal
 
 	// right face
 	vertexData[8].SetPositionAndColor(hsx, -hsy, -hsz, r, g, b, a);  // up-right-front
 	vertexData[9].SetPositionAndColor(hsx, hsy, -hsz, r, g, b, a);   // down-right-front
 	vertexData[10].SetPositionAndColor(hsx, -hsy, hsz, r, g, b, a);	// up-right-back
 	vertexData[11].SetPositionAndColor(hsx, hsy, hsz, r, g, b, a);	// down-right-back
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[8], &vertexData[9], &vertexData[10]); // normal
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[9], &vertexData[11], &vertexData[10]); // normal															// normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[8], &vertexData[9], &vertexData[10]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[9], &vertexData[11], &vertexData[10]); // normal															// normal
 
 	// back face
 	vertexData[12].SetPositionAndColor(-hsx, -hsy, hsz, r, g, b, a); // up-left-back
 	vertexData[13].SetPositionAndColor(-hsx, hsy, hsz, r, g, b, a);	// down-left-back
 	vertexData[14].SetPositionAndColor(hsx, -hsy, hsz, r, g, b, a);	// up-right-back
 	vertexData[15].SetPositionAndColor(hsx, hsy, hsz, r, g, b, a);	// down-right-back
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[12], &vertexData[13], &vertexData[14]); // normal
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[13], &vertexData[15], &vertexData[14]); // normal	
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[12], &vertexData[13], &vertexData[14]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[13], &vertexData[15], &vertexData[14]); // normal	
 
 	// top face
 	vertexData[16].SetPositionAndColor(-hsx, -hsy, -hsz, r, g, b, a); // up-left-front
 	vertexData[17].SetPositionAndColor(hsx, -hsy, -hsz, r, g, b, a);  // up-right-front
 	vertexData[18].SetPositionAndColor(-hsx, -hsy, hsz, r, g, b, a); // up-left-back
 	vertexData[19].SetPositionAndColor(hsx, -hsy, hsz, r, g, b, a);	// up-right-back
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[16], &vertexData[17], &vertexData[18]); // normal
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[17], &vertexData[19], &vertexData[18]); // normal	
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[16], &vertexData[17], &vertexData[18]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[17], &vertexData[19], &vertexData[18]); // normal	
 
 	// bottom face
 	vertexData[20].SetPositionAndColor(-hsx, hsy, -hsz, r, g, b, a);  // down-left-front
 	vertexData[21].SetPositionAndColor(hsx, hsy, -hsz, r, g, b, a);   // down-right-front
 	vertexData[22].SetPositionAndColor(-hsx, hsy, hsz, r, g, b, a);	// down-left-back
 	vertexData[23].SetPositionAndColor(hsx, hsy, hsz, r, g, b, a);	// down-right-back
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[20], &vertexData[21], &vertexData[22]); // normal
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[21], &vertexData[23], &vertexData[22]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[20], &vertexData[21], &vertexData[22]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[21], &vertexData[23], &vertexData[22]); // normal
 
 	int size = ((sizeof(float) * 3) + (sizeof(float) * 3) + (sizeof(GLbyte) * 4)) * 24;
 
@@ -195,6 +195,9 @@ void NPrimitiveCube3D::Draw(float dt) {
 	GLuint cameraLocation = mCurrentShader->GetUniformLocation("camera");
 	GLuint modelLocation = mCurrentShader->GetUniformLocation("model");
 	GLuint cameraPositionLocation = mCurrentShader->GetUniformLocation("cameraPosition");
+	GLuint ambientColorLocation = mCurrentShader->GetUniformLocation("ambientColor");
+
+	glUniform4f(ambientColorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
 
 	// matrix
 	glUniform3f(cameraPositionLocation, mRenderCamera->GetX(), mRenderCamera->GetY(), mRenderCamera->GetZ());
@@ -204,14 +207,14 @@ void NPrimitiveCube3D::Draw(float dt) {
 	glBindBuffer(GL_ARRAY_BUFFER, mVBO_ID);
 
 	// Position
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(dtPrimitiveCubeVertex),
-		(void*)offsetof(dtPrimitiveCubeVertex, dtPrimitiveCubeVertex::Position));
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(dtPositionNormalColorVertex),
+		(void*)offsetof(dtPositionNormalColorVertex, dtPositionNormalColorVertex::Position));
 	// Normal
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(dtPrimitiveCubeVertex),
-		(void*)offsetof(dtPrimitiveCubeVertex, dtPrimitiveCubeVertex::Normal));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(dtPositionNormalColorVertex),
+		(void*)offsetof(dtPositionNormalColorVertex, dtPositionNormalColorVertex::Normal));
 	// Color
-	glVertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(dtPrimitiveCubeVertex),
-		(void*)offsetof(dtPrimitiveCubeVertex, dtPrimitiveCubeVertex::Color));
+	glVertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(dtPositionNormalColorVertex),
+		(void*)offsetof(dtPositionNormalColorVertex, dtPositionNormalColorVertex::Color));
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIBO_ID);
 

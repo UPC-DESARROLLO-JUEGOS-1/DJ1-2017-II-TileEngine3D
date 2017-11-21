@@ -2,7 +2,7 @@
 
 #include "VertexData.h"
 
-struct dtPrimitiveCubeVertex
+struct dtPositionNormalColorVertex
 {
 	V3 Position;
 	V3 Normal;
@@ -37,7 +37,7 @@ struct dtPrimitiveCubeVertex
 		Color.a = a;
 	}
 
-	void static ProcessNormal(dtPrimitiveCubeVertex* v1, dtPrimitiveCubeVertex* v2, dtPrimitiveCubeVertex* v3) {
+	void static ProcessNormal(dtPositionNormalColorVertex* v1, dtPositionNormalColorVertex* v2, dtPositionNormalColorVertex* v3) {
 		glm::vec3 vertex1 = glm::vec3(v1->Position.x, v1->Position.y, v1->Position.z);
 		glm::vec3 vertex2 = glm::vec3(v2->Position.x, v2->Position.y, v2->Position.z);
 		glm::vec3 vertex3 = glm::vec3(v3->Position.x, v3->Position.y, v3->Position.z);

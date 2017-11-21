@@ -14,7 +14,7 @@ void Ellipse::Initialize(float x, float y, float radius, int vertexCount)
 	ibo_ID = 0;
 
 	ShaderManager* shaderManager = GameFramework::GET_FRAMEWORK()->GetShaderManager();
-	currentShader = shaderManager->LoadAndGetShader<PrimitiveShader>("Shaders/PrimitiveShader");
+	mCurrentShader = shaderManager->LoadAndGetShader<PrimitiveShader>("Shaders/PrimitiveShader");
 
 	BindData();
 	BindIndices();
@@ -24,10 +24,10 @@ void Ellipse::Draw(float dt)
 {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC0_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	currentShader->Use();
+	mCurrentShader->Use();
 
-	GLuint wvpLocation = currentShader->GetUniformLocation("wvp");
-	glm::mat4 cameraMatrix = renderCamera->GetResultMatrix();
+	GLuint wvpLocation = mCurrentShader->GetUniformLocation("wvp");
+	glm::mat4 cameraMatrix = mRenderCamera->GetResultMatrix();
 	glm::mat4 resultMatrix = cameraMatrix*worldMatrix;
 
 	glUniformMatrix4fv(wvpLocation, 1, GL_FALSE, &(resultMatrix[0][0]));
@@ -45,7 +45,7 @@ void Ellipse::Draw(float dt)
 	glDisableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	currentShader->Stop();
+	mCurrentShader->Stop();
 }
 
 void Ellipse::BindData()

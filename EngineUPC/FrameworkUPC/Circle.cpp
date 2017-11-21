@@ -9,7 +9,7 @@ void Circle::Initialize(float x, float y, int radius)
 {
 	Drawable2D::Initialize(x, y);
 	ShaderManager* shaderManager = GameFramework::GET_FRAMEWORK()->GetShaderManager();
-	currentShader = shaderManager->LoadAndGetShader<PrimitiveShader>("Shaders/PrimitiveShader");
+	mCurrentShader = shaderManager->LoadAndGetShader<PrimitiveShader>("Shaders/PrimitiveShader");
 	this->radius = radius;
 	angles = 30;
 	r = g = b = a = 255;
@@ -21,9 +21,9 @@ void Circle::Draw(float dt)
 {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC0_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	currentShader->Use();
-	GLuint wvpLocation = currentShader->GetUniformLocation("wvp");
-	glm::mat4 cameraMatrix = renderCamera->GetResultMatrix();
+	mCurrentShader->Use();
+	GLuint wvpLocation = mCurrentShader->GetUniformLocation("wvp");
+	glm::mat4 cameraMatrix = mRenderCamera->GetResultMatrix();
 	glm::mat4 resultMatrix = cameraMatrix*worldMatrix;
 
 	glUniformMatrix4fv(wvpLocation, 1, GL_FALSE, &(resultMatrix[0][0]));
@@ -37,7 +37,7 @@ void Circle::Draw(float dt)
 
 	glDisableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	currentShader->Stop();
+	mCurrentShader->Stop();
 }
 
 void Circle::SetColor(float r, float g, float b, float a)

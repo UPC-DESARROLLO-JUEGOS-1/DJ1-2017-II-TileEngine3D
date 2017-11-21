@@ -33,17 +33,8 @@ int GameWindow::Create(const std::string windowName, int screenWidth, int screen
 	
 	if(error!=GLEW_OK) FatalError("Couldn't initialize GLEW");
 
-	glClearColor(0.0f, 1.0f, 0.0f, 0.5f);
-
 	std::printf("*** OpenGL Version: %s ***\n", glGetString(GL_VERSION));
 	SDL_GL_SetSwapInterval(1); //VSync ON
-
-	/////
-	glEnable(GL_BLEND);//Blending
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
-	/////
 
 	//Get default audio device
 	ALCdevice *device = alcOpenDevice(NULL);

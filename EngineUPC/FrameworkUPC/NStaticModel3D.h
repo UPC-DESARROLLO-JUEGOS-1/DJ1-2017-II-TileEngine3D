@@ -6,8 +6,9 @@
 #include "dtModelObjMesh.h"
 #include "NMeshRenderer3D.h"
 #include "ContentManager.h"
+#include "NBaseDrawable.h"
 
-class NStaticModel3D
+class NStaticModel3D : public NBaseDrawable
 {
 public:
 	NStaticModel3D();

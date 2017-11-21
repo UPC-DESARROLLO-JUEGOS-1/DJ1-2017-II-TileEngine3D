@@ -4,9 +4,14 @@
 #include "TB3D_Player.h"
 #include <FrameworkUPC\GameFramework.h>
 #include <FrameworkUPC\BasicLightingShader.h>
+#include <FrameworkUPC\NStaticModel3D.h>
+#include <FrameworkUPC\EnumLightType.h>
+
+#include <glm\glm.hpp>
 
 const int TB3D_World::TILE_EMPTY = 0;
 const int TB3D_World::TILE_BLOCK = 1;
+const int TB3D_World::TILE_HOUSE_3D = 2;
 const int TB3D_World::TILE_PLAYER = 9;
 
 TB3D_World::TB3D_World(TB3D_Engine* engine)
@@ -20,13 +25,27 @@ TB3D_World::TB3D_World(TB3D_Engine* engine)
 	GameFramework* framework = GameFramework::GET_FRAMEWORK();
 	ShaderManager* shaderManagment = framework->GetShaderManager();
 
-	const std::string baseShaderPath = "Shaders/BasicLightingShader";
-	BasicLightingShader* shader = shaderManagment->LoadAndGetShader<BasicLightingShader>(baseShaderPath);
-	shader->SetLight0("light0");
-	shader->SetLight1("light1");
+	BasicLightingShader* shader = shaderManagment->LoadAndGetShader<BasicLightingShader>("Shaders/BasicLightingShader");
+	BasicLightingShader* shader_textured = shaderManagment->LoadAndGetShader<BasicLightingShader>("Shaders/TexturedBasicLightingShader");
+	
+	shader->SetLight0("light0", EnumLightType::DIRECTIONAL_LIGHT);
+	shader->SetLight1("light1", EnumLightType::SPOT_LIGHT);
+	shader_textured->SetLight0("light0", EnumLightType::DIRECTIONAL_LIGHT);
+	shader_textured->SetLight1("light1", EnumLightType::SPOT_LIGHT);
 
-	shader->GetLight1()->SetLightColor(NColor::Red);
-	shader->GetLight1()->SetIntensity(0.3f);
+	NBasicLight* light0 = shader->GetLight0();
+	NBasicLight* light1 = shader->GetLight1();
+
+	light0->SetPosition(-30, -20, -10);
+	light0->SetAmbientCoefficient(0.0f);
+	light0->SetAttenuation(0.2f);
+
+	light1->SetLightColor(NColor::Red);
+	light1->SetAmbientCoefficient(0.03f);
+	light1->SetPosition(30, 4, 60);
+	light1->SetConeAngle(70.82f);
+	light1->SetConeDirection(0, -1.3f, 0);
+
 }
 
 TB3D_World::~TB3D_World()
@@ -37,6 +56,7 @@ TB3D_World::~TB3D_World()
 void TB3D_World::Initialize() {
 	std::vector<std::vector<int>> worldCollisions = mEngine->GetWorldConfig()->WorldCollisions();
 
+	float tileSize = mEngine->GetWorldConfig()->TileSize();
 	int rows = worldCollisions.size();
 	int cols = worldCollisions[0].size();
 
@@ -49,6 +69,20 @@ void TB3D_World::Initialize() {
 	}
 
 	mWorldPhysics->Initialize(worldCollisions);
+
+	BaseCamera* camera = mEngine->GetCamera()->GetRenderCamera();
+
+	float psx = cols * tileSize;
+	float psy = rows * tileSize;
+	// plane
+	mPlane = new NPrimitivePlane3D();
+	mPlane->Initialize(psx / 2.0f, 0, psy / 2.0f, psx, psy);
+	mPlane->SetColor(NColor::White);
+	mPlane->SetRenderCamera(camera);
+	mPlane->SetRotationX(1.57f);
+	mPlane->SetY(-2.0f);
+
+	mDrawables.push_back(mPlane);
 }
 
 void TB3D_World::CreateObject(int tileID, int c, int r) {
@@ -59,6 +93,7 @@ void TB3D_World::CreateObject(int tileID, int c, int r) {
 
 	switch (tileID) {
 	case TB3D_World::TILE_BLOCK:
+		// Si tiene mas de una linea de codigo en un switch tiene que estar en parentesis
 		{
 			NPrimitiveCube3D* cube = new NPrimitiveCube3D();
 			cube->Initialize(posX, posY, posZ, mTileSize, mTileSize, mTileSize);
@@ -66,35 +101,39 @@ void TB3D_World::CreateObject(int tileID, int c, int r) {
 			//cube->SetRotationX(3.14);
 			//cube->SetRotationZ(3.14);
 
-			mCubes.push_back(cube);
-	
+			mDrawables.push_back(cube);
+			break;
+		}
+	case TB3D_World::TILE_HOUSE_3D:
+		{
+			// Inicializamos el Modelo 3D
+			NStaticModel3D* staticModel = new NStaticModel3D();
+			staticModel->Initialize("Models/", "farmhouse_obj.obj", posX, posY, posZ);
+			staticModel->SetRenderCamera(camera);
+			staticModel->SetScale(0.6f, 0.6f, 0.6f);
+
+			mDrawables.push_back(staticModel);
 			break;
 		}
 	case TB3D_World::TILE_EMPTY:
-		//NPrimitiveCube3D cube_empty = new NPrimitiveCube3D(posX, posY, posZ, mTileSize);
-		//cube_empty.AmbientColor = Color.Green;
-		//cube_empty.ScaleY = 0.01f;
-
-		//mCubes.Add(cube_empty);
 		break;
 	case TB3D_World::TILE_PLAYER:
-		{
-			mEngine->GetPlayer()->SetPosition(posX + mTileSize / 2, posY, posZ + mTileSize / 2);
-			break;
-		}
+		mEngine->GetPlayer()->SetPosition(posX + mTileSize / 2, posY, posZ + mTileSize / 2);
+		break;
+		
 	}
 }
 
 void TB3D_World::Update(float dt) {
-	for (int i = 0, size = mCubes.size(); i < size; i++)
+	for (int i = 0, size = mDrawables.size(); i < size; i++)
 	{
-		mCubes[i]->Update(dt);
+		mDrawables[i]->Update(dt);
 	}
 }
 
 void TB3D_World::Draw(float dt) {
-	for (int i = 0, size = mCubes.size(); i < size; i++)
+	for (int i = 0, size = mDrawables.size(); i < size; i++)
 	{
-		mCubes[i]->Draw(dt);
+		mDrawables[i]->Draw(dt);
 	}
 }

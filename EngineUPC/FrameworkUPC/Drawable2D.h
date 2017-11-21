@@ -6,8 +6,9 @@
 #include "BaseShader.h"
 #include "BaseCamera.h"
 #include "Vector2.h"
+#include "NBaseDrawable.h"
 
-class Drawable2D
+class Drawable2D : public NBaseDrawable
 {
 public:
 	Drawable2D();
@@ -50,11 +51,11 @@ public:
 		needMatrixUpdate = true;
 	}
 
-	void SetRenderCamera(BaseCamera* renderCamera) { this->renderCamera = renderCamera; }
+	void SetRenderCamera(BaseCamera* renderCamera) { this->mRenderCamera = renderCamera; }
 
 	void Initialize(float x, float y);
 
-	virtual void Update(float dt)
+	void Update(float dt)
 	{
 		if (needMatrixUpdate)
 		{
@@ -72,7 +73,7 @@ public:
 		}
 	}
 
-	virtual void Draw(float dt)
+	void Draw(float dt)
 	{
 
 	}
@@ -81,10 +82,6 @@ protected:
 	Vector2 position;
 	Vector2 scale;
 	float rotationZ;
-	glm::mat4 worldMatrix;
-	bool needMatrixUpdate;
 
 	GLuint vbo_ID;
-	BaseShader* currentShader;
-	BaseCamera* renderCamera;
 };

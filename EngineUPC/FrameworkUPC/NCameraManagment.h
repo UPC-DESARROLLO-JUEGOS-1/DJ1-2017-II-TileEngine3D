@@ -4,6 +4,8 @@
 #include "Camera2D.h"
 #include "Camera3D.h"
 #include "FPSCamera.h"
+#include <map>
+#include <string>
 
 class GameFramework;
 
@@ -56,10 +58,14 @@ public:
 		}
 	}
 
+	void SaveCamera(std::string name, BaseCamera* camera);
+	BaseCamera* GetCamera(std::string name);
 	void SetCurrentCamera(BaseCamera* camera) { mCurrentCamera = camera; }
 	void Update(float dt);
 
 private:
+	std::map<std::string, BaseCamera*> mCameras;
+
 	BaseCamera* mCurrentCamera;
 	GameFramework* mFramework;
 };

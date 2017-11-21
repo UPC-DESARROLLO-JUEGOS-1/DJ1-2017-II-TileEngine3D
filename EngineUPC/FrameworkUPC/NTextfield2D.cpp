@@ -287,7 +287,7 @@ void NTextfield2D::Draw(float dt)
 
 		GLuint mvpLocation = mShader->GetUniformLocation("wvp");
 		
-		glm::mat4 cameraMatrix = renderCamera->GetResultMatrix();
+		glm::mat4 cameraMatrix = mRenderCamera->GetResultMatrix();
 		glm::mat4 resultMatrix = cameraMatrix * worldMatrix;
 
 		glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &(resultMatrix[0][0]));

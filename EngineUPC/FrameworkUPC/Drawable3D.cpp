@@ -2,8 +2,6 @@
 
 Drawable3D::Drawable3D() :
 	mVBO_ID(0), mIBO_ID(0),
-	needMatrixUpdate(true),
-	worldMatrix(1.0f),
 	mIndicesCount(0),
 	position(0.0f, 0.0f, 0.0f),
 	scale(1.0f, 1.0f, 1.0f),
@@ -12,9 +10,6 @@ Drawable3D::Drawable3D() :
 
 Drawable3D::~Drawable3D()
 {
-	mCurrentShader = nullptr;
-	mRenderCamera = nullptr;
-
 	if (mVBO_ID != 0) {
 		glDeleteBuffers(1, &mVBO_ID);
 	}
