@@ -3,7 +3,7 @@
 #include "GameFramework.h"
 #include "ShaderManager.h"
 #include "PrimitiveShaderColor3D.h"
-#include "dtPrimitiveCubeVertex.h"
+#include "dtPositionNormalColorVertex.h"
 #include "PrimitiveShaderColor3D.h"
 
 void NBillboardSprite::SetColor(NColor color) {
@@ -13,7 +13,7 @@ void NBillboardSprite::SetColor(NColor color) {
 	float hsy = mSizeY / 2.0f;
 	float hsz = mSizeZ / 2.0f;
 
-	dtPrimitiveCubeVertex* vertexData = new dtPrimitiveCubeVertex[4];
+	dtPositionNormalColorVertex* vertexData = new dtPositionNormalColorVertex[4];
 
 	GLubyte r = 255;
 	GLubyte g = 0;
@@ -57,7 +57,7 @@ void NBillboardSprite::Initialize(float x, float y, float z,
 	float hsy = mSizeY / 2.0f;
 	float hsz = mSizeZ / 2.0f;
 
-	dtPrimitiveCubeVertex* vertexData = new dtPrimitiveCubeVertex[4];
+	dtPositionNormalColorVertex* vertexData = new dtPositionNormalColorVertex[4];
 
 	GLubyte r = mColor.r;
 	GLubyte g = mColor.g;
@@ -69,8 +69,8 @@ void NBillboardSprite::Initialize(float x, float y, float z,
 	vertexData[1].SetPositionAndColor(-hsx, hsy, -hsz, r, g, b, a);  // down-left-front
 	vertexData[2].SetPositionAndColor(hsx, -hsy, -hsz, r, g, b, a);  // up-right-front
 	vertexData[3].SetPositionAndColor(hsx, hsy, -hsz, r, g, b, a);   // down-right-front
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[0], &vertexData[1], &vertexData[2]); // normal
-	dtPrimitiveCubeVertex::ProcessNormal(&vertexData[1], &vertexData[3], &vertexData[2]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[0], &vertexData[1], &vertexData[2]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[1], &vertexData[3], &vertexData[2]); // normal
 
 	int size = ((sizeof(float) * 3) + (sizeof(float) * 3) + (sizeof(GLbyte) * 4)) * 4;
 
@@ -112,14 +112,14 @@ void NBillboardSprite::Draw(float dt) {
 	glBindBuffer(GL_ARRAY_BUFFER, mVBO_ID);
 
 	// Position
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(dtPrimitiveCubeVertex),
-		(void*)offsetof(dtPrimitiveCubeVertex, dtPrimitiveCubeVertex::Position));
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(dtPositionNormalColorVertex),
+		(void*)offsetof(dtPositionNormalColorVertex, dtPositionNormalColorVertex::Position));
 	// Normal
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(dtPrimitiveCubeVertex),
-		(void*)offsetof(dtPrimitiveCubeVertex, dtPrimitiveCubeVertex::Normal));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(dtPositionNormalColorVertex),
+		(void*)offsetof(dtPositionNormalColorVertex, dtPositionNormalColorVertex::Normal));
 	// Color
-	glVertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(dtPrimitiveCubeVertex),
-		(void*)offsetof(dtPrimitiveCubeVertex, dtPrimitiveCubeVertex::Color));
+	glVertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(dtPositionNormalColorVertex),
+		(void*)offsetof(dtPositionNormalColorVertex, dtPositionNormalColorVertex::Color));
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIBO_ID);
 
