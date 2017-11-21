@@ -63,8 +63,8 @@ void NPrimitivePlane3D::Initialize(float x, float y, float z,
 	vertexData[1].SetPositionAndColor(-hsx, hsy, 0, r, g, b, a);  // down-left-front
 	vertexData[2].SetPositionAndColor(hsx, -hsy, 0, r, g, b, a);  // up-right-front
 	vertexData[3].SetPositionAndColor(hsx, hsy, 0, r, g, b, a);   // down-right-front
-	dtPositionNormalColorVertex::ProcessNormal(&vertexData[0], &vertexData[1], &vertexData[2]); // normal
-	dtPositionNormalColorVertex::ProcessNormal(&vertexData[1], &vertexData[3], &vertexData[2]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[0], &vertexData[1], &vertexData[2], glm::vec3(1, -1, 1)); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[1], &vertexData[3], &vertexData[2], glm::vec3(1, -1, 1)); // normal
 
 	int size = ((sizeof(float) * 3) + (sizeof(float) * 3) + (sizeof(GLbyte) * 4)) * 4;
 

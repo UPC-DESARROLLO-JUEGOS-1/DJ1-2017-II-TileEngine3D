@@ -114,8 +114,8 @@ void NPrimitiveCube3D::Initialize(float x, float y, float z,
 	vertexData[5].SetPositionAndColor(-hsx, hsy, -hsz, r, g, b, a);  // down-left-front
 	vertexData[6].SetPositionAndColor(-hsx, -hsy, hsz, r, g, b, a); // up-left-back
 	vertexData[7].SetPositionAndColor(-hsx, hsy, hsz, r, g, b, a);	// down-left-back						
-	dtPositionNormalColorVertex::ProcessNormal(&vertexData[4], &vertexData[5], &vertexData[6]); // normal
-	dtPositionNormalColorVertex::ProcessNormal(&vertexData[5], &vertexData[7], &vertexData[6]); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[4], &vertexData[5], &vertexData[6], glm::vec3(-1, 1, 1)); // normal
+	dtPositionNormalColorVertex::ProcessNormal(&vertexData[5], &vertexData[7], &vertexData[6], glm::vec3(-1, 1, 1)); // normal
 
 	// right face
 	vertexData[8].SetPositionAndColor(hsx, -hsy, -hsz, r, g, b, a);  // up-right-front

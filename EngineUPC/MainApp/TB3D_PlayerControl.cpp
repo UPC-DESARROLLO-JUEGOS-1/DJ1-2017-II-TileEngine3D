@@ -25,6 +25,11 @@ void TB3D_PlayerControl::Initialize() {
 }
 
 void TB3D_PlayerControl::OnKeyDown(SDL_Keycode key) {
+	NLightManager* lightManager = GameFramework::GET_FRAMEWORK()->GetLightManager();
+	NBasicLight* light0 = lightManager->GetLigth("light0");
+
+	glm::vec4 lightDir = light0->GetPosition();
+
 	switch (key) {
 	case SDLK_LEFT:
 		mCanGoBackward = true;
@@ -50,7 +55,27 @@ void TB3D_PlayerControl::OnKeyDown(SDL_Keycode key) {
 		mDebugRotation.y += 0.01f;
 		mPlayer->GetCollisionCube()->SetRotationY(mDebugRotation.y);
 		break;
+	case SDLK_f:
+		lightDir.x += 1;
+		break;
+	case SDLK_g:
+		lightDir.y += 1;
+		break;
+	case SDLK_h:
+		lightDir.z += 1;
+		break;
+	case SDLK_v:
+		lightDir.x -= 1;
+		break;
+	case SDLK_b:
+		lightDir.y -= 1;
+		break;
+	case SDLK_n:
+		lightDir.z -= 1;
+		break;
 	}
+
+	light0->SetPosition(lightDir.x, lightDir.y , lightDir.z);
 }
 
 void TB3D_PlayerControl::OnKeyUp(SDL_Keycode key) {
