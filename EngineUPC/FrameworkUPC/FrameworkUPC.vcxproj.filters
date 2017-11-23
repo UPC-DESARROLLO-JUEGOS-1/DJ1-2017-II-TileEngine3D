@@ -312,9 +312,6 @@
     <ClInclude Include="Sound.h">
       <Filter>Header Files\core\audio</Filter>
     </ClInclude>
-    <ClInclude Include="NPrimitivePlane3D.h">
-      <Filter>Header Files\core\render\shader\D3D</Filter>
-    </ClInclude>
     <ClInclude Include="dtPositionNormalColorVertex.h">
       <Filter>Header Files\core\render\graphic\D3D\data</Filter>
     </ClInclude>
@@ -338,6 +335,18 @@
     </ClInclude>
     <ClInclude Include="NGraphicDevice.h">
       <Filter>Header Files\core\system</Filter>
+    </ClInclude>
+    <ClInclude Include="dtPositionNormalUVVertex.h">
+      <Filter>Header Files\core\render\graphic\D3D\data</Filter>
+    </ClInclude>
+    <ClInclude Include="NTexturePlane3D.h">
+      <Filter>Header Files\core\render\graphic\D3D</Filter>
+    </ClInclude>
+    <ClInclude Include="TexturedShader3D.h">
+      <Filter>Header Files\core\render\shader\D3D</Filter>
+    </ClInclude>
+    <ClInclude Include="NPrimitivePlane3D.h">
+      <Filter>Header Files\core\render\graphic\D3D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -457,6 +466,9 @@
     </ClCompile>
     <ClCompile Include="NGraphicDevice.cpp">
       <Filter>Source Files\core\system</Filter>
+    </ClCompile>
+    <ClCompile Include="NTexturePlane3D.cpp">
+      <Filter>Source Files\core\render\graphic\D3D</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

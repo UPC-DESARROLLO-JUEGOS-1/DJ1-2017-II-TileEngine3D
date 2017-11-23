@@ -31,14 +31,27 @@ void TB3D_Player::Initialize() {
 	mDebugMode = true;
 	mOffsetX = -(mEngine->GetTileSize() / 2.0);
 	mOffsetZ = -(mEngine->GetTileSize() / 2.0);
+
+	mPlane = new NTexturePlane3D();
+	mPlane->Initialize(0, 0, 0, 4.0f, 4.0f, "Sprites/asteroid.png");
+	mPlane->SetRenderCamera((BaseCamera*)mEngine->GetCamera()->GetRenderCamera());
 }
 
 void TB3D_Player::Update(float dt) {
 	TB3D_Actor::Update(dt);
 
-	mPlayerControl->Update(dt);
+	if (mPlane != nullptr) {
+		mPlane->SetPosition(mX, mY, mZ);
+		mPlane->Update(dt);
+	}
+
+	mPlayerControl->Update(dt);	
 }
 
 void TB3D_Player::Draw(float dt) {
 	TB3D_Actor::Draw(dt);
+
+	if (mPlane != nullptr) {
+		mPlane->Draw(dt);
+	}
 }

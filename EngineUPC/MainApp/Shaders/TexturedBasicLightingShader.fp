@@ -76,7 +76,7 @@ void main() {
 		linearColor += ApplyLight(allLights[i], surfaceColor.rgb, fragmentNormal, surfacePos, surfaceToCamera);
 	}
 	
-	finalColor += vec4(linearColor, 1.0);
+	finalColor += vec4(linearColor, surfaceColor.a);
 }
 
 

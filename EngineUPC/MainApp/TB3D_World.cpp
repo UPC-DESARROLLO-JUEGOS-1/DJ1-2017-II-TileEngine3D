@@ -38,7 +38,7 @@ TB3D_World::TB3D_World(TB3D_Engine* engine)
 	NBasicLight* light1 = lightManager->GetLigth("light1");
 
 	light0->SetPosition(26, 6, -13);
-	light0->SetAmbientCoefficient(0.0f);
+	light0->SetAmbientCoefficient(0.1f);
 	light0->SetAttenuation(0.2f);
 
 	light1->SetLightColor(NColor::Red);

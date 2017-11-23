@@ -149,6 +149,7 @@
     <ClInclude Include="Drawable2D.h" />
     <ClInclude Include="Drawable3D.h" />
     <ClInclude Include="dtModelObjMesh.h" />
+    <ClInclude Include="dtPositionNormalUVVertex.h" />
     <ClInclude Include="dtPositionNormalColorVertex.h" />
     <ClInclude Include="Ellipse.h" />
     <ClInclude Include="EnumLightType.h" />
@@ -183,6 +184,7 @@
     <ClInclude Include="NPrimitiveCube3D.h" />
     <ClInclude Include="NMeshRenderer3D.h" />
     <ClInclude Include="NPrimitivePlane3D.h" />
+    <ClInclude Include="NTexturePlane3D.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundContent.h" />
     <ClInclude Include="NStaticModel3D.h" />
@@ -199,6 +201,7 @@
     <ClInclude Include="SpriteShader.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="PrimitiveShader.h" />
+    <ClInclude Include="TexturedShader3D.h" />
     <ClInclude Include="TimeInterval.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
@@ -232,6 +235,7 @@
     <ClCompile Include="NPrimitiveCube3D.cpp" />
     <ClCompile Include="NMeshRenderer3D.cpp" />
     <ClCompile Include="NPrimitivePlane3D.cpp" />
+    <ClCompile Include="NTexturePlane3D.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundContent.cpp" />
     <ClCompile Include="NStaticModel3D.cpp" />

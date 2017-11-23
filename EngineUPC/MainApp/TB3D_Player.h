@@ -3,6 +3,7 @@
 #include "TB3D_Actor.h"
 #include "TB3D_PlayerControl.h"
 
+#include <FrameworkUPC\NTexturePlane3D.h>
 #include <SDL\SDL_keycode.h>
 
 class TB3D_Engine;
@@ -25,5 +26,7 @@ public:
 
 private:
 	TB3D_PlayerControl* mPlayerControl;
+
+	NTexturePlane3D* mPlane;
 };
 
