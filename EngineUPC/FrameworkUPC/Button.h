@@ -4,7 +4,11 @@
 #include "Drawable2D.h"
 
 #include <string>
-
+enum {
+	NORMAL = 0,
+	HIGHLIGHTED = 1,
+	PRESSED = 2
+};
 class Button : public Drawable2D
 {
 public:
@@ -27,6 +31,7 @@ public:
 	void Update(float dt);
 	void Draw(float dt);
 
+	void eventHandler();
 	bool mouseInside(int mx, int my);
 	void SetColor(float r, float g, float b, float a);
 	void SetPivot(float x, float y);

@@ -62,12 +62,14 @@ void Button::Update(float dt)
 		worldMatrix = result;
 		needMatrixUpdate = false;
 	}
+	eventHandler();
+}
+
+void Button::eventHandler() {
 	if (GameFramework::GET_FRAMEWORK()->GetEvent() == SDL_MOUSEBUTTONUP) {
 		if (mouseInside(GameFramework::GET_FRAMEWORK()->GetMouseX(), GameFramework::GET_FRAMEWORK()->GetMouseY())) {
 			printf("\n CARGA DE NUEVA ESCENA \n");
 			GameFramework::GET_FRAMEWORK()->GetSceneGraph()->GoToScene(/*sceneIndex*/6);
-
-
 		}
 	}
 }
