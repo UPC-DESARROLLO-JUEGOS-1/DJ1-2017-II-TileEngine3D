@@ -46,6 +46,7 @@ void TB3D_Engine::Update(float dt) {
 }
 
 void TB3D_Engine::Draw(float dt) {
-	mPlayer->Draw(dt);
+	
 	mWorld->Draw(dt);
+	mPlayer->Draw(dt);
 }
