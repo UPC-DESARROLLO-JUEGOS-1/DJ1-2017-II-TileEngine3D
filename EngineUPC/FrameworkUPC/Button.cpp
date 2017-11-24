@@ -27,7 +27,12 @@ void Button::SetPivot(float value)
 
 void Button::Initialize(float x, float y, const std::string path)
 {
-	Drawable2D::Initialize(x, y);
+	state = NORMAL;
+	position = Vector2(x, y);
+
+	if (vbo[0] == 0) {
+		glGenBuffers(NSPRITES, vbo);
+	}
 
 	GameFramework* framework = GameFramework::GET_FRAMEWORK();
 	ContentManager* contentManager = framework->GetContentManager();
@@ -36,11 +41,12 @@ void Button::Initialize(float x, float y, const std::string path)
 	mCurrentShader = shaderManager->LoadAndGetShader<SpriteShader>("Shaders/SpriteShader");
 	content = contentManager->LoadAndGetContent<ImageContent>(path);
 	width = content->GetWidth();
-	height = content->GetHeight();
+	height = content->GetHeight()/NSPRITES;
 	r = g = b = a = 255;
 
 	BindData();
 }
+
 
 void Button::Update(float dt)
 {
@@ -62,19 +68,43 @@ void Button::Update(float dt)
 		worldMatrix = result;
 		needMatrixUpdate = false;
 	}
-	eventHandler();
+	EventHandler();
 }
 
-void Button::eventHandler() {
-	if (GameFramework::GET_FRAMEWORK()->GetEvent() == SDL_MOUSEBUTTONUP) {
-		if (mouseInside(GameFramework::GET_FRAMEWORK()->GetMouseX(), GameFramework::GET_FRAMEWORK()->GetMouseY())) {
+void Button::EventHandler() {
+
+	if (MouseInside(GameFramework::GET_FRAMEWORK()->GetMouseX(), GameFramework::GET_FRAMEWORK()->GetMouseY())) {
+		int eType = GameFramework::GET_FRAMEWORK()->GetEventType();
+		if (prevState == SDL_MOUSEBUTTONDOWN) {
+			highlightable = false;
+		}
+		switch (eType)
+		{
+		case SDL_MOUSEMOTION:
+			if(highlightable)
+			SetButtonState(HIGHLIGHTED);
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			SetButtonState(PRESSED);
+			break;
+		case SDL_MOUSEBUTTONUP:
 			printf("\n CARGA DE NUEVA ESCENA \n");
 			GameFramework::GET_FRAMEWORK()->GetSceneGraph()->GoToScene(/*sceneIndex*/6);
+			break;
+		default:
+			SetButtonState(NORMAL);
+			break;
 		}
+		prevState = eType;
 	}
+	else {
+		highlightable = true;
+		SetButtonState(NORMAL);
+	}
+	
 }
 
-bool Button::mouseInside(int mx, int my) {
+bool Button::MouseInside(int mx, int my) {
 	//Check if mouse is in button
 
 	bool inside = true;
@@ -100,7 +130,9 @@ bool Button::mouseInside(int mx, int my) {
 	}
 	return inside;
 }
-
+void Button::SetButtonState(int i) {
+	state = i;
+}
 void Button::Draw(float dt)
 {
 	glEnable(GL_BLEND);
@@ -114,7 +146,8 @@ void Button::Draw(float dt)
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, content->GetTextureId());
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_ID);
+
+	glBindBuffer(GL_ARRAY_BUFFER, vbo[state]);
 	glEnableVertexAttribArray(0);
 
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(DataSpriteVertex), (void*)offsetof(DataSpriteVertex, DataSpriteVertex::Position));
@@ -125,34 +158,40 @@ void Button::Draw(float dt)
 	glDisableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindTexture(GL_TEXTURE_2D, 0);
+
 	mCurrentShader->Stop();
 }
 
 void Button::BindData()
 {
 	DataSpriteVertex vertexData[6]; //2 triangles=1 quad
-									//triangle 1
-	vertexData[0].SetPosition(width, height);
-	vertexData[0].SetColor(r, g, b, a);
-	vertexData[0].SetUV(1.0f, 1.0f);
-	vertexData[1].SetPosition(0, height);
-	vertexData[1].SetColor(r, g, b, a);
-	vertexData[1].SetUV(0.0f, 1.0f);
-	vertexData[2].SetPosition(0, 0);
-	vertexData[2].SetColor(r, g, b, a);
-	vertexData[2].SetUV(0.0f, 0.0f);
-	//triangle 2
-	vertexData[3].SetPosition(0, 0);
-	vertexData[3].SetColor(r, g, b, a);
-	vertexData[3].SetUV(0.0f, 0.0f);
-	vertexData[4].SetPosition(width, 0);
-	vertexData[4].SetColor(r, g, b, a);
-	vertexData[4].SetUV(1.0f, 0.0f);
-	vertexData[5].SetPosition(width, height);
-	vertexData[5].SetColor(r, g, b, a);
-	vertexData[5].SetUV(1.0f, 1.0f);
+									//triangle 1}
+	for (int i = 0; i < NSPRITES; i++)
+	{
+		float offsetA = (1.0f / NSPRITES) * (i + 1);
+		float offsetB = (1.0f / NSPRITES) * (i);
+		vertexData[0].SetPosition(width, height);
+		vertexData[0].SetColor(r, g, b, a);
+		vertexData[0].SetUV(1.0f, offsetA);
+		vertexData[1].SetPosition(0, height);
+		vertexData[1].SetColor(r, g, b, a);
+		vertexData[1].SetUV(0.0f, offsetA);
+		vertexData[2].SetPosition(0, 0);
+		vertexData[2].SetColor(r, g, b, a);
+		vertexData[2].SetUV(0.0f, offsetB);
+		//triangle 2
+		vertexData[3].SetPosition(0, 0);
+		vertexData[3].SetColor(r, g, b, a);
+		vertexData[3].SetUV(0.0f, offsetB);
+		vertexData[4].SetPosition(width, 0);
+		vertexData[4].SetColor(r, g, b, a);
+		vertexData[4].SetUV(1.0f, offsetB);
+		vertexData[5].SetPosition(width, height);
+		vertexData[5].SetColor(r, g, b, a);
+		vertexData[5].SetUV(1.0f, offsetA);
 
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_ID);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
-	glBindBuffer(GL_ARRAY_BUFFER, GL_NONE);
+		glBindBuffer(GL_ARRAY_BUFFER, vbo[i]);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, GL_NONE);
+	}
 }

@@ -4,6 +4,7 @@
 #include "Drawable2D.h"
 
 #include <string>
+#define NSPRITES 3
 enum {
 	NORMAL = 0,
 	HIGHLIGHTED = 1,
@@ -18,7 +19,9 @@ public:
 	~Button()
 	{
 		content = nullptr;
-		Drawable2D::~Drawable2D();
+		if (vbo[0] != 0) {
+			glDeleteBuffers(3, vbo);
+		}
 	}
 
 	int GetWidth() { return width; }
@@ -31,8 +34,9 @@ public:
 	void Update(float dt);
 	void Draw(float dt);
 
-	void eventHandler();
-	bool mouseInside(int mx, int my);
+	void EventHandler();
+	bool MouseInside(int mx, int my);
+	void SetButtonState(int i);
 	void SetColor(float r, float g, float b, float a);
 	void SetPivot(float x, float y);
 	void SetPivot(float value);
@@ -43,7 +47,9 @@ protected:
 	int sceneIndex;
 	ImageContent* content;
 	Vector2 pivot;
-
+	GLuint vbo[NSPRITES];
+	int state, prevState;
+	bool highlightable;
 	void BindData();	
 };
 

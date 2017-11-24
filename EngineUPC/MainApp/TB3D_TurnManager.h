@@ -25,13 +25,6 @@ struct descend {
 	}
 };
 
-//struct ascend {
-//	bool operator()(const entity& a, const entity& b) {
-//		return a.duration < b.duration;
-//	}
-//}asc;
-
-
 class TB3D_TurnManager
 {
 public:
@@ -42,11 +35,9 @@ public:
 	void GenerateTurns();
 	int GetNextTurn();
 
+private:
 	std::vector<entity> entities;
 	std::vector<entity> turns;
 	std::queue<int> turnsQ;
-	
-
-
 };
 

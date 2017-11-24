@@ -33,7 +33,7 @@ public:
 	int GetScreenHeight() { return screenHeight; }
 	int GetMouseX() { return mouseX; }
 	int GetMouseY() { return mouseY; }
-	int GetEvent() { return e.type; }
+	int GetEventType() { return e.type; }
 
 	void Initialize(std::string windowName, int screenWidth, int screenHeight, unsigned int windowFlags);
 	void SetFrameworkState(FrameworkState state) { frameworkState = state; };
