@@ -20,6 +20,7 @@ public:
 	void OnKeyUp(SDL_Keycode key);
 
 	virtual void GoToScene(int sceneId);
+	virtual BaseScene *GetCurrentScene();
 protected:
 	BaseScene* currentScene;
 };

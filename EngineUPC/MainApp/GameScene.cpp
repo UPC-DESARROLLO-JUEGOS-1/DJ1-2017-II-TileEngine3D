@@ -2,13 +2,12 @@
 #include <FrameworkUPC\GameFramework.h>
 #include "EnumAppScenes.h"
 
-#include <iostream>
-
 void GameScene::Initialize()
 {
 	GameFramework* framework = GameFramework::GET_FRAMEWORK();
 	NCameraManagment* cManagement = framework->GetCameraManagement();
-	framework->GetGraphicDevice()->ChangeTo2D();
+	framework->GetGraphicDevice()->ChangeTo2D();	
+
 	bg = new Sprite();
 	bg->Initialize(0, 0, "Sprites/bg.png");
 	bg->SetRenderCamera(cManagement->GetCurrentCamera());
