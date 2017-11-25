@@ -4,6 +4,7 @@
 #include "TB3D_Camera.h"
 #include "TB3D_Player.h"
 #include "TB3D_WorldConfig.h"
+#include <FrameworkUPC\NRenderSystem.h>
 
 #include <SDL\SDL_keycode.h>
 
@@ -19,6 +20,7 @@ public:
 	TB3D_Player* GetPlayer() { return mPlayer; }
 	TB3D_World* GetWorld() { return mWorld; }
 	TB3D_WorldConfig* GetWorldConfig() { return mWorldConfig; }
+	NRenderSystem* GetRenderSystem() { return mRenderSystem; }
 
 	float GetTileSize() { return mTileSize; }
 
@@ -35,6 +37,7 @@ private:
 	TB3D_Player* mPlayer;
 
 	TB3D_WorldConfig* mWorldConfig;
+	NRenderSystem* mRenderSystem;
 
 	float mTileSize;
 };

@@ -27,6 +27,8 @@ void TB3D_Actor::CreateCollision(float size) {
 	mCollisionCube = new NPrimitiveCube3D();
 	mCollisionCube->Initialize(0, 0, 0, size, size, size);
 	mCollisionCube->SetRenderCamera((BaseCamera*)mEngine->GetCamera()->GetRenderCamera());
+
+	mEngine->GetRenderSystem()->AddDrawable(mCollisionCube);
 }
 
 Vector2 TB3D_Actor::ComputeNewPosition(float speed, float directionX, float directionY) {
@@ -92,7 +94,7 @@ void TB3D_Actor::Update(float dt) {
 		mCollisionCube->SetPosition(mX + mOffsetX, mY + mOffsetY, mZ + mOffsetZ);
 
 		if (mDebugMode) {
-			mCollisionCube->Update(dt);
+			//mCollisionCube->Update(dt);
 		}
 
 		int px = (int)floorf(mX / mTileWidth);
@@ -102,6 +104,6 @@ void TB3D_Actor::Update(float dt) {
 
 void TB3D_Actor::Draw(float dt) {
 	if (mDebugMode) {
-		mCollisionCube->Draw(dt);
+		//mCollisionCube->Draw(dt);
 	}
 }

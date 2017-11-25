@@ -136,6 +136,15 @@
     <Filter Include="Header Files\core\render\light">
       <UniqueIdentifier>{72ada0c5-ed9f-487c-b9c6-2324b0226501}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core\system\font">
+      <UniqueIdentifier>{e2d255f8-17eb-4285-8121-5ec738779f1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\system\renderSystem">
+      <UniqueIdentifier>{d0415357-388b-444b-8353-5c2fc4c4e23c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\system\renderSystem">
+      <UniqueIdentifier>{cc51693f-c21d-4467-b1c8-47fc817038a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameWindow.h">
@@ -348,6 +357,21 @@
     <ClInclude Include="NPrimitivePlane3D.h">
       <Filter>Header Files\core\render\graphic\D3D</Filter>
     </ClInclude>
+    <ClInclude Include="NBaseRenderTarget.h">
+      <Filter>Header Files\core\system</Filter>
+    </ClInclude>
+    <ClInclude Include="NDepthRenderTarget.h">
+      <Filter>Header Files\core\system</Filter>
+    </ClInclude>
+    <ClInclude Include="NRenderSystem.h">
+      <Filter>Header Files\core\system\renderSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="dtRenderDrawable.h">
+      <Filter>Header Files\core\system\renderSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="DepthShader.h">
+      <Filter>Header Files\core\render\shader\D3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameWindow.cpp">
@@ -437,9 +461,6 @@
     <ClCompile Include="Vector3.cpp">
       <Filter>Source Files\math</Filter>
     </ClCompile>
-    <ClCompile Include="NBitmapFontParser.cpp">
-      <Filter>Source Files\core\system</Filter>
-    </ClCompile>
     <ClCompile Include="pugixml.cpp">
       <Filter>Source Files\libs\pugixml</Filter>
     </ClCompile>
@@ -469,6 +490,18 @@
     </ClCompile>
     <ClCompile Include="NTexturePlane3D.cpp">
       <Filter>Source Files\core\render\graphic\D3D</Filter>
+    </ClCompile>
+    <ClCompile Include="NBaseRenderTarget.cpp">
+      <Filter>Source Files\core\system</Filter>
+    </ClCompile>
+    <ClCompile Include="NBitmapFontParser.cpp">
+      <Filter>Source Files\core\system\font</Filter>
+    </ClCompile>
+    <ClCompile Include="NDepthRenderTarget.cpp">
+      <Filter>Source Files\core\system</Filter>
+    </ClCompile>
+    <ClCompile Include="NRenderSystem.cpp">
+      <Filter>Source Files\core\system\renderSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

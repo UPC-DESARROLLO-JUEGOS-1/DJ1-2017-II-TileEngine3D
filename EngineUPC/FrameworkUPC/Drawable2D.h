@@ -82,6 +82,4 @@ protected:
 	Vector2 position;
 	Vector2 scale;
 	float rotationZ;
-
-	GLuint vbo_ID;
 };

@@ -1,7 +1,6 @@
 #include "Drawable3D.h"
 
 Drawable3D::Drawable3D() :
-	mVBO_ID(0), mIBO_ID(0),
 	mIndicesCount(0),
 	position(0.0f, 0.0f, 0.0f),
 	scale(1.0f, 1.0f, 1.0f),

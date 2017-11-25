@@ -11,7 +11,6 @@ void Ellipse::Initialize(float x, float y, float radius, int vertexCount)
 	this->radius = radius;
 	this->vertexCount = vertexCount;
 	r = g = b = a = 255;
-	ibo_ID = 0;
 
 	ShaderManager* shaderManager = GameFramework::GET_FRAMEWORK()->GetShaderManager();
 	mCurrentShader = shaderManager->LoadAndGetShader<PrimitiveShader>("Shaders/PrimitiveShader");
@@ -32,13 +31,13 @@ void Ellipse::Draw(float dt)
 
 	glUniformMatrix4fv(wvpLocation, 1, GL_FALSE, &(resultMatrix[0][0]));
 
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_ID);
+	glBindBuffer(GL_ARRAY_BUFFER, mVBO_ID);
 	glEnableVertexAttribArray(0);
 
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(DataPrimitiveVertex), (void*)offsetof(DataPrimitiveVertex, DataPrimitiveVertex::Position));
 	glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(DataPrimitiveVertex), (void*)offsetof(DataPrimitiveVertex, DataPrimitiveVertex::Color));
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_ID);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIBO_ID);
 	glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, (void*)0);
 	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, GL_NONE);
@@ -69,16 +68,16 @@ void Ellipse::BindData()
 
 	int dataSize = (sizeof(float) * 2 + sizeof(GLubyte) * 4)*arraysize;
 
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_ID);
+	glBindBuffer(GL_ARRAY_BUFFER, mVBO_ID);
 	glBufferData(GL_ARRAY_BUFFER, dataSize, &(vertexData[0]), GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, GL_NONE);
 }
 
 void Ellipse::BindIndices()
 {
-	if (ibo_ID == 0)
+	if (mIBO_ID == 0)
 	{
-		glGenBuffers(1, &ibo_ID);
+		glGenBuffers(1, &mIBO_ID);
 		int indicesCounter = 0;
 		int indicesArraySize = vertexCount * 3;
 		unsigned int* indicesData = new unsigned int[indicesArraySize];
@@ -96,7 +95,7 @@ void Ellipse::BindIndices()
 
 		int indexDataSize = sizeof(int)*indicesArraySize;
 
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_ID);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIBO_ID);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexDataSize, &(indicesData[0]), GL_STATIC_DRAW);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, GL_NONE);
 	}

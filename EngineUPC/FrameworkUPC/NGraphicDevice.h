@@ -2,6 +2,7 @@
 
 #include <GL\glew.h>
 #include "NColor.h"
+#include "NDepthRenderTarget.h"
 
 class GameFramework;
 
@@ -22,6 +23,8 @@ public:
 	void SetClearColor(NColor clearColor);
 	void ChangeTo2D();
 	void ChangeTo3D();
+
+	NDepthRenderTarget* CreateDepthRenderTarget(int width, int height);
 
 	void Update(float dt);
 	void Draw(float dt);

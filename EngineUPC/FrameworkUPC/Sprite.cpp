@@ -76,7 +76,7 @@ void Sprite::Draw(float dt)
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, content->GetTextureId());
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_ID);
+	glBindBuffer(GL_ARRAY_BUFFER, mVBO_ID);
 	glEnableVertexAttribArray(0);
 
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(DataSpriteVertex), (void*)offsetof(DataSpriteVertex, DataSpriteVertex::Position));
@@ -114,7 +114,7 @@ void Sprite::BindData()
 	vertexData[5].SetColor(r, g, b, a);
 	vertexData[5].SetUV(1.0f, 1.0f);
 
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_ID);
+	glBindBuffer(GL_ARRAY_BUFFER, mVBO_ID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, GL_NONE);
 }

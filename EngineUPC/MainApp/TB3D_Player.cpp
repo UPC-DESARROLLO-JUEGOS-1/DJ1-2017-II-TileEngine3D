@@ -19,6 +19,8 @@ void TB3D_Player::CreateCollision(float size) {
 	mCollisionCube->Initialize(0, 0, 0, size, size, size);
 	mCollisionCube->SetColor(NColor::Blue);
 	mCollisionCube->SetRenderCamera((BaseCamera*)mEngine->GetCamera()->GetRenderCamera());
+	
+	mEngine->GetRenderSystem()->AddDrawable(mCollisionCube);
 }
 
 void TB3D_Player::Initialize() {
@@ -35,6 +37,8 @@ void TB3D_Player::Initialize() {
 	mPlane = new NTexturePlane3D();
 	mPlane->Initialize(0, 0, 0, 4.0f, 4.0f, "Sprites/asteroid.png");
 	mPlane->SetRenderCamera((BaseCamera*)mEngine->GetCamera()->GetRenderCamera());
+
+	mEngine->GetRenderSystem()->AddDrawable(mPlane, 1000);
 }
 
 void TB3D_Player::Update(float dt) {
@@ -42,7 +46,7 @@ void TB3D_Player::Update(float dt) {
 
 	if (mPlane != nullptr) {
 		mPlane->SetPosition(mX, mY, mZ);
-		mPlane->Update(dt);
+		//mPlane->Update(dt);
 	}
 
 	mPlayerControl->Update(dt);	
@@ -51,7 +55,7 @@ void TB3D_Player::Update(float dt) {
 void TB3D_Player::Draw(float dt) {
 	TB3D_Actor::Draw(dt);
 
-	if (mPlane != nullptr) {
+	/*if (mPlane != nullptr) {
 		mPlane->Draw(dt);
-	}
+	}*/
 }

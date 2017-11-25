@@ -28,7 +28,7 @@ void Circle::Draw(float dt)
 
 	glUniformMatrix4fv(wvpLocation, 1, GL_FALSE, &(resultMatrix[0][0]));
 
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_ID);
+	glBindBuffer(GL_ARRAY_BUFFER, mVBO_ID);
 	glEnableVertexAttribArray(0);
 
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(DataPrimitiveVertex), (void*)offsetof(DataPrimitiveVertex, DataPrimitiveVertex::Position));
@@ -80,7 +80,7 @@ void Circle::BindData()
 	
 	int dataSize = (sizeof(float) * 2 + sizeof(GLubyte) * 4)*(angles * 3);
 
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_ID);
+	glBindBuffer(GL_ARRAY_BUFFER, mVBO_ID);
 	glBufferData(GL_ARRAY_BUFFER, dataSize, &(vertexData[0]), GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, GL_NONE);
 }

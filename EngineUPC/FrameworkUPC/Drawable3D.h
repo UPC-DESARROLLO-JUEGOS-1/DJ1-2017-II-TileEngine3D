@@ -125,7 +125,5 @@ protected:
 	Vector3 position, scale, rotation;
 	int mIndicesCount;
 
-	GLuint mVBO_ID;
-	GLuint mIBO_ID;
 	NColor mColor;
 };

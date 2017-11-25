@@ -11,10 +11,17 @@ public:
 	NBaseDrawable();
 	~NBaseDrawable();
 
+	GLuint GetVBO_Id() { return mVBO_ID; }
+	GLuint GetIBO_Id() { return mIBO_ID; }
+	glm::mat4 GetWorldMatrix() { return worldMatrix; }
+
 	virtual void Update(float dt) {}
 	virtual void Draw(float dt) {}
 
 protected:
+	GLuint mVBO_ID;
+	GLuint mIBO_ID;
+
 	glm::mat4 worldMatrix;
 	bool needMatrixUpdate;
 

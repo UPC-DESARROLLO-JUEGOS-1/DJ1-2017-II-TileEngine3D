@@ -38,7 +38,7 @@ TB3D_World::TB3D_World(TB3D_Engine* engine)
 	NBasicLight* light1 = lightManager->GetLigth("light1");
 
 	light0->SetPosition(26, 6, -13);
-	light0->SetAmbientCoefficient(0.01f);
+	light0->SetAmbientCoefficient(0.03f);
 	light0->SetAttenuation(0.2f);
 
 	light1->SetLightColor(NColor::Red);
@@ -83,7 +83,10 @@ void TB3D_World::Initialize() {
 	mPlane->SetRotationX(1.57f);
 	mPlane->SetY(-2.0f);
 
-	mDrawables.push_back(mPlane);
+	//mDrawables.push_back(mPlane);
+
+	mEngine->GetRenderSystem()->AddDrawable(mPlane);
+	mEngine->GetRenderSystem()->Sort();
 }
 
 void TB3D_World::CreateObject(int tileID, int c, int r) {
@@ -102,39 +105,45 @@ void TB3D_World::CreateObject(int tileID, int c, int r) {
 			//cube->SetRotationX(3.14);
 			//cube->SetRotationZ(3.14);
 
-			mDrawables.push_back(cube);
+			//mDrawables.push_back(cube);
+			mEngine->GetRenderSystem()->AddDrawable(cube);
 			break;
 		}
 	case TB3D_World::TILE_HOUSE_3D:
 		{
 			// Inicializamos el Modelo 3D
 			NStaticModel3D* staticModel = new NStaticModel3D();
-			staticModel->Initialize("Models/", "farmhouse_obj.obj", posX, posY, posZ);
+			staticModel->Initialize("Models/", "farmhouse_obj.obj", 
+				posX, posY - 1.3f, posZ);
 			staticModel->SetRenderCamera(camera);
 			staticModel->SetScale(0.6f, 0.6f, 0.6f);
 
-			mDrawables.push_back(staticModel);
+			//mDrawables.push_back(staticModel);
+			mEngine->GetRenderSystem()->AddDrawable(staticModel);
 			break;
 		}
 	case TB3D_World::TILE_EMPTY:
 		break;
 	case TB3D_World::TILE_PLAYER:
-		mEngine->GetPlayer()->SetPosition(posX + mTileSize / 2, posY, posZ + mTileSize / 2);
+		mEngine->GetPlayer()->SetPosition(
+			posX + mTileSize / 2, 
+			posY, 
+			posZ + mTileSize / 2);
 		break;
 		
 	}
 }
 
 void TB3D_World::Update(float dt) {
-	for (int i = 0, size = mDrawables.size(); i < size; i++)
+	/*for (int i = 0, size = mDrawables.size(); i < size; i++)
 	{
 		mDrawables[i]->Update(dt);
-	}
+	}*/
 }
 
 void TB3D_World::Draw(float dt) {
-	for (int i = 0, size = mDrawables.size(); i < size; i++)
+	/*for (int i = 0, size = mDrawables.size(); i < size; i++)
 	{
 		mDrawables[i]->Draw(dt);
-	}
+	}*/
 }

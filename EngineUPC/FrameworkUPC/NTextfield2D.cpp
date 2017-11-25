@@ -126,8 +126,8 @@ void NTextfield2D::Initialize(float x, float y, const std::string fontPath)
 	ShaderManager* shdMng = framework->GetShaderManager();
 	mShader = (BaseShader*)shdMng->LoadAndGetShader<FontShader>(shaderPath);
 
-	if (ibo_ID == 0) {
-		glGenBuffers(1, &ibo_ID);
+	if (mIBO_ID == 0) {
+		glGenBuffers(1, &mIBO_ID);
 	}
 }
 
@@ -243,14 +243,14 @@ void NTextfield2D::TransformToRender() {
 	// For: Vertices
 	int size = (sizeof(float) * 8) * mCustomQuads.size();
 
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_ID);
+	glBindBuffer(GL_ARRAY_BUFFER, mVBO_ID);
 	glBufferData(GL_ARRAY_BUFFER, size, &mCustomQuads[0], GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	// For: Indices
 	int indexDataSize = sizeof(short) * mIndices.size();
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_ID);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIBO_ID);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexDataSize, &(mIndices[0]), GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
@@ -295,7 +295,7 @@ void NTextfield2D::Draw(float dt)
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC0_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		glBindBuffer(GL_ARRAY_BUFFER, vbo_ID);
+		glBindBuffer(GL_ARRAY_BUFFER, mVBO_ID);
 
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, mImageContent->GetTextureId());
@@ -310,7 +310,7 @@ void NTextfield2D::Draw(float dt)
 		glVertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(dtPositionTextureColor),
 			(void*)offsetof(dtPositionTextureColor, dtPositionTextureColor::Color));
 
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo_ID);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIBO_ID);
 
 		// Esto dibuja en Frame Buffer
 		glDrawElements(GL_TRIANGLES, mIndicesCount, GL_UNSIGNED_SHORT, (void*)0);

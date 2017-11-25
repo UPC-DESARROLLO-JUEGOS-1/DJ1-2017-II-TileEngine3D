@@ -17,8 +17,6 @@ private:
 	float radius;
 	int r, g, b, a;
 
-	GLuint ibo_ID;
-
 	void BindData();
 	void BindIndices();
 };

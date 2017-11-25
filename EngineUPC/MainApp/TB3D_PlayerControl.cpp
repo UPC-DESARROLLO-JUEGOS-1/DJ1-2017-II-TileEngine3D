@@ -16,12 +16,22 @@ void TB3D_PlayerControl::Initialize() {
 	mCanGoRight = false;
 	mCanGoForward = false;
 	mCanGoBackward = false;
+	mIsJumping = false;
+	mIsFalling = false;
 
 	mDirectionX = 0;
 	mDirectionY = 0;
+	mForces = glm::vec3(0, 0, 0);
 
 	mPlayerSpeed = 10;
 	mDebugRotation = Vector3::Zero;
+}
+
+void TB3D_PlayerControl::DoJump() {
+	if (!mIsFalling && !mIsJumping) {
+		mIsJumping = true;
+		mForces.y = 1.3f;
+	}
 }
 
 void TB3D_PlayerControl::OnKeyDown(SDL_Keycode key) {
@@ -73,6 +83,9 @@ void TB3D_PlayerControl::OnKeyDown(SDL_Keycode key) {
 	case SDLK_n:
 		lightDir.z -= 1;
 		break;
+	case SDLK_SPACE:
+		DoJump();
+		break;
 	}
 
 	light0->SetPosition(lightDir.x, lightDir.y , lightDir.z);
@@ -100,16 +113,48 @@ void TB3D_PlayerControl::Update(float dt) {
 	float newX = 0;
 	float newY = 0;
 
-	Vector2 position = mPlayer->ComputeNewPosition(mPlayerSpeed * dt, mDirectionX, mDirectionY);
+	float positionY = mPlayer->GetY();
+	Vector2 position = Vector2::Zero;
+	
+	if (mIsFalling || mIsJumping) {
+		positionY += mForces.y;
+		mForces.y -= 0.1f;
+
+		if (mIsJumping) {
+			if (mForces.y > 0) {
+				mIsJumping = false;
+				mIsFalling = true;
+			}
+		}
+		else if (mIsFalling) {
+			if (positionY < 0) {
+				positionY = 0;
+				mForces.y = 0;
+				mIsFalling = false;
+			}
+		}
+
+		float speed = mPlayerSpeed * dt;
+		position.x = mPlayer->GetX() + (speed * mDirectionX);
+		position.y = mPlayer->GetZ() + (speed * mDirectionY);
+	}
+	else {
+		position = mPlayer->ComputeNewPosition(
+			mPlayerSpeed * dt, 
+			mDirectionX, 
+			mDirectionY);
+	}
+
 	
 	mPlayer->SetX(position.x);
+	mPlayer->SetY(positionY);
 	mPlayer->SetZ(position.y);
 
 	GameFramework* framework = GameFramework::GET_FRAMEWORK();
 	NBasicLight* light = framework->GetLightManager()->GetLigth("light1");
 
 	if (light != nullptr) {
-		light->SetPosition(position.x, light->GetPosition().y, position.y);
+		light->SetPosition(position.x, positionY + 2, position.y);
 	}
 
 	if (!mCanGoForward && !mCanGoBackward) { mDirectionX = 0; }

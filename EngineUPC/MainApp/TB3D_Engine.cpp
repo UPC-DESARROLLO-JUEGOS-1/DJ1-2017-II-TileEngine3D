@@ -8,6 +8,8 @@ TB3D_Engine::TB3D_Engine(TB3D_Game* game, std::string identifier)
 	mWorldConfig = TB3D_Configuration::GetInstance()->GetWorld(identifier);
 	mTileSize = mWorldConfig->TileSize();
 
+	mRenderSystem = new NRenderSystem();
+
 	mCamera = new TB3D_Camera(this);
 	mPlayer = new TB3D_Player(this);
 	mWorld = new TB3D_World(this);
@@ -21,6 +23,9 @@ TB3D_Engine::~TB3D_Engine()
 }
 
 void TB3D_Engine::Initialize() {
+	mRenderSystem->Initialize();
+	mRenderSystem->IsEnabled_Shadows = true;
+
 	mCamera->Initialize();
 	mPlayer->Initialize();
 	mWorld->Initialize();
@@ -43,10 +48,13 @@ void TB3D_Engine::Update(float dt) {
 	mCamera->Update(dt);
 	mPlayer->Update(dt);
 	mWorld->Update(dt);
+
+	mRenderSystem->Update(dt);
 }
 
 void TB3D_Engine::Draw(float dt) {
-	
 	mWorld->Draw(dt);
 	mPlayer->Draw(dt);
+
+	mRenderSystem->Draw(dt);
 }

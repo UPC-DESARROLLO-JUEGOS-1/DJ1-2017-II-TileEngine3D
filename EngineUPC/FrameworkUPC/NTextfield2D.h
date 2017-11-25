@@ -15,8 +15,7 @@ public:
 		mTextQuadCounter(0), mTextPositionRenderX(0), mTextPositionRenderY(0),
 		mTextInternalOffset(0), mText(""), mColor(NColor::White), 
 		mTextSize(Vector2::Zero), mTrackingQuantity(0), mOldNumQuads(0),
-		mIndicesCount(0), mWidth(0), mHeight(0), mIsTransformed(true),
-		ibo_ID(0)
+		mIndicesCount(0), mWidth(0), mHeight(0), mIsTransformed(true)
 	{}
 	~NTextfield2D() {
 		mFontContent = nullptr;
@@ -67,8 +66,6 @@ private:
 	float mTextureHeight;
 	float mWidth;
 	float mHeight;
-
-	GLuint ibo_ID;
 
 	std::vector<dtPositionTextureColor> mCustomQuads;
 	std::vector<unsigned short> mIndices;

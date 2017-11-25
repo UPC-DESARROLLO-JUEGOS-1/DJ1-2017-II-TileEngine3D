@@ -24,6 +24,14 @@ void NGraphicDevice::SetClearColor(NColor clearColor) {
 	glClearColor(r, g, b, a);
 }
 
+NDepthRenderTarget* NGraphicDevice::CreateDepthRenderTarget(int width, int height) {
+	NDepthRenderTarget* renderTarget = new NDepthRenderTarget();
+	renderTarget->Initialize();
+	renderTarget->CreateTexture(width, height);
+
+	return renderTarget;
+}
+
 void NGraphicDevice::ChangeTo2D() {
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_FRONT);
