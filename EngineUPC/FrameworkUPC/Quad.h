@@ -16,13 +16,13 @@ public:
 	void Initialize(float x, float y, int width, int height);
 	void Update(float dt);
 	void Draw(float dt);
-
-	void SetColor(float r, float g, float b, float a);
+	
+	bool mouseInside(int mx, int my);
+	void SetColor(float r, float g, float b, float a);	
 
 protected:
 	int width, height;
 	int r, g, b, a;
-
-	void BindData();
+	void BindData();	
 };
 

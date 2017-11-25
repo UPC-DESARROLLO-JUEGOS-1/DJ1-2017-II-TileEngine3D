@@ -138,8 +138,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game3DScene.cpp" />
-    <ClCompile Include="GameFontSystemScene.cpp" />
     <ClCompile Include="GameApp.cpp" />
+    <ClCompile Include="GameFontSystemScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameTile3DEngineScene.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -151,6 +151,7 @@
     <ClCompile Include="TB3D_GameHud.cpp" />
     <ClCompile Include="TB3D_Player.cpp" />
     <ClCompile Include="TB3D_PlayerControl.cpp" />
+    <ClCompile Include="TB3D_TurnManager.cpp" />
     <ClCompile Include="TB3D_World.cpp" />
     <ClCompile Include="TB3D_WorldPhysics.cpp" />
   </ItemGroup>
@@ -158,8 +159,8 @@
     <ClInclude Include="AppSceneGraph.h" />
     <ClInclude Include="EnumAppScenes.h" />
     <ClInclude Include="Game3DScene.h" />
-    <ClInclude Include="GameFontSystemScene.h" />
     <ClInclude Include="GameApp.h" />
+    <ClInclude Include="GameFontSystemScene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameTile3DEngineScene.h" />
     <ClInclude Include="TB3D_Actor.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="TB3D_GameHud.h" />
     <ClInclude Include="TB3D_Player.h" />
     <ClInclude Include="TB3D_PlayerControl.h" />
+    <ClInclude Include="TB3D_TurnManager.h" />
     <ClInclude Include="TB3D_World.h" />
     <ClInclude Include="TB3D_WorldConfig.h" />
     <ClInclude Include="TB3D_WorldPhysics.h" />

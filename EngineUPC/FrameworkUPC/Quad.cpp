@@ -11,12 +11,11 @@ void Quad::Initialize(float x, float y, int width, int height)
 	this->width = width;
 	this->height = height;
 	r = g = b = a = 255;
-
 	BindData();
 }
 
 void Quad::Update(float dt)
-{
+{	
 	if (needMatrixUpdate)
 	{
 		glm::mat4 result(1.0f);
@@ -25,16 +24,16 @@ void Quad::Update(float dt)
 		glm::vec3 rotation(0.0f, 0.0f, 1.0f);
 
 		glm::vec3 center(width*0.5f, height*0.5f, 0.0f);
-		
+
 		result = glm::translate(result, translate);
 		result = glm::scale(result, scale);
 		result = glm::translate(result, center);
 		result = glm::rotate(result, rotationZ, rotation);
 		result = glm::translate(result, -center);
-		
+
 		worldMatrix = result;
 		needMatrixUpdate = false;
-	}
+	}	
 }
 
 void Quad::Draw(float dt)
@@ -59,6 +58,8 @@ void Quad::Draw(float dt)
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	mCurrentShader->Stop();
 }
+
+
 
 void Quad::SetColor(float r, float g, float b, float a)
 {

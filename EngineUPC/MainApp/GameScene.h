@@ -1,7 +1,7 @@
 #pragma once
 
 #include <FrameworkUPC\BaseScene.h>
-#include <FrameworkUPC\Quad.h>
+#include <FrameworkUPC\Button.h>
 
 class GameScene : public BaseScene
 {
@@ -22,5 +22,5 @@ public:
 	void OnKeyUp(SDL_Keycode key);
 
 private:
-	Quad* mQuad;
+	Button* mButton;
 };

@@ -38,7 +38,7 @@ void SceneGraph::GoToScene(int sceneId)
 {
 	if (currentScene != nullptr)
 	{
-		currentScene->~BaseScene();
+		//currentScene->~BaseScene();
 		currentScene = nullptr;
 	}
 }

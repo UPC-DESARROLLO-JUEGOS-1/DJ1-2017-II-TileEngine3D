@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MainApp", "MainApp\MainApp.vcxproj", "{1D57CE74-9F26-4FF7-B757-6C17A4882B74}"
+	ProjectSection(ProjectDependencies) = postProject
+		{44778A8C-DD50-4ED0-A15C-C69BC056F579} = {44778A8C-DD50-4ED0-A15C-C69BC056F579}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FrameworkUPC", "FrameworkUPC\FrameworkUPC.vcxproj", "{44778A8C-DD50-4ED0-A15C-C69BC056F579}"
 EndProject

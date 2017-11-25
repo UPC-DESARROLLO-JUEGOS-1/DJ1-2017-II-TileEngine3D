@@ -53,7 +53,33 @@ void GameFramework::MainLoop(std::function<void(float)> onUpdate, std::function<
 		window.Update(deltaTime);
 		Update(deltaTime);
 		Draw(deltaTime);
+		pollEvents();
 	}
+}
+
+void GameFramework::pollEvents() 
+{ 
+	while (SDL_PollEvent(&e)) 
+	{	
+		OnListenInputsFromWindow(e);
+	} 
+}
+
+void GameFramework::handleEvent(SDL_Event* e) 
+{
+	//If mouse event happened
+	switch (e->type) {
+		case SDL_MOUSEMOTION :
+			
+			break;
+		default:
+			break;
+	}
+		//Get mouse position 
+	//SDL_MOUSEBUTTONDOWN || SDL_MOUSEBUTTONUP
+
+		//if (e->type == SDL_MOUSEBUTTONDOWN) printf("MD(%d, %d)", mouseX, mouseY);
+	
 }
 
 void GameFramework::Update(float dt)
@@ -98,6 +124,7 @@ void GameFramework::OnListenInputsFromWindow(SDL_Event evnt)
 			frameworkState = FrameworkState::Exit;
 			break;
 		case SDL_MOUSEMOTION:
+			SDL_GetMouseState(&mouseX, &mouseY);
 		case SDL_MOUSEBUTTONUP:
 		case SDL_MOUSEBUTTONDOWN:
 			mCameraManagement.OnMouseEvent(evnt.type, evnt.button, evnt.motion);

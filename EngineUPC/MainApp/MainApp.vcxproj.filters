@@ -39,9 +39,6 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="GameApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game3DScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
@@ -81,15 +78,18 @@
     <ClCompile Include="TB3D_GameHud.cpp">
       <Filter>Source Files\TileEngine3D</Filter>
     </ClCompile>
+    <ClCompile Include="GameApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TB3D_TurnManager.cpp">
+      <Filter>Source Files\TileEngine3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="AppSceneGraph.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EnumAppScenes.h">
@@ -135,6 +135,12 @@
       <Filter>Header Files\TileEngine3D\configuration</Filter>
     </ClInclude>
     <ClInclude Include="TB3D_GameHud.h">
+      <Filter>Header Files\TileEngine3D</Filter>
+    </ClInclude>
+    <ClInclude Include="GameApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TB3D_TurnManager.h">
       <Filter>Header Files\TileEngine3D</Filter>
     </ClInclude>
   </ItemGroup>
