@@ -27,6 +27,8 @@ void Button::SetPivot(float value)
 
 void Button::Initialize(float x, float y, const std::string path)
 {
+	clickReleased = true;
+	clicked = false;
 	state = NORMAL;
 	position = Vector2(x, y);
 
@@ -73,8 +75,10 @@ void Button::Update(float dt)
 
 void Button::EventHandler() {
 
-	if (MouseInside(GameFramework::GET_FRAMEWORK()->GetMouseX(), GameFramework::GET_FRAMEWORK()->GetMouseY())) {
-		int eType = GameFramework::GET_FRAMEWORK()->GetEventType();
+	int eType = GameFramework::GET_FRAMEWORK()->GetEventType();
+	if (MouseInside(GameFramework::GET_FRAMEWORK()->GetMouseX(), GameFramework::GET_FRAMEWORK()->GetMouseY())) {	
+		
+		
 		if (prevState == SDL_MOUSEBUTTONDOWN) {
 			highlightable = false;
 		}
@@ -82,26 +86,37 @@ void Button::EventHandler() {
 		{
 		case SDL_MOUSEMOTION:
 			if(highlightable)
-			SetButtonState(HIGHLIGHTED);
+				state = HIGHLIGHTED;
 			break;
 		case SDL_MOUSEBUTTONDOWN:
-			SetButtonState(PRESSED);
+			state = PRESSED;
+			clickReleased = false;
 			break;
 		case SDL_MOUSEBUTTONUP:
-			printf("\n CARGA DE NUEVA ESCENA \n");
-			GameFramework::GET_FRAMEWORK()->GetSceneGraph()->GoToScene(/*sceneIndex*/6);
+			if(!clickReleased){
+				printf("\n CARGA DE NUEVA ESCENA \n");
+				clicked = true;
+				clickReleased = true;
+			}
+
+			state = NORMAL;
 			break;
 		default:
-			SetButtonState(NORMAL);
+			state = NORMAL;
 			break;
 		}
 		prevState = eType;
 	}
-	else {
+	else {		
+		clickReleased = true;
 		highlightable = true;
-		SetButtonState(NORMAL);
+		state = NORMAL;
 	}
 	
+}
+
+bool Button::isClicked() {
+	return clicked;
 }
 
 bool Button::MouseInside(int mx, int my) {
@@ -129,9 +144,6 @@ bool Button::MouseInside(int mx, int my) {
 		inside = false;
 	}
 	return inside;
-}
-void Button::SetButtonState(int i) {
-	state = i;
 }
 void Button::Draw(float dt)
 {

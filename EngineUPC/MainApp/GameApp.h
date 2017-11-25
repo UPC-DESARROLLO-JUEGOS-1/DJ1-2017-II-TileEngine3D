@@ -1,7 +1,6 @@
 #pragma once
 
 #include <FrameworkUPC\GameFramework.h>
-#include "TB3D_TurnManager.h"
 
 #include <functional>
 
@@ -15,7 +14,6 @@ public:
 	static const int HEIGHT = 600;
 
 	void Start();
-	TB3D_TurnManager turnManager;
 
 private:
 	GameFramework frameWork;
@@ -24,5 +22,4 @@ private:
 	void OnInput(SDL_Event evnt);
 	void Update(float dt);
 	void Draw(float dt);
-
 };

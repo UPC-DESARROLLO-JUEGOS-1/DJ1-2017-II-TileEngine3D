@@ -1,6 +1,7 @@
 #pragma once
 
 #include <FrameworkUPC\BaseScene.h>
+#include <TB3D_TurnManager.h>
 #include "TB3D_Game.h"
 #include "TB3D_GameHud.h"
 
@@ -32,5 +33,6 @@ public:
 private:
 	TB3D_Game* mGame;
 	TB3D_GameHud* mGameHud;
+	TB3D_TurnManager turnManager;
 };
 
