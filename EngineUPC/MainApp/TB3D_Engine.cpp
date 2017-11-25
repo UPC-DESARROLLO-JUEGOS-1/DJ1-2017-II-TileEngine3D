@@ -23,7 +23,7 @@ TB3D_Engine::~TB3D_Engine()
 
 void TB3D_Engine::Initialize() {
 	mCamera->Initialize();
-	mPlayer->Initialize("Sprite/player.png");
+	mPlayer->Initialize("Sprites/player.png");
 	mWorld->Initialize();
 
 	mCamera->FollowActor(mPlayer);

@@ -21,14 +21,16 @@ void TB3D_Entity::CreateCollision(float size) {
 void TB3D_Entity::Initialize(std::string file) {
 	TB3D_Actor::Initialize();
 
-	this->CreateCollision(4.0);
+	float size = mEngine->GetTileSize();
+
+	this->CreateCollision(size);
 
 	mDebugMode = false	;
 	mOffsetX = -(mEngine->GetTileSize() / 2.0);
 	mOffsetZ = -(mEngine->GetTileSize() / 2.0);
 
 	mPlane = new NTexturePlane3D();
-	mPlane->Initialize(0, 0, 0, 4.0f, 4.0f, file);
+	mPlane->Initialize(0, 0, 0, size, size, file);
 	mPlane->SetRenderCamera((BaseCamera*)mEngine->GetCamera()->GetRenderCamera());
 }
 
@@ -37,6 +39,8 @@ void TB3D_Entity::Update(float dt) {
 
 	if (mPlane != nullptr) {
 		mPlane->SetPosition(mX + mOffsetX, mY + mOffsetY, mZ + mOffsetZ);
+		mPlane->SetRotationZ(3.1416);
+		mPlane->SetRotationY(0.8);
 		mPlane->Update(dt);
 	}
 }
