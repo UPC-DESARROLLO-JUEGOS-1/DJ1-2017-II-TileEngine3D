@@ -25,6 +25,9 @@ void TB3D_PlayerControl::Initialize() {
 }
 
 void TB3D_PlayerControl::OnKeyDown(SDL_Keycode key) {
+	if (justMoved)
+		return;
+
 	NLightManager* lightManager = GameFramework::GET_FRAMEWORK()->GetLightManager();
 	NBasicLight* light0 = lightManager->GetLigth("light0");
 
@@ -76,6 +79,7 @@ void TB3D_PlayerControl::OnKeyDown(SDL_Keycode key) {
 	}
 
 	light0->SetPosition(lightDir.x, lightDir.y , lightDir.z);
+	justMoved = true;
 }
 
 void TB3D_PlayerControl::OnKeyUp(SDL_Keycode key) {
@@ -93,6 +97,7 @@ void TB3D_PlayerControl::OnKeyUp(SDL_Keycode key) {
 		mCanGoRight = false;
 		break;
 	}
+	justMoved = false;
 }
 
 

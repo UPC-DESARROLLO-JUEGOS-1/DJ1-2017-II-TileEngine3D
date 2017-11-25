@@ -10,6 +10,7 @@ TB3D_Engine::TB3D_Engine(TB3D_Game* game, std::string identifier)
 
 	mCamera = new TB3D_Camera(this);
 	mPlayer = new TB3D_Player(this);
+	//mActor = new TB3D_Actor(this);
 	mWorld = new TB3D_World(this);
 }
 
@@ -22,13 +23,14 @@ TB3D_Engine::~TB3D_Engine()
 
 void TB3D_Engine::Initialize() {
 	mCamera->Initialize();
-	mPlayer->Initialize();
+	mPlayer->Initialize("Sprite/player.png");
 	mWorld->Initialize();
 
 	mCamera->FollowActor(mPlayer);
 	// Set camera hard coded values for looking at player
+	mCamera->GetRenderCamera()->SetRotationY(-0.8f);
 	mCamera->GetRenderCamera()->SetRotationX(-0.8f);
-	mCamera->SetOffset(0, -15.0f, 20.0f);
+	mCamera->SetOffset(10.0f, -15.0f, 10.0f);
 }
 
 void TB3D_Engine::OnKeyDown(SDL_Keycode key) {

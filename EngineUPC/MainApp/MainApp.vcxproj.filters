@@ -84,6 +84,9 @@
     <ClCompile Include="TB3D_TurnManager.cpp">
       <Filter>Source Files\TileEngine3D</Filter>
     </ClCompile>
+    <ClCompile Include="TB3D_Entity.cpp">
+      <Filter>Source Files\TileEngine3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScene.h">
@@ -141,6 +144,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TB3D_TurnManager.h">
+      <Filter>Header Files\TileEngine3D</Filter>
+    </ClInclude>
+    <ClInclude Include="TB3D_Entity.h">
       <Filter>Header Files\TileEngine3D</Filter>
     </ClInclude>
   </ItemGroup>

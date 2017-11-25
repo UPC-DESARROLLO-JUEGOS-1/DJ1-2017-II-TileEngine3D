@@ -1,22 +1,19 @@
 #pragma once
 
-#include "TB3D_Actor.h"
+#include "TB3D_Entity.h"
 #include "TB3D_PlayerControl.h"
 
-#include <FrameworkUPC\NTexturePlane3D.h>
 #include <SDL\SDL_keycode.h>
 
 class TB3D_Engine;
 
-class TB3D_Player : public TB3D_Actor
+class TB3D_Player : public TB3D_Entity
 {
 public:
 	TB3D_Player(TB3D_Engine* engine);
 	~TB3D_Player();
 
-	void CreateCollision(float size);
-
-	virtual void Initialize();
+	virtual void Initialize(std::string file);
 
 	virtual void OnKeyDown(SDL_Keycode key) { mPlayerControl->OnKeyDown(key); }
 	virtual void OnKeyUp(SDL_Keycode key) { mPlayerControl->OnKeyUp(key); }

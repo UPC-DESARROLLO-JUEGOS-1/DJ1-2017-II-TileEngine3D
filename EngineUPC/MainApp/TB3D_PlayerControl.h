@@ -24,6 +24,8 @@ private:
 	bool mCanGoForward;
 	bool mCanGoBackward;
 
+	bool justMoved;
+
 	float mPlayerSpeed;
 
 	int mDirectionX;
