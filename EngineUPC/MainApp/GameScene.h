@@ -2,6 +2,7 @@
 
 #include <FrameworkUPC\BaseScene.h>
 #include <FrameworkUPC\Button.h>
+#include <FrameworkUPC\Sprite.h>
 
 class GameScene : public BaseScene
 {
@@ -22,5 +23,6 @@ public:
 	void OnKeyUp(SDL_Keycode key);
 
 private:
-	Button* mButton;
+	Button *btnNew, *btnExit, *btnContinue;
+	Sprite* bg;	
 };

@@ -2,6 +2,7 @@
 
 #include "ImageContent.h"
 #include "Drawable2D.h"
+#include <functional>
 
 #include <string>
 #define NSPRITES 3
@@ -36,7 +37,7 @@ public:
 
 	void EventHandler();
 	bool MouseInside(int mx, int my);
-	void SetButtonState(int i);
+	bool isClicked();
 	void SetColor(float r, float g, float b, float a);
 	void SetPivot(float x, float y);
 	void SetPivot(float value);
@@ -49,7 +50,8 @@ protected:
 	Vector2 pivot;
 	GLuint vbo[NSPRITES];
 	int state, prevState;
-	bool highlightable;
+	bool highlightable, clickReleased, clicked;
+
 	void BindData();	
 };
 

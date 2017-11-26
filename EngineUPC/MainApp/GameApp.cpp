@@ -21,20 +21,6 @@ void GameApp::InitializeApp()
 
 	frameWork.SetCustomSceneGraph(new AppSceneGraph());
 	frameWork.GetSceneGraph()->GoToScene(EnumAppScenes::Game);
-
-	
-	std::queue<int> entitiesTypes = std::queue<int>();
-	for (int i = 0; i < 10;i++) {
-		entitiesTypes.push(rand() % 7);
-	}
-	
-	turnManager.Initialize(entitiesTypes.size(), entitiesTypes);
-	turnManager.GenerateTurns();
-
-	int type = -1;
-	do {
-		type = turnManager.GetNextTurn();
-	} while (type >= 0);
 }
 
 void GameApp::OnInput(SDL_Event evnt)

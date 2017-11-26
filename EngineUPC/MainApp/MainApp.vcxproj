@@ -143,6 +143,7 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameTile3DEngineScene.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Profile.cpp" />
     <ClCompile Include="TB3D_Actor.cpp" />
     <ClCompile Include="TB3D_Camera.cpp" />
     <ClCompile Include="TB3D_Configuration.cpp" />
@@ -152,6 +153,7 @@
     <ClCompile Include="TB3D_GameHud.cpp" />
     <ClCompile Include="TB3D_Player.cpp" />
     <ClCompile Include="TB3D_PlayerControl.cpp" />
+    <ClCompile Include="TB3D_ProfileManger.cpp" />
     <ClCompile Include="TB3D_TurnManager.cpp" />
     <ClCompile Include="TB3D_World.cpp" />
     <ClCompile Include="TB3D_WorldPhysics.cpp" />
@@ -164,6 +166,7 @@
     <ClInclude Include="GameFontSystemScene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameTile3DEngineScene.h" />
+    <ClInclude Include="Profile.h" />
     <ClInclude Include="TB3D_Actor.h" />
     <ClInclude Include="TB3D_Camera.h" />
     <ClInclude Include="TB3D_Configuration.h" />
@@ -173,10 +176,14 @@
     <ClInclude Include="TB3D_GameHud.h" />
     <ClInclude Include="TB3D_Player.h" />
     <ClInclude Include="TB3D_PlayerControl.h" />
+    <ClInclude Include="TB3D_ProfileManger.h" />
     <ClInclude Include="TB3D_TurnManager.h" />
     <ClInclude Include="TB3D_World.h" />
     <ClInclude Include="TB3D_WorldConfig.h" />
     <ClInclude Include="TB3D_WorldPhysics.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Saves\profile.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

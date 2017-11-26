@@ -84,6 +84,12 @@
     <ClCompile Include="TB3D_TurnManager.cpp">
       <Filter>Source Files\TileEngine3D</Filter>
     </ClCompile>
+    <ClCompile Include="TB3D_ProfileManger.cpp">
+      <Filter>Source Files\TileEngine3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Profile.cpp">
+      <Filter>Source Files\TileEngine3D</Filter>
+    </ClCompile>
     <ClCompile Include="TB3D_Entity.cpp">
       <Filter>Source Files\TileEngine3D</Filter>
     </ClCompile>
@@ -146,6 +152,17 @@
     <ClInclude Include="TB3D_TurnManager.h">
       <Filter>Header Files\TileEngine3D</Filter>
     </ClInclude>
+    <ClInclude Include="TB3D_ProfileManger.h">
+      <Filter>Header Files\TileEngine3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Profile.h">
+      <Filter>Header Files\TileEngine3D</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Saves\profile.json">
+      <Filter>Resource Files</Filter>
+    </None>
     <ClInclude Include="TB3D_Entity.h">
       <Filter>Header Files\TileEngine3D</Filter>
     </ClInclude>
