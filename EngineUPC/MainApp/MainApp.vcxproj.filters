@@ -93,6 +93,15 @@
     <ClCompile Include="TB3D_Entity.cpp">
       <Filter>Source Files\TileEngine3D</Filter>
     </ClCompile>
+    <ClCompile Include="TB3D_EnemyControl.cpp">
+      <Filter>Source Files\TileEngine3D</Filter>
+    </ClCompile>
+    <ClCompile Include="TB3D_Enemy.cpp">
+      <Filter>Source Files\TileEngine3D</Filter>
+    </ClCompile>
+    <ClCompile Include="TB3D_EnemyManager.cpp">
+      <Filter>Source Files\TileEngine3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScene.h">
@@ -156,6 +165,15 @@
       <Filter>Header Files\TileEngine3D</Filter>
     </ClInclude>
     <ClInclude Include="Profile.h">
+      <Filter>Header Files\TileEngine3D</Filter>
+    </ClInclude>
+    <ClInclude Include="TB3D_Enemy.h">
+      <Filter>Header Files\TileEngine3D</Filter>
+    </ClInclude>
+    <ClInclude Include="TB3D_EnemyControl.h">
+      <Filter>Header Files\TileEngine3D</Filter>
+    </ClInclude>
+    <ClInclude Include="TB3D_EnemyManager.h">
       <Filter>Header Files\TileEngine3D</Filter>
     </ClInclude>
   </ItemGroup>

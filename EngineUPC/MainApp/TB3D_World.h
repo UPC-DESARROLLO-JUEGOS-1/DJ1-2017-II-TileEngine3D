@@ -15,6 +15,7 @@ public:
 	static const int TILE_EMPTY;
 	static const int TILE_BLOCK;
 	static const int TILE_PLAYER;
+	static const int TILE_ENEMY;
 	static const int TB3D_World::TILE_HOUSE_3D;
 
 	float GetTileSize() { return mTileSize; }

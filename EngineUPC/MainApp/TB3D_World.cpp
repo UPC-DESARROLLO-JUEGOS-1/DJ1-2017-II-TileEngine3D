@@ -13,6 +13,7 @@ const int TB3D_World::TILE_EMPTY = 0;
 const int TB3D_World::TILE_BLOCK = 1;
 const int TB3D_World::TILE_HOUSE_3D = 2;
 const int TB3D_World::TILE_PLAYER = 9;
+const int TB3D_World::TILE_ENEMY = 3;
 
 TB3D_World::TB3D_World(TB3D_Engine* engine)
 {
@@ -120,6 +121,9 @@ void TB3D_World::CreateObject(int tileID, int c, int r) {
 		break;
 	case TB3D_World::TILE_PLAYER:
 		mEngine->GetPlayer()->SetPosition(posX + mTileSize / 2, posY, posZ + mTileSize / 2);
+		break;
+	case TB3D_World::TILE_ENEMY:
+		mEngine->GetEnemyManger()->AddAtPosition(posX + mTileSize / 2, posY, posZ + mTileSize / 2);
 		break;
 		
 	}
