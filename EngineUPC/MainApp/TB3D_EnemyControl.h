@@ -4,6 +4,7 @@
 #include "TB3D_Camera.h"
 #include <random>
 #include <ctime>
+#include "Randomizer.h"
 
 class TB3D_Enemy;
 
@@ -20,7 +21,7 @@ public:
 	void Update(float dt);
 
 	void RandomMovement();
-
+	Randomizer randomizer;
 private:
 	TB3D_Enemy* mEnemy;
 
@@ -40,4 +41,6 @@ private:
 
 	clock_t begin;
 	clock_t end;
+	long r;
+	unsigned int min, max;
 };

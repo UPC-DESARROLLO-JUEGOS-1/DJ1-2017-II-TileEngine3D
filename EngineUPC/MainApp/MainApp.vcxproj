@@ -144,6 +144,7 @@
     <ClCompile Include="GameTile3DEngineScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Profile.cpp" />
+    <ClCompile Include="Randomizer.cpp" />
     <ClCompile Include="TB3D_Actor.cpp" />
     <ClCompile Include="TB3D_Camera.cpp" />
     <ClCompile Include="TB3D_Configuration.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameTile3DEngineScene.h" />
     <ClInclude Include="Profile.h" />
+    <ClInclude Include="Randomizer.h" />
     <ClInclude Include="TB3D_Actor.h" />
     <ClInclude Include="TB3D_Camera.h" />
     <ClInclude Include="TB3D_Configuration.h" />

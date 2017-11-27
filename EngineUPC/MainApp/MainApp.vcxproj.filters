@@ -102,6 +102,9 @@
     <ClCompile Include="TB3D_EnemyManager.cpp">
       <Filter>Source Files\TileEngine3D</Filter>
     </ClCompile>
+    <ClCompile Include="Randomizer.cpp">
+      <Filter>Source Files\TileEngine3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScene.h">
@@ -174,6 +177,9 @@
       <Filter>Header Files\TileEngine3D</Filter>
     </ClInclude>
     <ClInclude Include="TB3D_EnemyManager.h">
+      <Filter>Header Files\TileEngine3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Randomizer.h">
       <Filter>Header Files\TileEngine3D</Filter>
     </ClInclude>
   </ItemGroup>

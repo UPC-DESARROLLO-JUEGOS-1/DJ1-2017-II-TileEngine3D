@@ -3,10 +3,14 @@
 #include <FrameworkUPC\GameFramework.h>
 #include <iostream>
 
-TB3D_EnemyControl::TB3D_EnemyControl(TB3D_Enemy* Enemy)
+TB3D_EnemyControl::TB3D_EnemyControl(TB3D_Enemy* Enemy):
+	min(1),
+	max(4)
 {
 	begin = clock(); 
 	mEnemy = Enemy;
+	randomizer = Randomizer();
+	r = (randomizer.GenerateRandom(min, max)) * CLOCKS_PER_SEC;
 }
 
 TB3D_EnemyControl::~TB3D_EnemyControl()
@@ -24,7 +28,6 @@ void TB3D_EnemyControl::Initialize() {
 
 	mEnemySpeed = 3;
 	mDebugRotation = Vector3::Zero;
-
 	
 }
 
@@ -99,10 +102,12 @@ void TB3D_EnemyControl::Update(float dt) {
 	if (!mCanGoLeft && !mCanGoRight) { mDirectionY = 0; }
 
 	end = clock();
-	srand(time(NULL));	
-	long r = (rand() % 4 + 1) *CLOCKS_PER_SEC;
-	if (end - begin > r) {
-		printf("%ld ", r); begin = clock();
+
+	
+	if (long(end - begin) > r) {
+		std::cout << r << " ";
+		begin = clock();
+		r = (randomizer.GenerateRandom(min, max)) * CLOCKS_PER_SEC;
 		for (int i = 0;i < 4; i++)
 		{
 			OnKeyUp(i);
@@ -113,6 +118,5 @@ void TB3D_EnemyControl::Update(float dt) {
 }
 
 void TB3D_EnemyControl::RandomMovement() {
-	srand(time(NULL));
-	OnKeyDown(rand() % 4 + 1);
+	OnKeyDown(randomizer.GenerateRandom(0, 3));
 }
