@@ -107,6 +107,7 @@ void TB3D_EnemyControl::Update(float dt) {
 	if (long(end - begin) > r) {
 		std::cout << r << " ";
 		begin = clock();
+		mEnemySpeed = randomizer.GenerateRandom(1, 10);
 		r = (randomizer.GenerateRandom(min, max)) * CLOCKS_PER_SEC;
 		for (int i = 0;i < 4; i++)
 		{
@@ -118,5 +119,6 @@ void TB3D_EnemyControl::Update(float dt) {
 }
 
 void TB3D_EnemyControl::RandomMovement() {
+	OnKeyDown(randomizer.GenerateRandom(0, 3));
 	OnKeyDown(randomizer.GenerateRandom(0, 3));
 }
