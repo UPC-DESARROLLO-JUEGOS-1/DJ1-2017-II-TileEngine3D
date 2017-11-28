@@ -19,6 +19,12 @@ void TB3D_GameHud::Initialize() {
 		heart->push_back(new Sprite(90 * i + 20, 20, "Sprites/life.png"));
 		heart->at(i)->SetRenderCamera(GameFramework::GET_FRAMEWORK()->GetCameraManagement()->GetCurrentCamera());
 	}
+
+	btnNew = new Button();
+	//btnNew->Initialize(0, 0, "Sprites/btnNew.png");
+	//btnNew->SetX(GameFramework::GET_FRAMEWORK()->GetScreenWidth() / 2 - btnNew->GetWidth() / 2);
+	//btnNew->SetY(GameFramework::GET_FRAMEWORK()->GetScreenHeight() / 2 - btnNew->GetHeight() / 2 - 100);
+	//btnNew->SetRenderCamera(GameFramework::GET_FRAMEWORK()->GetCameraManagement()->GetCurrentCamera());
 }
 
 void TB3D_GameHud::OnKeyDown(SDL_Keycode key) {
@@ -41,9 +47,12 @@ void TB3D_GameHud::UpdateLives(int lives) {
 	if (heart->size() > lives) {
 		heart->pop_back();
 	}
-	else if (heart->size() < lives){
-		//heart->push_back(new Sprite(90 * (lives - 1) + 20, 20, "Sprites/life.png"));
-		//heart->at(heart->size()-1)->SetRenderCamera(GameFramework::GET_FRAMEWORK()->GetCameraManagement()->GetCurrentCamera());
+	else if (heart->size() > 0){
+		for (int i = heart->size(); i < lives; i++) {
+			heart->push_back(new Sprite(90 * i + 20, 20, "Sprites/life.png"));
+			heart->at(heart->size() - 1)->SetRenderCamera(GameFramework::GET_FRAMEWORK()->GetCameraManagement()->GetCurrentCamera());
+		}
+		
 	}
 }
 

@@ -62,9 +62,11 @@ void GameTile3DEngineScene::Draw(float dt)
 void GameTile3DEngineScene::UpdateLives()
 {
 	int lives = playerControl->GetLives();
-	mGameHud->UpdateLives(lives);
+		
 	if (lives == 0) {
 		lives = 3;
 		//GameFramework::GET_FRAMEWORK()->GetSceneGraph()->GoToScene(Menu);
 	}
+	mGameHud->UpdateLives(lives);
+	mGame->GetEngine()->GetPlayer()->GetPlayerControl()->SetLives(lives);
 }

@@ -3,6 +3,7 @@
 #include <SDL\SDL.h>
 #include <FrameworkUPC\Quad.h>
 #include <FrameworkUPC\Sprite.h>
+#include <FrameworkUPC\Button.h>
 
 class BaseScene;
 
@@ -24,7 +25,7 @@ public:
 private:
 	BaseScene* mScene;
 	std::vector<Sprite*> *heart;
-
+	Button *btnNew;
 	Quad* mQuad;
 	int lives;
 

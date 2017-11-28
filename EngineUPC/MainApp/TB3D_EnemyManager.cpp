@@ -37,7 +37,7 @@ void TB3D_EnemyManager::Draw(float dt)
 void TB3D_EnemyManager::AddAtPosition(float x, float y, float z)
 {
 	enemies->push_back( new TB3D_Enemy(mEngine));
-	enemies->at(index)->Initialize("Sprites/asteroid.png");
+	enemies->at(index)->Initialize("Sprites/enemy.png");
 	enemies->at(index)->SetPosition(x, y, z);
 	index++;
 }
