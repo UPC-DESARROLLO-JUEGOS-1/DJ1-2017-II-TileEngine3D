@@ -1,8 +1,7 @@
 #pragma once
 #include "TB3D_Enemy.h"
 #include <vector>
-
-
+#include <ctime>
 
 class TB3D_EnemyManager
 {
@@ -24,5 +23,7 @@ private:
 	std::vector<TB3D_Enemy*> *enemies;
 	TB3D_Engine *mEngine;
 	int index;
+	clock_t beginDelay;
+	clock_t endDelay;
 };
 

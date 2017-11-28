@@ -7,6 +7,8 @@ TB3D_EnemyManager::TB3D_EnemyManager(TB3D_Engine* engine) :
 	index(0)
 {
 	mEngine = engine;
+	beginDelay = clock();
+	endDelay = clock();
 }
 
 
@@ -15,11 +17,12 @@ TB3D_EnemyManager::~TB3D_EnemyManager()
 }
 
 void TB3D_EnemyManager::Initialize() {
-		
+	
 }
 
 void TB3D_EnemyManager::Update(float dt)
 {
+	endDelay = clock();
 	for (int i = 0; i < enemies->size(); i++)
 	{
 		enemies->at(i)->Update(dt);
@@ -62,22 +65,26 @@ bool TB3D_EnemyManager::DamagePlayer(double px, double py) {
 	bool damaged = false;
 	for (int i = 0; i < enemies->size(); i++)
 	{
+
 		x = enemies->at(i)->GetX();
 		y = enemies->at(i)->GetZ();
 		double dist = sqrt((x - px)*(x - px) + (y - py)*(y - py));
-		if (dist < 10.0f) {
+		
+		
+		float delay = ((endDelay - beginDelay) / CLOCKS_PER_SEC);
+		if (dist < 2.0f && delay > 0.25f) {
+			beginDelay = clock();
+			enemies->at(i)->GetEnemyControl()->DisableMovementFor(0.25f);
+			//enemies->erase(enemies->begin()+i);
+			damaged = true;
+		}else if (dist < 10.0f) {
 			enemies->at(i)->GetEnemyControl()->FollowPlayer(true);
 			enemies->at(i)->GetEnemyControl()->SetChaseDir(px - x, py - y);
 		}
 		else {
 			enemies->at(i)->GetEnemyControl()->FollowPlayer(false);
 		}
-
-		if (dist < 2.0f) {
-			std::cout << x << ", " << y << ", " << i << std::endl;
-			enemies->erase(enemies->begin()+i);
-			damaged = true;
-		}
+		
 	}
 	return damaged;
 	

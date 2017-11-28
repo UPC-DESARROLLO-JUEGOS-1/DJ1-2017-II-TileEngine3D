@@ -5,7 +5,6 @@
 #include "TB3D_Player.h"
 #include "TB3D_EnemyManager.h"
 #include "TB3D_WorldConfig.h"
-
 #include <SDL\SDL_keycode.h>
 
 class TB3D_Game;
@@ -40,6 +39,6 @@ private:
 
 	float mTileSize;
 	bool damagePlayer;
-	bool damageOnce;
+	bool damageOnce;	
 };
 

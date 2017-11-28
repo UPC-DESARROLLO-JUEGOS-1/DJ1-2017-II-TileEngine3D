@@ -22,6 +22,7 @@ public:
 
 	void FollowPlayer(bool follow);
 	void SetChaseDir(float xDir, float yDir);
+	void DisableMovementFor(float seconds);
 	void RandomMovement();
 	Randomizer randomizer;
 private:
@@ -43,7 +44,10 @@ private:
 
 	clock_t begin;
 	clock_t end;
+	clock_t beginDelay;
+	clock_t endDelay;
 	long r;
 	unsigned int min, max;	
 	bool followsPlayer;
+	float delay, disabledTime;
 };
