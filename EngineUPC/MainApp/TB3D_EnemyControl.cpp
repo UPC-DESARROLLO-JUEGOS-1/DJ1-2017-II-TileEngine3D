@@ -3,9 +3,10 @@
 #include <FrameworkUPC\GameFramework.h>
 #include <iostream>
 
-TB3D_EnemyControl::TB3D_EnemyControl(TB3D_Enemy* Enemy):
+TB3D_EnemyControl::TB3D_EnemyControl(TB3D_Enemy* Enemy) :
 	min(1),
-	max(4)
+	max(4),
+	followsPlayer(false)
 {
 	begin = clock(); 
 	mEnemy = Enemy;
@@ -35,11 +36,6 @@ void TB3D_EnemyControl::OnKeyDown(int option) {
 	if (justMoved)
 		return;
 
-	NLightManager* lightManager = GameFramework::GET_FRAMEWORK()->GetLightManager();
-	NBasicLight* light0 = lightManager->GetLigth("light0");
-
-	glm::vec4 lightDir = light0->GetPosition();
-
 	switch (option) {
 	case 1:
 		mCanGoBackward = true;
@@ -58,7 +54,6 @@ void TB3D_EnemyControl::OnKeyDown(int option) {
 		mDirectionY = -1;
 		break;
 
-		light0->SetPosition(lightDir.x, lightDir.y, lightDir.z);
 		justMoved = true;
 	}
 }
@@ -92,11 +87,6 @@ void TB3D_EnemyControl::Update(float dt) {
 	mEnemy->SetZ(position.y);
 
 	GameFramework* framework = GameFramework::GET_FRAMEWORK();
-	NBasicLight* light = framework->GetLightManager()->GetLigth("light1");
-
-	if (light != nullptr) {
-		light->SetPosition(position.x, light->GetPosition().y, position.y);
-	}
 
 	if (!mCanGoForward && !mCanGoBackward) { mDirectionX = 0; }
 	if (!mCanGoLeft && !mCanGoRight) { mDirectionY = 0; }
@@ -105,17 +95,38 @@ void TB3D_EnemyControl::Update(float dt) {
 
 	
 	if (long(end - begin) > r) {
-		std::cout << r << " ";
 		begin = clock();
-		mEnemySpeed = randomizer.GenerateRandom(1, 10);
+		mEnemySpeed = randomizer.GenerateRandom(1, 8);
 		r = (randomizer.GenerateRandom(min, max)) * CLOCKS_PER_SEC;
-		for (int i = 0;i < 4; i++)
+		for (int i = 0; i < 4; i++)
 		{
 			OnKeyUp(i);
 		}
-		RandomMovement();
+		if (!followsPlayer) {
+			RandomMovement();
+		}
 	}
-	
+}
+void TB3D_EnemyControl::FollowPlayer(bool follow) {
+	followsPlayer = follow;
+}
+void TB3D_EnemyControl::SetChaseDir(float xDir, float yDir)
+{
+	if (followsPlayer) {
+		if (xDir > 0) {
+			OnKeyDown(1);
+		}
+		else {
+			OnKeyDown(2);
+		}
+
+		if (yDir > 0) {
+			OnKeyDown(3);
+		}
+		else {
+			OnKeyDown(0);
+		}
+	}
 }
 
 void TB3D_EnemyControl::RandomMovement() {

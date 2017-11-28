@@ -18,12 +18,6 @@ void GameScene::Initialize()
 	btnNew->SetY(framework->GetScreenHeight() / 2 - btnNew->GetHeight() / 2 - 100);
 	btnNew->SetRenderCamera(cManagement->GetCurrentCamera());
 
-	btnContinue = new Button();
-	btnContinue->Initialize(0, 0, "Sprites/btnContinue.png");
-	btnContinue->SetX(framework->GetScreenWidth() / 2 - btnContinue->GetWidth() / 2);
-	btnContinue->SetY(framework->GetScreenHeight() / 2 - btnContinue->GetHeight() / 2);
-	btnContinue->SetRenderCamera(cManagement->GetCurrentCamera());
-
 	btnExit = new Button();
 	btnExit->Initialize(0, 0, "Sprites/btnExit.png");
 	btnExit->SetX(framework->GetScreenWidth() / 2 - btnExit->GetWidth() / 2);
@@ -45,15 +39,11 @@ void GameScene::Update(float dt)
 {
 	bg->Update(dt);
 	btnNew->Update(dt);
-	btnContinue->Update(dt);
 	btnExit->Update(dt);	
 	
 	if (btnNew->isClicked()) {
-		GameFramework::GET_FRAMEWORK()->GetSceneGraph()->GoToScene(GameTile3DEngine);
-	}else
-	if (btnContinue->isClicked()) {
-		GameFramework::GET_FRAMEWORK()->GetSceneGraph()->GoToScene(GameTile3DEngine);
-	}else
+		GameFramework::GET_FRAMEWORK()->GetSceneGraph()->GoToScene(Juego);
+	}else	
 	if (btnExit->isClicked()) {
 		GameFramework::GET_FRAMEWORK()->SetFrameworkState(FrameworkState::Exit);
 	}	
@@ -63,6 +53,5 @@ void GameScene::Draw(float dt)
 {
 	bg->Draw(dt);
 	btnNew->Draw(dt);
-	btnContinue->Draw(dt);
 	btnExit->Draw(dt);
 }

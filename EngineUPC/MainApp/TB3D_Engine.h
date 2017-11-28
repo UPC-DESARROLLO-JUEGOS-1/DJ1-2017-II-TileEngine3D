@@ -29,7 +29,6 @@ public:
 	void OnKeyUp(SDL_Keycode key);
 	void Update(float dt);
 	void Draw(float dt);
-
 private:
 	TB3D_Game* mGame;
 	TB3D_World* mWorld;
@@ -40,5 +39,7 @@ private:
 	TB3D_WorldConfig* mWorldConfig;
 
 	float mTileSize;
+	bool damagePlayer;
+	bool damageOnce;
 };
 

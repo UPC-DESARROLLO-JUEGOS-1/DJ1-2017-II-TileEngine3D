@@ -12,6 +12,7 @@ class TB3D_Enemy : public TB3D_Entity
 public:
 	TB3D_Enemy(TB3D_Engine* engine);
 	~TB3D_Enemy();
+	TB3D_EnemyControl* GetEnemyControl(){ return mEnemyControl; }
 
 	virtual void Initialize(std::string file);
 
@@ -20,7 +21,6 @@ public:
 
 	virtual void Update(float dt);
 	virtual void Draw(float dt);
-
 private:
 	TB3D_EnemyControl* mEnemyControl;
 

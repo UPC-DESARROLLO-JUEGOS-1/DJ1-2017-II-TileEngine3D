@@ -20,6 +20,8 @@ public:
 	void OnKeyUp(int option);
 	void Update(float dt);
 
+	void FollowPlayer(bool follow);
+	void SetChaseDir(float xDir, float yDir);
 	void RandomMovement();
 	Randomizer randomizer;
 private:
@@ -42,5 +44,6 @@ private:
 	clock_t begin;
 	clock_t end;
 	long r;
-	unsigned int min, max;
+	unsigned int min, max;	
+	bool followsPlayer;
 };

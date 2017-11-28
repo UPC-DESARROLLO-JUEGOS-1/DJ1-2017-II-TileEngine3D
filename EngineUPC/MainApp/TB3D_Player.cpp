@@ -29,3 +29,7 @@ void TB3D_Player::Update(float dt) {
 void TB3D_Player::Draw(float dt) {
 	TB3D_Entity::Draw(dt);
 }
+
+TB3D_PlayerControl* TB3D_Player::GetPlayerControl() {
+	return mPlayerControl;
+}

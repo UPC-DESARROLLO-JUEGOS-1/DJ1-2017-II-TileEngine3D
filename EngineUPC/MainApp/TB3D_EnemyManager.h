@@ -19,6 +19,7 @@ public:
 	void OnKeyDown(SDL_Keycode key);
 	void OnKeyUp(SDL_Keycode key);
 
+	bool DamagePlayer(double px, double py);
 private:
 	std::vector<TB3D_Enemy*> *enemies;
 	TB3D_Engine *mEngine;

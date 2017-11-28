@@ -75,10 +75,8 @@ void Button::Update(float dt)
 
 void Button::EventHandler() {
 
-	int eType = GameFramework::GET_FRAMEWORK()->GetEventType();
-	if (MouseInside(GameFramework::GET_FRAMEWORK()->GetMouseX(), GameFramework::GET_FRAMEWORK()->GetMouseY())) {	
-		
-		
+	int eType = GameFramework::GET_FRAMEWORK()->GetWindow()->GetEventType();
+	if (MouseInside(GameFramework::GET_FRAMEWORK()->GetMouseX(), GameFramework::GET_FRAMEWORK()->GetMouseY())) {		
 		if (prevState == SDL_MOUSEBUTTONDOWN) {
 			highlightable = false;
 		}

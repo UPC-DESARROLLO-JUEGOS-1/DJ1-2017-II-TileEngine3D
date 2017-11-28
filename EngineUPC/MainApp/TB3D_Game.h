@@ -16,6 +16,7 @@ public:
 	void Update(float dt);
 	void Draw(float dt);
 
+	TB3D_Engine *GetEngine();
 private:
 	TB3D_Engine* mEngine;
 	BaseScene* mScene;

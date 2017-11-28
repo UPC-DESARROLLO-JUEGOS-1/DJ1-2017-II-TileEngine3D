@@ -2,7 +2,8 @@
 #include "TB3D_Game.h"
 #include "TB3D_Configuration.h"
 
-TB3D_Engine::TB3D_Engine(TB3D_Game* game, std::string identifier)
+TB3D_Engine::TB3D_Engine(TB3D_Game* game, std::string identifier):
+	damagePlayer(false)
 {
 	mGame = game;
 	mWorldConfig = TB3D_Configuration::GetInstance()->GetWorld(identifier);
@@ -13,6 +14,7 @@ TB3D_Engine::TB3D_Engine(TB3D_Game* game, std::string identifier)
 	mEnemyManager = new TB3D_EnemyManager(this);
 	//mActor = new TB3D_Actor(this);
 	mWorld = new TB3D_World(this);
+
 }
 
 TB3D_Engine::~TB3D_Engine()
@@ -46,6 +48,13 @@ void TB3D_Engine::OnKeyUp(SDL_Keycode key) {
 void TB3D_Engine::Update(float dt) {
 	mCamera->Update(dt);
 	mPlayer->Update(dt);
+	damageOnce = damagePlayer;
+	damagePlayer = mEnemyManager->DamagePlayer(mPlayer->GetX(), mPlayer->GetZ());
+	
+	if (damagePlayer && damagePlayer != damageOnce) {
+		mPlayer->GetPlayerControl()->SetLives(mPlayer->GetPlayerControl()->GetLives() - 1);
+		printf("Lives[%d] ... ",mPlayer->GetPlayerControl()->GetLives());
+	}
 	mEnemyManager->Update(dt);
 	mWorld->Update(dt);
 }

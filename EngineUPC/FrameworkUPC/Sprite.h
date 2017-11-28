@@ -8,6 +8,7 @@
 class Sprite : public Drawable2D
 {
 public:
+	Sprite(float x, float y, const std::string path);
 	Sprite() :
 		pivot(0.0f, 0.0f)
 	{}

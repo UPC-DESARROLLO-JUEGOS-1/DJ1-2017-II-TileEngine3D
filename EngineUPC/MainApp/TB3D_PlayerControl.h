@@ -15,7 +15,8 @@ public:
 	void OnKeyDown(SDL_Keycode key);
 	void OnKeyUp(SDL_Keycode key);
 	void Update(float dt);
-
+	int GetLives();
+	void SetLives(int lives);
 private:
 	TB3D_Player* mPlayer;
 
@@ -32,5 +33,7 @@ private:
 	int mDirectionY;
 
 	Vector3 mDebugRotation;
+	int lives;
+	NBasicLight* light;
 };
 

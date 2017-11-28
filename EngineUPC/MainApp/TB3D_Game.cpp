@@ -33,3 +33,7 @@ void TB3D_Game::Update(float dt) {
 void TB3D_Game::Draw(float dt) {
 	mEngine->Draw(dt);
 }
+
+TB3D_Engine *TB3D_Game::GetEngine() {
+	return mEngine;
+}

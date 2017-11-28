@@ -56,3 +56,29 @@ void TB3D_EnemyManager::OnKeyUp(SDL_Keycode key)
 		//enemies->at(index)->OnKeyUp(key);
 	}
 }
+
+bool TB3D_EnemyManager::DamagePlayer(double px, double py) {
+	double x, y;
+	bool damaged = false;
+	for (int i = 0; i < enemies->size(); i++)
+	{
+		x = enemies->at(i)->GetX();
+		y = enemies->at(i)->GetZ();
+		double dist = sqrt((x - px)*(x - px) + (y - py)*(y - py));
+		if (dist < 10.0f) {
+			enemies->at(i)->GetEnemyControl()->FollowPlayer(true);
+			enemies->at(i)->GetEnemyControl()->SetChaseDir(px - x, py - y);
+		}
+		else {
+			enemies->at(i)->GetEnemyControl()->FollowPlayer(false);
+		}
+
+		if (dist < 2.0f) {
+			std::cout << x << ", " << y << ", " << i << std::endl;
+			enemies->erase(enemies->begin()+i);
+			damaged = true;
+		}
+	}
+	return damaged;
+	
+}

@@ -20,6 +20,7 @@ public:
 
 	virtual void Update(float dt);
 	virtual void Draw(float dt);
+	TB3D_PlayerControl* GetPlayerControl();
 
 private:
 	TB3D_PlayerControl* mPlayerControl;

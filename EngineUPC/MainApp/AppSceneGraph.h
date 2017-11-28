@@ -24,21 +24,13 @@ public:
 
 		switch (sceneId)
 		{
-			case EnumAppScenes::MainMenu:
-				break;
-			case EnumAppScenes::Game:
+			case EnumAppScenes::Menu:
 				result = new GameScene(this);
 				break;
-			case EnumAppScenes::GameOver:
-				break;
-			case EnumAppScenes::Game3D:
-				result = new Game3DScene(this);
-				break;
-			case EnumAppScenes::GameFontSystem:
-				result = new GameFontSystemScene(this);
-				break;
-			case EnumAppScenes::GameTile3DEngine:
+			case EnumAppScenes::Juego:
 				result = new GameTile3DEngineScene(this);
+				break;
+			case EnumAppScenes::Perder:
 				break;
 		}
 

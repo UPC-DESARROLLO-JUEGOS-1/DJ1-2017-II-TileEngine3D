@@ -29,3 +29,4 @@ void TB3D_Enemy::Update(float dt) {
 void TB3D_Enemy::Draw(float dt) {
 	TB3D_Entity::Draw(dt);
 }
+

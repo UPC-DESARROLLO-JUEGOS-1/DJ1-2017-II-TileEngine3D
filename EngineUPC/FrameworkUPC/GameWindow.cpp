@@ -60,6 +60,10 @@ void GameWindow::Update(float dt)
 	ProcessInputs();
 }
 
+int GameWindow::GetEventType() {
+		return evnt.type;
+}
+
 void GameWindow::Present()
 {
 	SDL_GL_SwapWindow(window); //Swap Buffers
@@ -67,8 +71,6 @@ void GameWindow::Present()
 
 void GameWindow::ProcessInputs()
 {
-	SDL_Event evnt;
-
 	while (SDL_PollEvent(&evnt))
 	{
 		if (onInputCallback != nullptr)

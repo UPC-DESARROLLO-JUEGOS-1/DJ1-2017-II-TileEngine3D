@@ -33,7 +33,6 @@ public:
 	int GetScreenHeight() { return screenHeight; }
 	int GetMouseX() { return mouseX; }
 	int GetMouseY() { return mouseY; }
-	int GetEventType() { return e.type; }
 
 	void Initialize(std::string windowName, int screenWidth, int screenHeight, unsigned int windowFlags);
 	void SetFrameworkState(FrameworkState state) { frameworkState = state; };
@@ -44,10 +43,9 @@ public:
 	}
 	void OnInput(std::function<void(SDL_Event)> onInput) { this->onInput = onInput; }
 	void MainLoop(std::function<void(float)> onUpdate, std::function<void(float)> onDraw);
+	GameWindow *GetWindow();
 	void Update(float dt);
 	void Draw(float dt);
-	void pollEvents();
-	void handleEvent(SDL_Event* e);
 private:
 	static GameFramework* FRAMEWORK;
 

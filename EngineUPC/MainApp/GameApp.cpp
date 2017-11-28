@@ -16,11 +16,11 @@ void GameApp::Start()
 
 void GameApp::InitializeApp()
 {
-	frameWork.Initialize("Game::Gunbound", GameApp::WIDTH, GameApp::HEIGHT, EnumWindowFlags::Windowed);
+	frameWork.Initialize("LanternGuy", GameApp::WIDTH, GameApp::HEIGHT, EnumWindowFlags::Windowed);
 	frameWork.OnInput(std::bind(&GameApp::OnInput, this, std::placeholders::_1));
 
 	frameWork.SetCustomSceneGraph(new AppSceneGraph());
-	frameWork.GetSceneGraph()->GoToScene(EnumAppScenes::GameTile3DEngine);
+	frameWork.GetSceneGraph()->GoToScene(EnumAppScenes::Menu);
 }
 
 void GameApp::OnInput(SDL_Event evnt)

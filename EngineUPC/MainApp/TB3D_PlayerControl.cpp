@@ -2,7 +2,8 @@
 #include "TB3D_Player.h"
 #include <FrameworkUPC\GameFramework.h>
 
-TB3D_PlayerControl::TB3D_PlayerControl(TB3D_Player* player)
+TB3D_PlayerControl::TB3D_PlayerControl(TB3D_Player* player):
+	lives(3)
 {
 	mPlayer = player;
 }
@@ -22,6 +23,9 @@ void TB3D_PlayerControl::Initialize() {
 
 	mPlayerSpeed = 10;
 	mDebugRotation = Vector3::Zero;
+
+	GameFramework* framework = GameFramework::GET_FRAMEWORK();
+	light = framework->GetLightManager()->GetLigth("light1");
 }
 
 void TB3D_PlayerControl::OnKeyDown(SDL_Keycode key) {
@@ -32,11 +36,14 @@ void TB3D_PlayerControl::OnKeyDown(SDL_Keycode key) {
 	NBasicLight* light0 = lightManager->GetLigth("light0");
 
 	glm::vec4 lightDir = light0->GetPosition();
-
+	int offset = 5;
 	switch (key) {
 	case SDLK_LEFT:
 		mCanGoBackward = true;
 		mDirectionX = 1;
+		if (light != nullptr) {
+			light->SetPosition(mPlayer->GetX() - offset, light->GetPosition().y, mPlayer->GetZ());
+		}
 		break;
 	case SDLK_RIGHT:
 		mCanGoForward = true;
@@ -77,7 +84,6 @@ void TB3D_PlayerControl::OnKeyDown(SDL_Keycode key) {
 		lightDir.z -= 1;
 		break;
 	}
-
 	light0->SetPosition(lightDir.x, lightDir.y , lightDir.z);
 	justMoved = true;
 }
@@ -104,14 +110,11 @@ void TB3D_PlayerControl::OnKeyUp(SDL_Keycode key) {
 void TB3D_PlayerControl::Update(float dt) {
 	float newX = 0;
 	float newY = 0;
-
 	Vector2 position = mPlayer->ComputeNewPosition(mPlayerSpeed * dt, mDirectionX, mDirectionY);
 	
 	mPlayer->SetX(position.x);
 	mPlayer->SetZ(position.y);
-
-	GameFramework* framework = GameFramework::GET_FRAMEWORK();
-	NBasicLight* light = framework->GetLightManager()->GetLigth("light1");
+	
 
 	if (light != nullptr) {
 		light->SetPosition(position.x, light->GetPosition().y, position.y);
@@ -119,4 +122,12 @@ void TB3D_PlayerControl::Update(float dt) {
 
 	if (!mCanGoForward && !mCanGoBackward) { mDirectionX = 0; }
 	if (!mCanGoLeft && !mCanGoRight) { mDirectionY = 0; }
+}
+
+int TB3D_PlayerControl::GetLives() {
+	return lives;
+}
+void TB3D_PlayerControl::SetLives(int lives) {
+	if(lives >= 0)
+		this->lives = lives;
 }

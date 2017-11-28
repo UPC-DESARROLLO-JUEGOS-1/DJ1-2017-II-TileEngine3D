@@ -2,6 +2,7 @@
 
 #include <SDL\SDL.h>
 #include <FrameworkUPC\Quad.h>
+#include <FrameworkUPC\Sprite.h>
 
 class BaseScene;
 
@@ -18,10 +19,14 @@ public:
 	void OnKeyUp(SDL_Keycode key);
 	void Update(float dt);
 	void Draw(float dt);
+	void UpdateLives(int lives);
+
 private:
 	BaseScene* mScene;
+	std::vector<Sprite*> *heart;
 
 	Quad* mQuad;
+	int lives;
 
 };
 

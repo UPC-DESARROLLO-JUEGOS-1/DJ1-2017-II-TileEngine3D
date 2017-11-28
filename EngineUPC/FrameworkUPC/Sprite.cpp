@@ -3,6 +3,13 @@
 #include "SpriteShader.h"
 #include "MathUtils.h"
 
+Sprite::Sprite(float x, float y, const std::string path)
+{
+	Initialize(x, y, path);
+}
+
+
+
 void Sprite::SetColor(float r, float g, float b, float a)
 {
 	this->r = r;
