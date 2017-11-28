@@ -40,7 +40,7 @@ TB3D_World::TB3D_World(TB3D_Engine* engine)
 
 	light0->SetPosition(26, 6, -13);
 	light0->SetAmbientCoefficient(0.1f);
-	light0->SetAttenuation(0.05f);
+	light0->SetAttenuation(0.08f);
 
 	light1->SetLightColor(NColor::White);
 	light1->SetAmbientCoefficient(0.03f);
