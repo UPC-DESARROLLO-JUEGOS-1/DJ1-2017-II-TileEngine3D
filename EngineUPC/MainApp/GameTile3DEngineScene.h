@@ -8,7 +8,8 @@ class GameTile3DEngineScene : public BaseScene
 {
 public:
 	GameTile3DEngineScene(SceneGraph* sceneGraph) :
-		BaseScene::BaseScene(sceneGraph) {
+		BaseScene::BaseScene(sceneGraph)
+	{
 
 		mGame = new TB3D_Game(this);
 		mGameHud = new TB3D_GameHud(this);

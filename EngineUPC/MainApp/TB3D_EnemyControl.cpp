@@ -7,7 +7,8 @@ TB3D_EnemyControl::TB3D_EnemyControl(TB3D_Enemy* Enemy) :
 	min(1),
 	max(4),
 	followsPlayer(false),
-	disabledTime(0)
+	disabledTime(0),
+	delay(0)
 {
 	begin = clock(); 
 	beginDelay = clock(); 
@@ -81,6 +82,7 @@ void TB3D_EnemyControl::OnKeyUp(int option) {
 
 
 void TB3D_EnemyControl::Update(float dt) {
+	delay = ((endDelay - beginDelay) / CLOCKS_PER_SEC);
 	float newX = 0;
 	float newY = 0;
 
@@ -96,7 +98,7 @@ void TB3D_EnemyControl::Update(float dt) {
 
 	end = clock();
 
-	
+	endDelay = clock();
 	if (long(end - begin) > r) {
 		begin = clock();
 		mEnemySpeed = randomizer.GenerateRandom(1, 8);
@@ -105,20 +107,20 @@ void TB3D_EnemyControl::Update(float dt) {
 		{
 			OnKeyUp(i);
 		}
-		endDelay = clock();
-		delay = ((endDelay - beginDelay) / CLOCKS_PER_SEC);
-		std::cout << delay << " " << std::endl;
-		if (!followsPlayer && delay > disabledTime) {
+		
+		if (!followsPlayer && delay >= disabledTime) {
 			RandomMovement();
 		}
 	}
+	
+
 }
 void TB3D_EnemyControl::FollowPlayer(bool follow) {
 	followsPlayer = follow;
 }
 void TB3D_EnemyControl::SetChaseDir(float xDir, float yDir)
 {
-	if (followsPlayer && delay > disabledTime) {
+	if (followsPlayer && delay >= disabledTime) {
 		if (xDir > 0) {
 			OnKeyDown(1);
 		}
@@ -135,8 +137,11 @@ void TB3D_EnemyControl::SetChaseDir(float xDir, float yDir)
 	}
 }
 void  TB3D_EnemyControl::DisableMovementFor(float seconds) {
+	for (int i = 0; i < 4; i++)
+	{
+		OnKeyUp(i);
+	}
 	beginDelay = clock();
-	followsPlayer = false;
 	disabledTime = seconds;
 }
 void TB3D_EnemyControl::RandomMovement() {

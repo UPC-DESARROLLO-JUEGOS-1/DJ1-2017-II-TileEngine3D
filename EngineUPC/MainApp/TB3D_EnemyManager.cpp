@@ -72,12 +72,15 @@ bool TB3D_EnemyManager::DamagePlayer(double px, double py) {
 		
 		
 		float delay = ((endDelay - beginDelay) / CLOCKS_PER_SEC);
-		if (dist < 2.0f && delay > 0.25f) {
+		
+		if (dist < 2.5f && delay >= 0.25f) {
 			beginDelay = clock();
 			enemies->at(i)->GetEnemyControl()->DisableMovementFor(0.25f);
 			//enemies->erase(enemies->begin()+i);
 			damaged = true;
+			
 		}else if (dist < 10.0f) {
+			
 			enemies->at(i)->GetEnemyControl()->FollowPlayer(true);
 			enemies->at(i)->GetEnemyControl()->SetChaseDir(px - x, py - y);
 		}

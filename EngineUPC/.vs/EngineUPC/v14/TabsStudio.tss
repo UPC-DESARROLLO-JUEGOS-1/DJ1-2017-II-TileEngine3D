@@ -2,22 +2,53 @@
 <ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ArrayOfArrayOfString>
     <ArrayOfString>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_EnemyControl.cpp</string>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_EnemyControl.h</string>
-    </ArrayOfString>
-    <ArrayOfString>
       <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\GameScene.cpp</string>
       <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\GameScene.h</string>
     </ArrayOfString>
+    <ArrayOfString>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_EnemyControl.cpp</string>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_EnemyControl.h</string>
+    </ArrayOfString>
   </ArrayOfArrayOfString>
   <ArrayOfArrayOfString>
+    <ArrayOfString>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_Enemy.cpp</string>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_Enemy.h</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_EnemyManager.cpp</string>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_EnemyManager.h</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\GameTile3DEngineScene.cpp</string>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\GameTile3DEngineScene.h</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_PlayerControl.cpp</string>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_PlayerControl.h</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_World.cpp</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_GameHud.cpp</string>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_GameHud.h</string>
+    </ArrayOfString>
     <ArrayOfString>
       <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_Engine.cpp</string>
       <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_Engine.h</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_EnemyManager.cpp</string>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_EnemyManager.h</string>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\FrameworkUPC\Sprite.cpp</string>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\FrameworkUPC\Sprite.h</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_Player.cpp</string>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_Player.h</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_Game.cpp</string>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_Game.h</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\FrameworkUPC\GameFramework.cpp</string>
@@ -28,35 +59,7 @@
       <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\FrameworkUPC\GameWindow.h</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\GameTile3DEngineScene.cpp</string>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\GameTile3DEngineScene.h</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\FrameworkUPC\Sprite.cpp</string>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\FrameworkUPC\Sprite.h</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_GameHud.cpp</string>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_GameHud.h</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_Player.cpp</string>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_Player.h</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_PlayerControl.cpp</string>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_PlayerControl.h</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_Game.cpp</string>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_Game.h</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_Enemy.cpp</string>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_Enemy.h</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_World.cpp</string>
+      <string>D:\Mikael\Documents\Visual Studio 2015\Projects\Desarrollo de Juegos 1\DJ1-2017-II-TileEngine3D\EngineUPC\MainApp\TB3D_Camera.cpp</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

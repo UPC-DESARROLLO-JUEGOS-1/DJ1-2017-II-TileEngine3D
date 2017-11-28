@@ -15,8 +15,6 @@ void GameTile3DEngineScene::Initialize()
 	framework->GetGraphicDevice()->ChangeTo2D();
 	UpdateLives();
 	mGameHud->Initialize();
-	
-
 }
 
 void GameTile3DEngineScene::OnKeyDown(SDL_Keycode key)
