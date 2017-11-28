@@ -40,12 +40,12 @@ TB3D_World::TB3D_World(TB3D_Engine* engine)
 
 	light0->SetPosition(26, 6, -13);
 	light0->SetAmbientCoefficient(0.1f);
-	light0->SetAttenuation(0.2f);
+	light0->SetAttenuation(0.02f);
 
-	light1->SetLightColor(NColor::Red);
+	light1->SetLightColor(NColor::White);
 	light1->SetAmbientCoefficient(0.03f);
-	light1->SetPosition(30, 4, 60);
-	light1->SetConeAngle(70.82f);
+	light1->SetPosition(30, 15, 60);
+	light1->SetConeAngle(30);
 	light1->SetConeDirection(0, -1.3f, 0);
 
 }

@@ -1,5 +1,6 @@
 #include "TB3D_PlayerControl.h"
 #include "TB3D_Player.h"
+#include <FrameworkUPC\NColor.h>
 #include <FrameworkUPC\GameFramework.h>
 
 TB3D_PlayerControl::TB3D_PlayerControl(TB3D_Player* player):
@@ -84,8 +85,8 @@ void TB3D_PlayerControl::OnKeyDown(SDL_Keycode key) {
 		lightDir.z -= 1;
 		break;
 	}
-	light0->SetPosition(lightDir.x, lightDir.y , lightDir.z);
-	justMoved = true;
+	light->SetPosition(lightDir.x, lightDir.y , lightDir.z);
+	//justMoved = true;
 }
 
 void TB3D_PlayerControl::OnKeyUp(SDL_Keycode key) {
@@ -103,7 +104,7 @@ void TB3D_PlayerControl::OnKeyUp(SDL_Keycode key) {
 		mCanGoRight = false;
 		break;
 	}
-	justMoved = false;
+	//justMoved = false;
 }
 
 
@@ -115,9 +116,15 @@ void TB3D_PlayerControl::Update(float dt) {
 	mPlayer->SetX(position.x);
 	mPlayer->SetZ(position.y);
 	
+	if (lives == 1)
+		light->SetLightColor(NColor::Red);
+	else
+		light->SetLightColor(NColor::White);
+	
 
 	if (light != nullptr) {
 		light->SetPosition(position.x, light->GetPosition().y, position.y);
+		light->SetConeDirection(mDirectionX, -.8f, mDirectionY);
 	}
 
 	if (!mCanGoForward && !mCanGoBackward) { mDirectionX = 0; }

@@ -25,13 +25,13 @@ void TB3D_Entity::Initialize(std::string file) {
 
 	this->CreateCollision(size);
 
-	mDebugMode = false	;
+	mDebugMode = true;
 	mOffsetX = -(mEngine->GetTileSize() / 2.0);
 	mOffsetZ = -(mEngine->GetTileSize() / 2.0);
 
-	mPlane = new NTexturePlane3D();
+	/*mPlane = new NTexturePlane3D();
 	mPlane->Initialize(0, 0, 0, size, size, file);
-	mPlane->SetRenderCamera((BaseCamera*)mEngine->GetCamera()->GetRenderCamera());
+	mPlane->SetRenderCamera((BaseCamera*)mEngine->GetCamera()->GetRenderCamera());*/
 }
 
 void TB3D_Entity::Update(float dt) {
