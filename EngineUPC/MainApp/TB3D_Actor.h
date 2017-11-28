@@ -46,13 +46,14 @@ public:
 	virtual void Update(float dt);
 	virtual void Draw(float dt);
 
+	float mOffsetX;
+	float mOffsetY;
+	float mOffsetZ;
+
 protected:
 	float mX;
 	float mY;
 	float mZ;
-	float mOffsetX;
-	float mOffsetY;
-	float mOffsetZ;
 	float mTileWidth;
 	float mTileHeight;
 

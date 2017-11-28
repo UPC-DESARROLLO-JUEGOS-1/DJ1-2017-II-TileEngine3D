@@ -123,7 +123,7 @@ void TB3D_PlayerControl::Update(float dt) {
 	
 
 	if (light != nullptr) {
-		light->SetPosition(position.x, light->GetPosition().y, position.y);
+		light->SetPosition(position.x + mPlayer->mOffsetX, light->GetPosition().y, position.y + mPlayer->mOffsetZ);
 		light->SetConeDirection(mDirectionX, -.8f, mDirectionY);
 	}
 
